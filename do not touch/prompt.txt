@@ -1,0 +1,725 @@
+You are a senior React + Vite + TypeScript engineer and UI/UX designer.
+
+IMPORTANT:
+
+I will provide a design reference .md file.
+
+You must:
+
+* Analyze the .md file carefully.
+* Follow its visual style, layout system, spacing, typography, and component patterns.
+* Use the .md file as the primary design reference.
+* Adapt the design for the Trippy Mates brand.
+* Do NOT redesign from scratch.
+* Maintain the same design language while implementing Trippy Mates functionality.
+
+---
+
+# PROJECT
+
+Brand Name: Trippy Mates
+
+Tagline:
+
+Travel Like a Local. Explore with a Captain.
+
+---
+
+# TECH STACK
+
+Frontend:
+
+* React
+* Vite
+* TypeScript
+* React Router DOM
+* Framer Motion
+* Lucide React
+* Inline CSS only
+
+IMPORTANT:
+
+Do NOT use:
+
+* Tailwind CSS
+* Bootstrap
+* Material UI
+* Chakra UI
+* Styled Components
+* CSS Modules
+* SCSS
+* External CSS files
+
+All styling must be done using inline TypeScript style objects.
+
+Backend:
+
+* Supabase Auth
+* Supabase PostgreSQL
+* Supabase Storage
+
+Hosting:
+
+* GitHub
+* Vercel
+
+---
+
+# BRAND CONCEPT
+
+Trippy Mates is not a traditional travel agency.
+
+The platform combines:
+
+1. Travel Packages
+2. Local Captains
+3. Travel Communities
+4. Custom Trip Planning
+
+The primary USP is:
+
+BOOK A CAPTAIN
+
+A Captain is a verified local travel expert who can:
+
+* Physically accompany travelers
+* Provide virtual guidance via call/video call
+* Recommend local attractions
+* Help with language barriers
+* Offer emergency support
+* Create personalized experiences
+
+This feature should be visible throughout the website.
+
+---
+
+# DESIGN SYSTEM
+
+Primary Color:
+#007AFF
+
+Theme:
+White + Blue
+
+Color Palette:
+
+Primary:
+#007AFF
+
+White:
+#FFFFFF
+
+Background:
+#F8FAFC
+
+Border:
+#E5E7EB
+
+Text:
+#111827
+
+Secondary Text:
+#6B7280
+
+Design Style:
+
+* Premium SaaS
+* Modern travel-tech startup
+* Clean white interface
+* Blue CTA buttons
+* Soft shadows
+* Rounded corners
+* Spacious layouts
+* Mobile-first
+* High conversion focused
+
+Avoid:
+
+* Dark theme
+* Heavy gradients
+* Overly colorful UI
+* Generic travel agency designs
+
+---
+
+# WEBSITE STRUCTURE
+
+PUBLIC PAGES
+
+/
+Homepage
+
+/about
+About
+
+/trips
+Upcoming Trips
+
+/trips/domestic
+Domestic Trips
+
+/trips/international
+International Trips
+
+/trips/corporate
+Corporate Trips (Coming Soon)
+
+/captains
+Book a Captain
+
+/community
+Travel Community
+
+/gallery
+Gallery
+
+/custom-trip
+Custom Trip Enquiry
+
+/faq
+FAQ + Enquiry Form
+
+/contact
+Contact
+
+/referrals
+Referral Program
+
+/coupons
+Coupon Page
+
+---
+
+AUTH
+
+/login
+
+/register
+
+/forgot-password
+
+/reset-password
+
+---
+
+USER
+
+/account
+
+/account/profile
+
+/account/settings
+
+/account/bookings
+
+/account/captains
+
+/account/referrals
+
+---
+
+LEGAL
+
+/privacy-policy
+
+/cookies-policy
+
+/terms-and-conditions
+
+---
+
+SYSTEM
+
+/404
+
+/coming-soon
+
+---
+
+ADMIN
+
+/admin
+
+Admin Dashboard
+
+---
+
+# HOMEPAGE
+
+---
+
+## TOP ANNOUNCEMENT BAR
+
+Examples:
+
+Book Your Captain Today
+
+OR
+
+New International Trips Added
+
+---
+
+## HEADER
+
+Logo:
+Trippy Mates
+
+Navigation:
+
+Home
+Trips
+Captains
+Custom Trip
+Community
+Gallery
+FAQ
+About
+Contact
+
+CTA Button:
+
+Book a Captain
+
+---
+
+## HERO SECTION
+
+MOST IMPORTANT SECTION
+
+Use a full-width 16:9 cinematic travel video background.
+
+Video should:
+
+* Autoplay
+* Loop
+* Muted
+* Cover entire hero area
+* Have dark overlay
+
+Examples:
+
+* Bali
+* Kashmir
+* Thailand
+* Dubai
+* Mountains
+* Beaches
+* Travelers exploring
+
+Overlay Content:
+
+Headline:
+
+Travel Like a Local.
+Explore with a Captain.
+
+Subheadline:
+
+Book trips, connect with verified local captains, join travel communities, and create unforgettable experiences.
+
+Primary CTA:
+
+Book a Captain
+
+Secondary CTA:
+
+Explore Trips
+
+Third CTA:
+
+Plan Custom Trip
+
+Trust Indicators:
+
+✓ Verified Captains
+
+✓ Travel Communities
+
+✓ Group Trips
+
+✓ Personalized Experiences
+
+---
+
+## SEARCH SECTION
+
+Fields:
+
+Destination
+
+Travel Dates
+
+Travelers
+
+Trip Type
+
+Search Button
+
+---
+
+## CORE SERVICES SECTION
+
+Display 4 cards:
+
+### Book Trips
+
+Join curated travel experiences.
+
+---
+
+### Book a Captain
+
+Hire verified local experts.
+
+---
+
+### Travel Communities
+
+Connect with travelers worldwide.
+
+---
+
+### Custom Trip Planning
+
+Get a personalized itinerary.
+
+---
+
+## FEATURED DESTINATIONS
+
+Show cards for:
+
+* Bali
+* Thailand
+* Dubai
+* Goa
+* Kashmir
+* Vietnam
+
+Include:
+
+Image
+Rating
+Starting Price
+Available Captains
+
+---
+
+## BOOK A CAPTAIN SECTION
+
+Dedicated homepage section.
+
+Explain:
+
+Travel with local experts.
+
+Features:
+
+* Physical Guidance
+* Virtual Assistance
+* Language Support
+* Local Recommendations
+* Emergency Help
+
+CTA:
+
+Browse Captains
+
+---
+
+## UPCOMING TRIPS SECTION
+
+Display upcoming trips.
+
+CTA:
+
+View All Trips
+
+---
+
+## COMMUNITY SECTION
+
+Headline:
+
+Travel Together, Not Alone
+
+Show:
+
+* Popular Communities
+* Active Discussions
+* Member Counts
+
+Examples:
+
+Bali Travelers
+
+Thailand Backpackers
+
+Goa Explorers
+
+Dubai Community
+
+Digital Nomads
+
+CTA:
+
+Join Community
+
+---
+
+## CUSTOM TRIP SECTION
+
+Headline:
+
+Plan Your Own Adventure
+
+Description:
+
+Can't find the perfect trip?
+
+Let us create a personalized itinerary based on your budget, destination, and travel preferences.
+
+CTA:
+
+Request Custom Trip
+
+---
+
+## TESTIMONIALS
+
+Premium slider.
+
+---
+
+## STATS
+
+Animated counters.
+
+Examples:
+
+10,000+ Travelers
+
+500+ Captains
+
+150+ Communities
+
+50+ Destinations
+
+98% Satisfaction
+
+---
+
+## FAQ PREVIEW
+
+Top FAQs.
+
+CTA:
+
+View All FAQs
+
+---
+
+## FINAL CTA
+
+Your Next Adventure Needs a Captain.
+
+Buttons:
+
+Book a Captain
+
+Plan Custom Trip
+
+---
+
+## FOOTER
+
+Complete footer with navigation and legal links.
+
+---
+
+# CUSTOM TRIP PAGE
+
+Route:
+
+/custom-trip
+
+Purpose:
+
+Collect custom trip enquiries.
+
+---
+
+## HERO
+
+Create Your Dream Trip
+
+Tell us your requirements and our team will design a personalized travel experience.
+
+---
+
+## HOW IT WORKS
+
+Step 1
+Share Requirements
+
+Step 2
+We Build Your Trip
+
+Step 3
+Receive Proposal
+
+Step 4
+Travel With Confidence
+
+---
+
+## CUSTOM TRIP ENQUIRY FORM
+
+Personal Information:
+
+* Full Name
+* Email
+* Phone Number
+
+Travel Information:
+
+* Destination
+* Start Date
+* End Date
+
+Trip Details:
+
+* Number of Travelers
+
+IMPORTANT:
+
+Minimum 2 Travelers Required
+
+Validation Required.
+
+* Budget Range
+
+Trip Type:
+
+Adventure
+Luxury
+Family
+Honeymoon
+Backpacking
+Weekend
+Road Trip
+Corporate
+Custom
+
+Captain Requirement:
+
+Yes
+No
+Not Sure
+
+If Yes:
+
+Show Captain Type Dropdown.
+
+Accommodation Needed?
+
+Yes / No
+
+Transport Needed?
+
+Yes / No
+
+Additional Requirements Textarea
+
+Submit Button:
+
+Request Custom Trip
+
+---
+
+# COMMUNITY PAGE
+
+Forum-style travel communities.
+
+Features:
+
+* Community Listings
+* Search Communities
+* Trending Discussions
+* Join Community
+* Community Statistics
+
+---
+
+# CAPTAINS PAGE
+
+Captain marketplace.
+
+Filters:
+
+Location
+Language
+Rating
+Category
+
+Captain Profile Card:
+
+Photo
+Name
+Country
+Languages
+Rating
+Expertise
+Availability
+Book Captain
+
+---
+
+# SUPABASE DATABASE
+
+Create schemas for:
+
+users
+
+captains
+
+trips
+
+bookings
+
+communities
+
+community_posts
+
+community_comments
+
+coupons
+
+referrals
+
+custom_trip_enquiries
+
+captain_bookings
+
+reviews
+
+---
+
+# CODE REQUIREMENTS
+
+Generate:
+
+* Complete project structure
+* Routing setup
+* Reusable components
+* Feature-based architecture
+* TypeScript interfaces
+* Responsive design
+* Framer Motion animations
+* Production-ready code
+* SEO-friendly pages
+* Supabase integration setup
+* Vercel deployment ready
+
+When design conflicts occur, prioritize the uploaded design reference .md file while preserving all Trippy Mates branding, functionality, and the #007AFF white-blue design system.
