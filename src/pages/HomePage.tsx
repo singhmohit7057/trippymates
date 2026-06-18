@@ -534,9 +534,94 @@ function SearchBar() {
 
 // ─── 3. CORE SERVICES ────────────────────────────────────────────────────────
 
+// ─── COMPANION BANNER ────────────────────────────────────────────────────────
+
+function CompanionBanner() {
+  const navigate = useNavigate();
+  return (
+    <div style={{ position: 'relative', background: 'linear-gradient(180deg, #EBF5FF 0%, #F8FAFC 100%)' }}>
+      <style>{`
+        .companion-hero { height: 500px; }
+        .companion-label { font-size: 72px; }
+        @media(max-width:900px) { .companion-hero { height: 380px !important; } }
+        @media(max-width:600px) { .companion-hero { height: 280px !important; } .companion-label { font-size: 52px !important; } }
+      `}</style>
+
+      {/* Title + image all in one unified block */}
+      <div
+        className="companion-hero"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          position: 'relative',
+          overflow: 'hidden',
+          height: 'auto',
+          paddingTop: 56,
+          marginBottom: 0,
+        }}
+      >
+        {/* Title + subtitle */}
+        <div style={{ textAlign: 'center', marginBottom: 8, position: 'relative', zIndex: 4, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
+          <h2 style={{ fontSize: 'clamp(28px,4vw,40px)', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 10px' }}>
+            Everything You Need to Travel Better
+          </h2>
+          <p style={{ fontSize: 16, color: '#64748B', margin: 0 }}>
+            From booking to boarding — we handle it all.
+          </p>
+        </div>
+
+        {/* Guide group image */}
+        <img
+          src="/meet-our-captain.png"
+          alt="Trippy Mates Captain with group"
+          style={{
+            height: 480,
+            width: 'auto',
+            maxWidth: '90%',
+            objectFit: 'contain',
+            objectPosition: 'bottom',
+            display: 'block',
+            position: 'relative',
+            zIndex: 2,
+            marginTop: 20,
+          }}
+        />
+
+        {/* CTA button */}
+        <button
+          onClick={() => navigate('/captains')}
+          style={{
+            position: 'absolute',
+            bottom: 60,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 3,
+            background: 'rgba(255,255,255,0.95)',
+            color: '#111827',
+            border: 'none',
+            borderRadius: '9999px',
+            padding: '14px 32px',
+            fontSize: '15px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+            whiteSpace: 'nowrap',
+            backdropFilter: 'blur(8px)',
+          }}
+        >
+          Hire a Captain →
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function CoreServices() {
   const sectionStyle: CSSProperties = {
-    padding: '80px 24px',
+    padding: '0px 24px 80px',
     background: colors.background,
     fontFamily: font,
   };
@@ -544,22 +629,6 @@ function CoreServices() {
   const containerStyle: CSSProperties = {
     maxWidth: '1200px',
     margin: '0 auto',
-  };
-
-  const titleStyle: CSSProperties = {
-    textAlign: 'center',
-    fontSize: '36px',
-    fontWeight: 800,
-    color: colors.text,
-    marginBottom: '8px',
-    letterSpacing: '-0.5px',
-  };
-
-  const subtitleStyle: CSSProperties = {
-    textAlign: 'center',
-    fontSize: '16px',
-    color: colors.textSecondary,
-    marginBottom: '52px',
   };
 
   const gridStyle: CSSProperties = {
@@ -611,25 +680,6 @@ function CoreServices() {
         }
       `}</style>
       <div style={containerStyle}>
-        <motion.h2
-          className="services-title"
-          style={titleStyle}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Everything You Need to Travel Better
-        </motion.h2>
-        <motion.p
-          style={subtitleStyle}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          From booking to boarding — we handle it all.
-        </motion.p>
         <div className="services-grid" style={gridStyle}>
           {services.map((s, i) => (
             <motion.div
@@ -696,16 +746,24 @@ function FeaturedDestinations() {
     : mockDestinations.filter((d) => d.type === activeFilter);
 
   return (
-    <section style={{ padding: '64px 24px 80px', background: '#FFFFFF', fontFamily: font }}>
+    <section style={{ padding: '64px 0 80px', background: '#FFFFFF', fontFamily: font }}>
       <style>{`
+        .dest-scroll-wrap {
+          overflow-x: auto;
+          overflow-y: hidden;
+          padding: 0 24px 16px 48px;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .dest-scroll-wrap::-webkit-scrollbar { display: none; }
         .dest-oval-grid {
           display: grid;
-          grid-template-columns: repeat(7, 1fr);
-          gap: 20px 12px;
+          grid-template-rows: repeat(2, auto);
+          grid-auto-flow: column;
+          grid-auto-columns: 160px;
+          gap: 24px 18px;
+          width: max-content;
         }
-        @media (max-width: 1100px) { .dest-oval-grid { grid-template-columns: repeat(5, 1fr); } }
-        @media (max-width: 800px)  { .dest-oval-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (max-width: 560px)  { .dest-oval-grid { grid-template-columns: repeat(3, 1fr); } }
 
         .dest-oval-card:hover .dest-oval-img { transform: scale(1.07); }
         .dest-oval-card:hover .dest-oval-name { color: #007AFF; }
@@ -729,21 +787,17 @@ function FeaturedDestinations() {
         .dest-filter-pill.active { background: #007AFF; color: #fff; border-color: #007AFF; }
       `}</style>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-
-        {/* Header */}
+      {/* Header */}
+      <div style={{ maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 28, padding: '0 24px' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          style={{ marginBottom: '28px' }}
         >
           <h2 style={{ fontSize: '36px', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 20px' }}>
             Explore Destinations
           </h2>
-
-          {/* Filter tabs */}
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             {filters.map((f) => (
               <button
@@ -757,8 +811,10 @@ function FeaturedDestinations() {
             ))}
           </div>
         </motion.div>
+      </div>
 
-        {/* Oval grid */}
+      {/* Oval grid — full width scroll */}
+      <div className="dest-scroll-wrap">
         <div className="dest-oval-grid">
           {filtered.map((dest, i) => (
             <motion.div
@@ -818,7 +874,6 @@ function FeaturedDestinations() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -924,7 +979,8 @@ function BookACaptain() {
           .captain-title { font-size: 30px !important; }
         }
       `}</style>
-      <div className="captain-container" style={containerStyle}>
+
+      <div className="captain-container" style={{ ...containerStyle, paddingTop: 80 }}>
         {/* Left */}
         <motion.div
           initial={{ opacity: 0, x: -32 }}
@@ -1939,6 +1995,7 @@ export default function HomePage() {
     <Layout>
       <HeroSection />
       <SearchBar />
+      <CompanionBanner />
       <CoreServices />
       <FeaturedDestinations />
       <BookACaptain />
