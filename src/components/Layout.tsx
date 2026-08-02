@@ -1,7 +1,6 @@
 import React, { type CSSProperties } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AnnouncementBar from './AnnouncementBar';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,7 +21,6 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div style={wrapperStyle}>
-      <AnnouncementBar />
       <Navbar />
       <main style={mainStyle}>{children}</main>
       <Footer />

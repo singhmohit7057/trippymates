@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type CSSProperties } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, Search, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, Search, Headset, ChevronDown, Phone, Mail } from 'lucide-react';
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
@@ -9,17 +9,14 @@ const tripsDropdown = [
   { label: 'Explore India',      to: '/trips/domestic',      emoji: '🇮🇳', desc: 'Domestic destinations' },
   { label: 'Explore the World',  to: '/trips/international', emoji: '✈️', desc: 'International adventures' },
   { label: 'Corporate Trips',    to: '/trips/corporate',     emoji: '💼', desc: 'Team & corporate travel' },
+  { label: 'Custom Trip',        to: '/custom-trip',         emoji: '✏️', desc: 'Plan your own adventure' },
 ];
 
 const navLinks = [
-  { label: 'Trips',       to: '/trips',        emoji: '👥', hasDropdown: true },
-  { label: 'Captains',    to: '/captains',     emoji: '🧭', hasDropdown: false },
-  { label: 'Custom Trip', to: '/custom-trip',  emoji: '🗺️', hasDropdown: false },
-  { label: 'Community',   to: '/community',    emoji: '🚌', hasDropdown: false },
-  { label: 'Gallery',     to: '/gallery',      emoji: '🎨', hasDropdown: false },
-  { label: 'FAQ',         to: '/faq',          emoji: '❓', hasDropdown: false },
-  { label: 'About',       to: '/about',        emoji: '🌍', hasDropdown: false },
-  { label: 'Contact',     to: '/contact',      emoji: '📞', hasDropdown: false },
+  { label: 'Trips',       to: '/trips',       hasDropdown: true },
+  { label: 'Captains',    to: '/captains',    hasDropdown: false },
+  { label: 'Community',   to: '/community',   hasDropdown: false },
+  { label: 'About',       to: '/about',       hasDropdown: false },
 ];
 
 export default function Navbar() {
@@ -27,13 +24,17 @@ export default function Navbar() {
   const [searchVal, setSearchVal]         = useState('');
   const [tripsOpen, setTripsOpen]         = useState(false);
   const [mobileTripsOpen, setMobileTripsOpen] = useState(false);
+  const [supportOpen, setSupportOpen]     = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const supportRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setTripsOpen(false);
+      }
+      if (supportRef.current && !supportRef.current.contains(e.target as Node)) {
+        setSupportOpen(false);
       }
     };
     document.addEventListener('mousedown', handler);
@@ -47,63 +48,45 @@ export default function Navbar() {
     overflow: 'visible',
   };
 
-  const topRowStyle: CSSProperties = {
-    borderBottom: '1px solid #F0F0F0', height: '80px',
-    display: 'flex', alignItems: 'center',
-  };
-
-  const topContainerStyle: CSSProperties = {
+  const containerStyle: CSSProperties = {
     maxWidth: '1280px', width: '100%', margin: '0 auto',
     padding: '0 28px', display: 'flex', alignItems: 'center',
-    justifyContent: 'space-between', gap: '24px',
+    height: '52px', gap: '20px',
   };
 
   const searchBarStyle: CSSProperties = {
-    flex: 1, maxWidth: '420px', position: 'relative', margin: '0 auto',
+    flex: 1, maxWidth: '320px', position: 'relative',
   };
 
   const searchInputStyle: CSSProperties = {
-    width: '100%', height: '40px', border: '1.5px solid #E5E7EB',
-    borderRadius: '9999px', padding: '0 16px 0 40px', fontSize: '14px',
+    width: '100%', height: '38px', border: '1.5px solid #E5E7EB',
+    borderRadius: '9999px', padding: '0 16px 0 38px', fontSize: '13px',
     color: '#111827', outline: 'none', fontFamily: font,
     background: '#FAFAFA', boxSizing: 'border-box' as const,
   };
 
   const searchIconStyle: CSSProperties = {
-    position: 'absolute', left: '13px', top: '50%',
+    position: 'absolute', left: '12px', top: '50%',
     transform: 'translateY(-50%)', color: '#9CA3AF', pointerEvents: 'none',
   };
 
-  const topRightStyle: CSSProperties = {
-    display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0,
+  const navStyle: CSSProperties = {
+    display: 'flex', alignItems: 'center', gap: '4px',
   };
 
-  const phoneStyle: CSSProperties = {
-    display: 'flex', alignItems: 'center', gap: '6px',
-    fontSize: '14px', fontWeight: 600, color: '#111827',
-    textDecoration: 'none', whiteSpace: 'nowrap' as const,
+  const rightStyle: CSSProperties = {
+    display: 'flex', alignItems: 'center', gap: '12px', marginLeft: 'auto', flexShrink: 0,
   };
 
   const loginBtnStyle: CSSProperties = {
-    background: '#111827', color: '#FFFFFF', border: 'none',
-    borderRadius: '9999px', padding: '8px 22px', fontSize: '14px',
+    background: '#007AFF', color: '#FFFFFF', border: 'none',
+    borderRadius: '9999px', padding: '8px 20px', fontSize: '13px',
     fontWeight: 700, cursor: 'pointer', fontFamily: font,
     textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' as const,
   };
 
-  const bottomRowStyle: CSSProperties = {
-    height: '44px', display: 'flex', alignItems: 'center',
-    borderTop: '1px solid #F3F4F6', overflow: 'visible',
-  };
-
-  const bottomContainerStyle: CSSProperties = {
-    maxWidth: '1280px', width: '100%', margin: '0 auto',
-    padding: '0 28px', display: 'flex', alignItems: 'center',
-    justifyContent: 'center', gap: '2px',
-  };
-
   const mobileMenuStyle: CSSProperties = {
-    position: 'fixed', top: '124px', left: 0, right: 0,
+    position: 'fixed', top: '52px', left: 0, right: 0,
     background: '#FFFFFF', borderBottom: '1px solid #E5E7EB',
     boxShadow: '0 8px 24px rgba(0,0,0,0.10)', zIndex: 99,
     padding: '8px 0 16px',
@@ -116,28 +99,27 @@ export default function Navbar() {
 
         @media (max-width: 900px) {
           .tm-search-bar { display: none !important; }
-          .tm-phone-link { display: none !important; }
-          .tm-bottom-row { display: none !important; }
-          .tm-hamburger { display: flex !important; }
+          .tm-nav-links { display: none !important; }
+          .tm-support-btn { display: none !important; }
           .tm-login-btn { display: none !important; }
+          .tm-hamburger { display: flex !important; }
         }
         @media (min-width: 901px) {
           .tm-hamburger { display: none !important; }
           .tm-mobile-menu { display: none !important; }
         }
 
-        .tm-bottom-link {
-          display: inline-flex; align-items: center; gap: 5px;
-          padding: 6px 14px; font-size: 14px; font-weight: 600;
+        .tm-nav-link {
+          display: inline-flex; align-items: center; gap: 4px;
+          padding: 6px 12px; font-size: 14px; font-weight: 600;
           color: #1a1a2e; text-decoration: none; border-radius: 6px;
           white-space: nowrap; transition: background 0.12s, color 0.12s;
           font-family: 'Poppins', sans-serif; letter-spacing: 0.01em;
           position: relative; cursor: pointer; background: none; border: none;
         }
-        .tm-bottom-link:hover { background: #EEF4FF; color: #007AFF; }
-        .tm-bottom-link.active { color: #007AFF; font-weight: 700; }
+        .tm-nav-link:hover { background: #EEF4FF; color: #007AFF; }
+        .tm-nav-link.active { color: #007AFF; font-weight: 700; }
 
-        /* Trips dropdown */
         .tm-trips-dropdown {
           position: absolute; top: calc(100% + 6px); left: 50%;
           transform: translateX(-50%);
@@ -162,6 +144,27 @@ export default function Navbar() {
         .tm-trips-dropdown a:hover .dd-label { color: #007AFF; }
         .tm-trips-dropdown hr { border: none; border-top: 1px solid #F3F4F6; margin: 4px 0; }
 
+        .tm-support-dropdown {
+          position: absolute; top: calc(100% + 8px); right: 0;
+          background: #fff; border-radius: 12px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+          border: 1px solid #E5E7EB; padding: 8px;
+          min-width: 260px; z-index: 9999;
+        }
+        .tm-support-item {
+          display: flex; align-items: center; gap: 12px;
+          padding: 12px; border-radius: 8px;
+          text-decoration: none; transition: background 0.12s;
+        }
+        .tm-support-item:hover { background: #F0F7FF; }
+        .tm-support-icon {
+          width: 40px; height: 40px; border-radius: 50%;
+          background: #EEF4FF; display: flex; align-items: center;
+          justify-content: center; flex-shrink: 0;
+        }
+        .tm-support-label { font-size: 14px; font-weight: 600; color: #111827; }
+        .tm-support-detail { font-size: 12px; color: #007AFF; margin-top: 2px; }
+
         .tm-mobile-link {
           font-size: 15px; color: #111827; text-decoration: none;
           font-weight: 500; padding: 12px 0;
@@ -176,58 +179,33 @@ export default function Navbar() {
         .tm-mobile-sub { padding-left: 28px; background: #F8FAFC; border-radius: 8px; margin: 4px 0 8px; overflow: hidden; }
         .tm-mobile-sub a { display: flex; align-items: center; gap: 8px; padding: 10px 12px; font-size: 14px; color: #374151; text-decoration: none; font-weight: 500; transition: color 0.12s; }
         .tm-mobile-sub a:hover { color: #007AFF; }
-
-        .tm-bottom-container::-webkit-scrollbar { display: none; }
-        .tm-bottom-container { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
       <div style={wrapperStyle}>
+        <div style={containerStyle}>
+          {/* Logo */}
+          <Link to="/" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
+            <img src="/logo.png" alt="Trippy Mates" style={{ height: '56px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+          </Link>
 
-        {/* TOP ROW */}
-        <div style={topRowStyle}>
-          <div style={topContainerStyle}>
-            <Link to="/" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
-              <img src="/logo.png" alt="Trippy Mates" style={{ height: '72px', width: 'auto', display: 'block', objectFit: 'contain' }} />
-            </Link>
-
-            <div className="tm-search-bar" style={searchBarStyle}>
-              <Search size={16} style={searchIconStyle} />
-              <input style={searchInputStyle} type="text" placeholder="Search your trip..."
-                value={searchVal} onChange={(e) => setSearchVal(e.target.value)} />
-            </div>
-
-            <div style={topRightStyle}>
-              <a href="tel:+918287636079" className="tm-phone-link" style={phoneStyle}>
-                <Phone size={15} color="#374151" />
-                (+91) 82876 36079
-              </a>
-              <Link to="/login" className="tm-login-btn" style={loginBtnStyle}>Login</Link>
-              <button
-                className="tm-hamburger"
-                style={{ background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#111827', display:'flex', alignItems:'center' }}
-                onClick={() => setMobileOpen(p => !p)}
-                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              >
-                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-              </button>
-            </div>
+          {/* Search */}
+          <div className="tm-search-bar" style={searchBarStyle}>
+            <Search size={15} style={searchIconStyle} />
+            <input style={searchInputStyle} type="text" placeholder="Search your trip..."
+              value={searchVal} onChange={(e) => setSearchVal(e.target.value)} />
           </div>
-        </div>
 
-        {/* BOTTOM NAV ROW */}
-        <div className="tm-bottom-row" style={bottomRowStyle}>
-          <div className="tm-bottom-container" style={bottomContainerStyle}>
+          {/* Nav Links */}
+          <nav className="tm-nav-links" style={navStyle}>
             {navLinks.map((link) =>
               link.hasDropdown ? (
-                /* Trips with dropdown */
                 <div key={link.to} ref={dropdownRef} style={{ position: 'relative' }}>
                   <button
-                    className={tripsOpen ? 'tm-bottom-link active' : 'tm-bottom-link'}
+                    className={tripsOpen ? 'tm-nav-link active' : 'tm-nav-link'}
                     onClick={() => setTripsOpen(o => !o)}
                     aria-haspopup="true"
                     aria-expanded={tripsOpen}
                   >
-                    <span style={{ fontSize: '15px' }}>{link.emoji}</span>
                     {link.label}
                     <ChevronDown size={13} style={{ transition: 'transform 0.2s', transform: tripsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </button>
@@ -253,24 +231,56 @@ export default function Navbar() {
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className={({ isActive }) => isActive ? 'tm-bottom-link active' : 'tm-bottom-link'}
+                  className={({ isActive }) => isActive ? 'tm-nav-link active' : 'tm-nav-link'}
                 >
-                  <span style={{ fontSize: '15px' }}>{link.emoji}</span>
                   {link.label}
                 </NavLink>
               )
             )}
+          </nav>
 
-            {/* Book a Captain CTA */}
-            <Link
-              to="/captains"
-              style={{ marginLeft:'16px', display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 18px', background:'#007AFF', color:'#fff', borderRadius:'9999px', fontSize:'13px', fontWeight:700, textDecoration:'none', whiteSpace:'nowrap', flexShrink:0 }}
+          {/* Right: Support + Login */}
+          <div style={rightStyle}>
+            <div ref={supportRef} className="tm-support-btn" style={{ position: 'relative' }}>
+              <button
+                onClick={() => setSupportOpen(o => !o)}
+                style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'none', border: 'none', cursor: 'pointer', padding: '6px', borderRadius: '8px' }}
+                aria-label="Support"
+                aria-expanded={supportOpen}
+              >
+                <Headset size={22} color="#111827" />
+                <ChevronDown size={13} color="#111827" style={{ transition: 'transform 0.2s', transform: supportOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+              </button>
+              {supportOpen && (
+                <div className="tm-support-dropdown">
+                  <a href="tel:+918287636079" className="tm-support-item">
+                    <div className="tm-support-icon"><Phone size={18} color="#007AFF" /></div>
+                    <div>
+                      <div className="tm-support-label">Call Support</div>
+                      <div className="tm-support-detail">Tel : (+91) 82876 36079</div>
+                    </div>
+                  </a>
+                  <a href="mailto:support@trippymates.com" className="tm-support-item">
+                    <div className="tm-support-icon"><Mail size={18} color="#007AFF" /></div>
+                    <div>
+                      <div className="tm-support-label">Mail Support</div>
+                      <div className="tm-support-detail">support@trippymates.com</div>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
+            <Link to="/login" className="tm-login-btn" style={loginBtnStyle}>Login / Signup</Link>
+            <button
+              className="tm-hamburger"
+              style={{ background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#111827', display:'flex', alignItems:'center' }}
+              onClick={() => setMobileOpen(p => !p)}
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             >
-              Book a Captain
-            </Link>
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
-
       </div>
 
       {/* MOBILE DROPDOWN */}
@@ -281,7 +291,7 @@ export default function Navbar() {
               className={({ isActive }) => isActive ? 'tm-mobile-link active' : 'tm-mobile-link'}
               onClick={() => setMobileOpen(false)}
             >
-              🏠 Home
+              Home
             </NavLink>
 
             {navLinks.map((link) =>
@@ -292,9 +302,7 @@ export default function Navbar() {
                     onClick={() => setMobileTripsOpen(o => !o)}
                     style={{ justifyContent:'space-between', borderBottom: mobileTripsOpen ? 'none' : '1px solid #F3F4F6' }}
                   >
-                    <span style={{ display:'flex', alignItems:'center', gap:'8px' }}>
-                      <span>{link.emoji}</span> {link.label}
-                    </span>
+                    <span>{link.label}</span>
                     <ChevronDown size={14} style={{ transition:'transform 0.2s', transform: mobileTripsOpen ? 'rotate(180deg)' : 'rotate(0deg)', color:'#9CA3AF' }} />
                   </button>
                   {mobileTripsOpen && (
@@ -314,7 +322,7 @@ export default function Navbar() {
                   className={({ isActive }) => isActive ? 'tm-mobile-link active' : 'tm-mobile-link'}
                   onClick={() => setMobileOpen(false)}
                 >
-                  <span>{link.emoji}</span> {link.label}
+                  {link.label}
                 </NavLink>
               )
             )}
@@ -324,7 +332,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
               style={{ marginTop:'12px', display:'inline-block', background:'#111827', color:'#fff', borderRadius:'9999px', padding:'10px 24px', fontSize:'15px', fontWeight:700, textDecoration:'none', textAlign:'center', fontFamily:font }}
             >
-              Login
+              Login / Signup
             </Link>
           </div>
         </div>

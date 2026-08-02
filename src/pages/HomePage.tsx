@@ -57,12 +57,10 @@ function useCountUp(target: number, duration = 2000) {
 // ─── 1. HERO ─────────────────────────────────────────────────────────────────
 
 function HeroSection() {
-  const navigate = useNavigate();
-  const [heroSearch, setHeroSearch] = useState('');
 
   const sectionStyle: CSSProperties = {
     position: 'relative',
-    height: '85vh',
+    height: 'calc(100vh - 52px)',
     minHeight: '520px',
     background: '#001F5B',
     display: 'flex',
@@ -137,49 +135,6 @@ function HeroSection() {
     letterSpacing: '0.01em',
   };
 
-  const heroSearchWrap: CSSProperties = {
-    width: '100%',
-    maxWidth: '620px',
-    display: 'flex',
-    alignItems: 'center',
-    background: 'rgba(255,255,255,0.14)',
-    backdropFilter: 'blur(18px)',
-    WebkitBackdropFilter: 'blur(18px)',
-    border: '1.5px solid rgba(255,255,255,0.28)',
-    borderRadius: '9999px',
-    padding: '6px 6px 6px 22px',
-    gap: '10px',
-    boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
-  };
-
-  const heroSearchInput: CSSProperties = {
-    flex: 1,
-    background: 'none',
-    border: 'none',
-    outline: 'none',
-    fontSize: '15px',
-    fontWeight: 500,
-    color: '#FFFFFF',
-    fontFamily: font,
-  };
-
-  const heroSearchBtn: CSSProperties = {
-    flexShrink: 0,
-    background: '#007AFF',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '9999px',
-    padding: '10px 24px',
-    fontSize: '14px',
-    fontWeight: 700,
-    cursor: 'pointer',
-    fontFamily: font,
-    display: 'flex',
-    alignItems: 'center',
-    gap: '7px',
-    boxShadow: '0 4px 16px rgba(0,122,255,0.4)',
-    whiteSpace: 'nowrap' as const,
-  };
 
 
   return (
@@ -247,33 +202,6 @@ function HeroSection() {
           Where strangers become friends and moments become memories.
         </motion.p>
 
-        {/* Hero search bar */}
-        <motion.div
-          className="hero-search-wrap"
-          style={heroSearchWrap}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.44 }}
-        >
-          <Search size={17} color="rgba(255,255,255,0.6)" style={{ flexShrink: 0 }} />
-          <input
-            className="hero-search-input"
-            style={heroSearchInput}
-            type="text"
-            value={heroSearch}
-            onChange={(e) => setHeroSearch(e.target.value)}
-            placeholder="Search destinations, trips, captains…"
-            onKeyDown={(e) => e.key === 'Enter' && navigate(`/trips?q=${heroSearch}`)}
-          />
-          <button
-            className="hero-search-btn"
-            style={heroSearchBtn}
-            onClick={() => navigate(`/trips?q=${heroSearch}`)}
-          >
-            <Search size={14} />
-            Search
-          </button>
-        </motion.div>
 
       </div>
     </section>
