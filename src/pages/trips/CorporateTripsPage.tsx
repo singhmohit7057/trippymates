@@ -165,10 +165,12 @@ export default function CorporateTripsPage() {
                 className="corp-card"
                 style={{ background:'#fff', borderRadius:'20px', padding:'28px 26px', border:'1.5px solid #F0F2F5', boxShadow:'0 4px 16px rgba(0,0,0,0.05)', display:'flex', flexDirection:'column', gap:'14px' }}
               >
-                <div style={{ width:'52px', height:'52px', borderRadius:'14px', background:o.bg, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'26px' }}>
-                  {o.emoji}
+                <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
+                  <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:o.bg, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'24px', flexShrink:0 }}>
+                    {o.emoji}
+                  </div>
+                  <h3 style={{ fontSize:'17px', fontWeight:700, color:'#111827', margin:0 }}>{o.title}</h3>
                 </div>
-                <h3 style={{ fontSize:'17px', fontWeight:700, color:'#111827', margin:0 }}>{o.title}</h3>
                 <p style={{ fontSize:'14px', color:'#6B7280', lineHeight:1.65, margin:0 }}>{o.desc}</p>
               </motion.div>
             ))}
@@ -193,8 +195,10 @@ export default function CorporateTripsPage() {
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(230px, 1fr))', gap:'22px' }}>
             {WHY.map((w, i) => (
               <div key={i} className="corp-why-card" style={{ background:'linear-gradient(145deg, #EBF5FF, #CCE4FF)', borderRadius:'20px', padding:'28px 24px', border:'1.5px solid #99CEFF', display:'flex', flexDirection:'column', gap:'12px' }}>
-                <div style={{ fontSize:'32px' }}>{w.emoji}</div>
-                <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+                <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+                  <div style={{ fontSize:'24px', flexShrink:0 }}>{w.emoji}</div>
+                  <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+                </div>
                 <p style={{ fontSize:'13px', color:'#6B7280', lineHeight:1.7, margin:0 }}>{w.desc}</p>
               </div>
             ))}
@@ -357,10 +361,12 @@ export default function CorporateTripsPage() {
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(235px, 1fr))', gap:'20px' }}>
             {GUIDELINES.map((g, i) => (
               <div key={i} style={{ background:'#F8FAFC', borderRadius:'18px', padding:'26px 22px', border:'1.5px solid #E5E7EB', display:'flex', flexDirection:'column', gap:'10px' }}>
-                <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'24px' }}>
-                  {g.emoji}
+                <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                  <div style={{ width:'44px', height:'44px', borderRadius:'12px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'22px', flexShrink:0 }}>
+                    {g.emoji}
+                  </div>
+                  <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{g.title}</h3>
                 </div>
-                <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{g.title}</h3>
                 <p style={{ fontSize:'13px', color:'#6B7280', lineHeight:1.7, margin:0 }}>{g.desc}</p>
               </div>
             ))}

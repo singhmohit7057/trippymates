@@ -291,9 +291,13 @@ export default function TripsPage() {
                     <div style={{ display:'inline-flex', alignSelf:'flex-start', background:tc.badgeBg, color:tc.badgeColor, padding:'4px 12px', borderRadius:9999, fontSize:11, fontWeight:700, letterSpacing:'0.3px' }}>{tc.badge}</div>
                     <div style={{ position:'absolute', right:24, top:20, fontSize:64, opacity:0.12, lineHeight:1, pointerEvents:'none' }}>{tc.emoji}</div>
                     <div style={{ marginTop:20 }}>
-                      <div style={{ fontSize:38, marginBottom:12 }}>{tc.emoji}</div>
-                      <div style={{ fontSize:12, color:tc.accent, fontWeight:600, letterSpacing:'0.8px', textTransform:'uppercase', marginBottom:6 }}>{tc.subtitle}</div>
-                      <h3 style={{ fontSize:22, fontWeight:800, color:'#fff', margin:'0 0 10px', letterSpacing:'-0.3px' }}>{tc.title}</h3>
+                      <div style={{ display:'flex', alignItems:'center', gap:14, marginBottom:12 }}>
+                        <div style={{ fontSize:38, flexShrink:0 }}>{tc.emoji}</div>
+                        <div>
+                          <div style={{ fontSize:12, color:tc.accent, fontWeight:600, letterSpacing:'0.8px', textTransform:'uppercase', marginBottom:4 }}>{tc.subtitle}</div>
+                          <h3 style={{ fontSize:22, fontWeight:800, color:'#fff', margin:0, letterSpacing:'-0.3px' }}>{tc.title}</h3>
+                        </div>
+                      </div>
                       <p style={{ fontSize:14, color:'rgba(255,255,255,0.72)', lineHeight:'1.6', margin:0 }}>{tc.desc}</p>
                     </div>
                     <div style={{ display:'flex', alignItems:'center', gap:6, color:tc.accent, fontWeight:700, fontSize:14, marginTop:24 }}>
@@ -374,8 +378,10 @@ export default function TripsPage() {
             {WHY_US.map((w, i) => (
               <motion.div key={w.title} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay:i*0.1 }}>
                 <div className="why-card" style={{ background:w.grad, boxShadow:'0 2px 8px rgba(0,0,0,0.06)' }}>
-                  <div style={{ width:48, height:48, borderRadius:12, background:'rgba(255,255,255,0.7)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:16, color:'#0056CC' }}>{w.icon}</div>
-                  <h3 style={{ fontSize:16, fontWeight:700, color:'#111827', margin:'0 0 8px' }}>{w.title}</h3>
+                  <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:10 }}>
+                    <div style={{ width:44, height:44, borderRadius:12, background:'rgba(255,255,255,0.7)', display:'flex', alignItems:'center', justifyContent:'center', color:'#0056CC', flexShrink:0 }}>{w.icon}</div>
+                    <h3 style={{ fontSize:16, fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+                  </div>
                   <p style={{ fontSize:13, color:'#4B5563', lineHeight:'1.6', margin:0 }}>{w.desc}</p>
                 </div>
               </motion.div>

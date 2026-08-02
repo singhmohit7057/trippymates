@@ -256,15 +256,14 @@ export default function CustomTripPage() {
             {HOW_STEPS.map((s, i) => (
               <motion.div key={s.num} className="ct-step"
                 initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay:i*0.1 }}
-                style={{ background:'#fff', border:'1.5px solid #E5E7EB', borderRadius:20, padding:'28px 22px', textAlign:'center', boxShadow:'0 2px 10px rgba(0,0,0,0.05)' }}
+                style={{ background:'#fff', border:'1.5px solid #E5E7EB', borderRadius:20, padding:'28px 22px', boxShadow:'0 2px 10px rgba(0,0,0,0.05)' }}
               >
-                <div style={{ width:44, height:44, borderRadius:12, background:`linear-gradient(135deg,${PURPLE},${PURPLE_MID})`, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 14px', boxShadow:`0 6px 14px rgba(124,58,237,0.3)` }}>
-                  <span style={{ fontSize:14, fontWeight:800, color:'#fff' }}>{s.num}</span>
+                <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:12 }}>
+                  <div style={{ width:44, height:44, borderRadius:12, background:`linear-gradient(135deg,${PURPLE},${PURPLE_MID})`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:`0 6px 14px rgba(124,58,237,0.3)` }}>
+                    <span style={{ fontSize:14, fontWeight:800, color:'#fff' }}>{s.num}</span>
+                  </div>
+                  <h3 style={{ fontSize:15, fontWeight:700, color:'#111827', margin:0 }}>{s.title}</h3>
                 </div>
-                <div style={{ width:46, height:46, background:PURPLE_LIGHT, borderRadius:12, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 14px' }}>
-                  <s.icon size={20} color={PURPLE} />
-                </div>
-                <h3 style={{ fontSize:15, fontWeight:700, color:'#111827', margin:'0 0 8px' }}>{s.title}</h3>
                 <p style={{ fontSize:13, color:'#6B7280', lineHeight:'1.55', margin:0 }}>{s.desc}</p>
               </motion.div>
             ))}
@@ -312,10 +311,12 @@ export default function CustomTripPage() {
                     initial={{ opacity:0, y:12 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.35, delay:i*0.07 }}
                     style={{ background:'#FAFBFC', border:'1.5px solid #F0F2F5', borderRadius:14, padding:'18px 16px', boxShadow:'0 1px 6px rgba(0,0,0,0.04)' }}
                   >
-                    <div style={{ width:36, height:36, borderRadius:10, background:PURPLE_LIGHT, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:10, color:PURPLE }}>
-                      {p.icon}
+                    <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:8 }}>
+                      <div style={{ width:36, height:36, borderRadius:10, background:PURPLE_LIGHT, display:'flex', alignItems:'center', justifyContent:'center', color:PURPLE, flexShrink:0 }}>
+                        {p.icon}
+                      </div>
+                      <h4 style={{ fontSize:13, fontWeight:700, color:'#111827', margin:0 }}>{p.title}</h4>
                     </div>
-                    <h4 style={{ fontSize:13, fontWeight:700, color:'#111827', margin:'0 0 4px' }}>{p.title}</h4>
                     <p style={{ fontSize:12, color:'#6B7280', lineHeight:'1.5', margin:0 }}>{p.desc}</p>
                   </motion.div>
                 ))}

@@ -1,6 +1,6 @@
-import React, { useState, useRef, type CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Plane,
   Users,
@@ -8,8 +8,6 @@ import {
   MapPin,
   Search,
   // CheckCircle,
-  ChevronDown,
-  ChevronUp,
   Star,
   ArrowRight,
   Shield,
@@ -22,7 +20,6 @@ import { colors, shadows } from '../lib/colors';
 import {
   mockDestinations,
   mockCaptains,
-  mockCommunities,
   mockTestimonials,
 } from '../data/mock';
 
@@ -30,29 +27,7 @@ import {
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
-function useCountUp(target: number, duration = 2000) {
-  const [count, setCount] = React.useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
 
-  React.useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
-
-  return { count, ref };
-}
 
 // ─── 1. HERO ─────────────────────────────────────────────────────────────────
 
@@ -628,20 +603,12 @@ function CoreServices() {
               }}
               whileHover={{ y: -4, boxShadow: shadows.lg }}
             >
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: s.iconBg,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                {s.icon}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: s.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  {s.icon}
+                </div>
+                <div style={{ fontSize: '18px', fontWeight: 700, color: colors.text }}>{s.title}</div>
               </div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: colors.text }}>{s.title}</div>
               <div style={{ fontSize: '14px', color: colors.textSecondary, lineHeight: 1.6 }}>{s.desc}</div>
               <Link
                 to={s.link}
@@ -1111,14 +1078,12 @@ function WhyTrippyMates() {
                 border: '1px solid #E8F0FE',
               }}
             >
-              <div style={{
-                width: '52px', height: '52px', borderRadius: '14px',
-                background: '#EEF4FF', display: 'flex', alignItems: 'center',
-                justifyContent: 'center', fontSize: '26px', marginBottom: '18px',
-              }}>
-                {r.emoji}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#EEF4FF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', flexShrink: 0 }}>
+                  {r.emoji}
+                </div>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', lineHeight: 1.3 }}>{r.title}</div>
               </div>
-              <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', marginBottom: '10px', lineHeight: 1.3 }}>{r.title}</div>
               <div style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.7 }}>{r.desc}</div>
             </motion.div>
           ))}
@@ -1142,14 +1107,12 @@ function WhyTrippyMates() {
                 border: '1px solid #E8F0FE',
               }}
             >
-              <div style={{
-                width: '52px', height: '52px', borderRadius: '14px',
-                background: '#EEF4FF', display: 'flex', alignItems: 'center',
-                justifyContent: 'center', fontSize: '26px', marginBottom: '18px',
-              }}>
-                {r.emoji}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#EEF4FF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', flexShrink: 0 }}>
+                  {r.emoji}
+                </div>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', lineHeight: 1.3 }}>{r.title}</div>
               </div>
-              <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', marginBottom: '10px', lineHeight: 1.3 }}>{r.title}</div>
               <div style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.7 }}>{r.desc}</div>
             </motion.div>
           ))}
@@ -1165,14 +1128,6 @@ function WhyTrippyMates() {
 function CommunitySection() {
   const navigate = useNavigate();
 
-  const communityEmojis: Record<string, string> = {
-    'Ladakh Riders':               '🏍️',
-    'Himalayan Backpackers':       '🎒',
-    'Uttarakhand Explorers':       '⛰️',
-    'Northeast India Collective':  '🌿',
-    'Thailand Tribe':              '🌴',
-    'Bhutan & Nepal Wanderers':    '🏔️',
-  };
 
   const perks = [
     { icon: '🤝', title: 'Meet Like-minded Travelers', desc: 'Connect with people who share your travel vibe — before, during, and after the trip.' },
@@ -1228,79 +1183,15 @@ function CommunitySection() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: '16px', padding: '22px 20px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}
             >
-              <div style={{ fontSize: '28px', marginBottom: '10px' }}>{p.icon}</div>
-              <div style={{ fontSize: '15px', fontWeight: 700, color: '#111827', marginBottom: '6px' }}>{p.title}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                <div style={{ fontSize: '24px', flexShrink: 0 }}>{p.icon}</div>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#111827' }}>{p.title}</div>
+              </div>
               <div style={{ fontSize: '13px', color: '#6B7280', lineHeight: 1.6 }}>{p.desc}</div>
             </motion.div>
           ))}
         </div>
 
-        {/* Community cards */}
-        <div className="comm-grid" style={{ marginBottom: '48px' }}>
-          {mockCommunities.map((comm, i) => (
-            <motion.div
-              key={comm.id}
-              className="comm-card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              onClick={() => navigate('/community')}
-              style={{
-                background: '#FFFFFF',
-                border: '1px solid #E5E7EB',
-                borderRadius: '20px',
-                padding: '24px',
-                cursor: 'pointer',
-                transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-              }}
-            >
-              {/* Top row */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: comm.image_url, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', flexShrink: 0 }}>
-                  {communityEmojis[comm.name] ?? '🌍'}
-                </div>
-                {comm.trending && (
-                  <span style={{ fontSize: '10px', fontWeight: 700, background: '#EEF4FF', color: '#007AFF', borderRadius: '9999px', padding: '3px 10px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                    🔥 Trending
-                  </span>
-                )}
-              </div>
-
-              {/* Info */}
-              <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', marginBottom: '3px' }}>{comm.name}</div>
-                <div style={{ fontSize: '12px', color: '#6B7280' }}>{comm.destination}</div>
-              </div>
-
-              {/* Stats */}
-              <div style={{ display: 'flex', gap: '16px' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                  <span style={{ fontSize: '16px', fontWeight: 800, color: '#111827' }}>{comm.member_count.toLocaleString()}</span>
-                  <span style={{ fontSize: '11px', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Members</span>
-                </div>
-                <div style={{ width: '1px', background: '#E5E7EB' }} />
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                  <span style={{ fontSize: '16px', fontWeight: 800, color: '#111827' }}>{comm.category}</span>
-                  <span style={{ fontSize: '11px', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Category</span>
-                </div>
-              </div>
-
-              {/* CTA */}
-              <button
-                style={{ width: '100%', background: 'rgba(0,122,255,0.15)', color: '#60A5FA', border: '1px solid rgba(0,122,255,0.3)', borderRadius: '9999px', padding: '9px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', fontFamily: font, transition: 'background 0.15s' }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0,122,255,0.28)')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(0,122,255,0.15)')}
-              >
-                Join Community →
-              </button>
-            </motion.div>
-          ))}
-        </div>
 
         {/* Bottom CTA */}
         <motion.div
@@ -1320,76 +1211,6 @@ function CommunitySection() {
           </button>
         </motion.div>
 
-      </div>
-    </section>
-  );
-}
-
-// ─── 8. CUSTOM TRIP CTA ──────────────────────────────────────────────────────
-
-function CustomTripCTA() {
-  const navigate = useNavigate();
-
-  const sectionStyle: CSSProperties = {
-    background: 'linear-gradient(135deg, #003A99 0%, #0056CC 50%, #007AFF 100%)',
-    padding: '80px 24px',
-    fontFamily: font,
-    textAlign: 'center',
-  };
-
-  const titleStyle: CSSProperties = {
-    fontSize: '40px',
-    fontWeight: 800,
-    color: '#FFFFFF',
-    letterSpacing: '-0.5px',
-    marginBottom: '16px',
-    lineHeight: 1.2,
-  };
-
-  const descStyle: CSSProperties = {
-    fontSize: '18px',
-    color: 'rgba(255,255,255,0.80)',
-    maxWidth: '560px',
-    margin: '0 auto 36px',
-    lineHeight: 1.6,
-  };
-
-  const btnStyle: CSSProperties = {
-    background: '#FFFFFF',
-    color: colors.primary,
-    border: 'none',
-    borderRadius: '9999px',
-    padding: '14px 36px',
-    fontSize: '16px',
-    fontWeight: 700,
-    cursor: 'pointer',
-    fontFamily: font,
-    boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
-  };
-
-  return (
-    <section style={sectionStyle}>
-      <style>{`
-        @media (max-width: 540px) {
-          .cta-title { font-size: 28px !important; }
-        }
-      `}</style>
-      <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div style={{ fontSize: '32px', marginBottom: '16px' }}>🗺️</div>
-          <h2 className="cta-title" style={titleStyle}>Plan Your Own Adventure</h2>
-          <p style={descStyle}>
-            Tell us your dream destination, dates, and preferences — our travel team will craft a personalized itinerary just for you, with a verified captain to guide the way.
-          </p>
-          <button style={btnStyle} onClick={() => navigate('/custom-trip')}>
-            Request Custom Trip
-          </button>
-        </motion.div>
       </div>
     </section>
   );
@@ -1538,285 +1359,6 @@ function Testimonials() {
   );
 }
 
-// ─── 10. STATS ───────────────────────────────────────────────────────────────
-
-interface StatItemProps {
-  target: number;
-  label: string;
-  suffix: string;
-  icon: React.ReactNode;
-  delay: number;
-}
-
-function StatItem({ target, label, suffix, icon, delay }: StatItemProps) {
-  const { count, ref } = useCountUp(target);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '12px',
-        textAlign: 'center',
-      }}
-    >
-      <div
-        style={{
-          width: '56px',
-          height: '56px',
-          borderRadius: '16px',
-          background: 'rgba(255,255,255,0.12)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {icon}
-      </div>
-      <div style={{ fontSize: '42px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
-        {count.toLocaleString()}{suffix}
-      </div>
-      <div style={{ fontSize: '15px', color: 'rgba(255,255,255,0.70)', fontWeight: 500 }}>{label}</div>
-    </motion.div>
-  );
-}
-
-function StatsSection() {
-  const statsData: Array<{ target: number; label: string; suffix: string; icon: React.ReactNode }> = [
-    { target: 10000, label: 'Happy Travelers', suffix: '+', icon: <Users size={24} color={colors.primary} /> },
-    { target: 500, label: 'Verified Captains', suffix: '+', icon: <Shield size={24} color="#F26110" /> },
-    { target: 150, label: 'Active Communities', suffix: '+', icon: <MessageCircle size={24} color="#9552E0" /> },
-    { target: 50, label: 'Destinations', suffix: '+', icon: <Globe size={24} color="#10B981" /> },
-  ];
-
-  const sectionStyle: CSSProperties = {
-    background: 'linear-gradient(135deg, #001F5B 0%, #003A99 50%, #0056CC 100%)',
-    padding: '80px 24px',
-    fontFamily: font,
-  };
-
-  const containerStyle: CSSProperties = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '32px',
-  };
-
-  return (
-    <section style={sectionStyle}>
-      <style>{`
-        @media (max-width: 900px) {
-          .stats-container { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 400px) {
-          .stats-container { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-      <div className="stats-container" style={containerStyle}>
-        {statsData.map((s, i) => (
-          <StatItem
-            key={s.label}
-            target={s.target}
-            label={s.label}
-            suffix={s.suffix}
-            icon={s.icon}
-            delay={i * 0.1}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── 11. FAQ PREVIEW ─────────────────────────────────────────────────────────
-
-const faqItems = [
-  {
-    q: 'What is a Captain on Trippy Mates?',
-    a: 'A Captain is a verified local expert in their city or region — someone who knows the best hidden gems, speaks the local language, and provides personalized guidance. They can assist you physically on the ground or virtually from anywhere in the world.',
-  },
-  {
-    q: 'How are Captains verified?',
-    a: 'All Captains go through a multi-step verification process that includes identity checks, background verification, local expertise assessments, and a review of their language proficiency. Only Captains who meet our quality standards are listed on the platform.',
-  },
-  {
-    q: 'Can I book a trip without a Captain?',
-    a: 'Absolutely! You can browse and book curated group trips that come with a Captain included. Alternatively, you can book a trip independently and add a Captain separately for guidance, or request a fully custom itinerary through our Custom Trip Planning feature.',
-  },
-  {
-    q: 'What happens if my Captain cancels?',
-    a: 'In the rare event that a Captain cancels, our support team will immediately work to arrange an equally qualified replacement for you. If no suitable replacement is available, you will receive a full refund for the Captain booking.',
-  },
-  {
-    q: 'How do Travel Communities work?',
-    a: 'Travel Communities are destination-focused groups where travelers share tips, stories, photos, and recommendations. You can join communities for your upcoming destinations, post questions, or connect with fellow travelers who have already visited. Communities are free to join.',
-  },
-];
-
-function FAQPreview() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const sectionStyle: CSSProperties = {
-    padding: '80px 24px',
-    background: colors.surface,
-    fontFamily: font,
-  };
-
-  const containerStyle: CSSProperties = {
-    maxWidth: '760px',
-    margin: '0 auto',
-  };
-
-  const titleStyle: CSSProperties = {
-    fontSize: '36px',
-    fontWeight: 800,
-    color: colors.text,
-    letterSpacing: '-0.5px',
-    textAlign: 'center',
-    marginBottom: '8px',
-  };
-
-  const subtitleStyle: CSSProperties = {
-    fontSize: '16px',
-    color: colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: '48px',
-  };
-
-  const itemStyle: CSSProperties = {
-    border: `1px solid ${colors.border}`,
-    borderRadius: '12px',
-    marginBottom: '12px',
-    overflow: 'hidden',
-  };
-
-  const questionStyle: CSSProperties = {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '18px 20px',
-    background: colors.surface,
-    border: 'none',
-    textAlign: 'left',
-    cursor: 'pointer',
-    fontFamily: font,
-    fontSize: '15px',
-    fontWeight: 600,
-    color: colors.text,
-    gap: '12px',
-  };
-
-  const answerStyle: CSSProperties = {
-    padding: '0 20px 18px',
-    fontSize: '14px',
-    color: colors.textSecondary,
-    lineHeight: 1.75,
-  };
-
-  const viewAllStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '32px',
-  };
-
-  return (
-    <section style={sectionStyle}>
-      <style>{`
-        @media (max-width: 540px) {
-          .faq-title { font-size: 28px !important; }
-        }
-      `}</style>
-      <div style={containerStyle}>
-        <motion.h2
-          className="faq-title"
-          style={titleStyle}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Frequently Asked Questions
-        </motion.h2>
-        <motion.p
-          style={subtitleStyle}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Quick answers to the questions we hear most.
-        </motion.p>
-
-        {faqItems.map((item, i) => (
-          <motion.div
-            key={i}
-            style={itemStyle}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.07 }}
-          >
-            <button
-              style={{
-                ...questionStyle,
-                background: openIndex === i ? colors.skyWash : colors.surface,
-              }}
-              onClick={() => setOpenIndex(openIndex === i ? null : i)}
-              aria-expanded={openIndex === i}
-            >
-              <span>{item.q}</span>
-              {openIndex === i ? (
-                <ChevronUp size={18} color={colors.primary} style={{ flexShrink: 0 }} />
-              ) : (
-                <ChevronDown size={18} color={colors.textMuted} style={{ flexShrink: 0 }} />
-              )}
-            </button>
-            <AnimatePresence initial={false}>
-              {openIndex === i && (
-                <motion.div
-                  key="answer"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  style={{ overflow: 'hidden' }}
-                >
-                  <div style={answerStyle}>{item.a}</div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-
-        <div style={viewAllStyle}>
-          <Link
-            to="/faq"
-            style={{
-              fontSize: '15px',
-              color: colors.primary,
-              fontWeight: 600,
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-          >
-            View All FAQs <ArrowRight size={15} />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── 12. FINAL CTA ───────────────────────────────────────────────────────────
 
 function FinalCTA() {
@@ -1929,10 +1471,7 @@ export default function HomePage() {
       <BookACaptain />
       <WhyTrippyMates />
       <CommunitySection />
-      <CustomTripCTA />
       <Testimonials />
-      <StatsSection />
-      <FAQPreview />
       <FinalCTA />
     </Layout>
   );

@@ -240,8 +240,10 @@ function WhyUs() {
               borderRadius:'20px', padding:'28px 24px',
               border:'1.5px solid #99CEFF', display:'flex', flexDirection:'column', gap:'12px',
             }}>
-              <div style={{ fontSize:'32px' }}>{w.emoji}</div>
-              <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+              <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+                <div style={{ fontSize:'24px', flexShrink:0 }}>{w.emoji}</div>
+                <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+              </div>
               <p style={{ fontSize:'13px', color:'#6B7280', lineHeight:1.7, margin:0 }}>{w.desc}</p>
             </div>
           ))}
@@ -345,10 +347,12 @@ function TravelGuidelines() {
               background:'#F8FAFC', borderRadius:'18px', padding:'26px 22px',
               border:'1.5px solid #E5E7EB', display:'flex', flexDirection:'column', gap:'10px',
             }}>
-              <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'24px' }}>
-                {g.emoji}
+              <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                <div style={{ width:'44px', height:'44px', borderRadius:'12px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'22px', flexShrink:0 }}>
+                  {g.emoji}
+                </div>
+                <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{g.title}</h3>
               </div>
-              <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{g.title}</h3>
               <p style={{ fontSize:'13px', color:'#6B7280', lineHeight:1.7, margin:0 }}>{g.desc}</p>
             </div>
           ))}

@@ -240,8 +240,10 @@ function WhyUs() {
               borderRadius:'20px', padding:'28px 24px',
               border:'1.5px solid #CCE4FF', display:'flex', flexDirection:'column', gap:'12px',
             }}>
-              <div style={{ fontSize:'32px' }}>{w.emoji}</div>
-              <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+              <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+                <div style={{ fontSize:'24px', flexShrink:0 }}>{w.emoji}</div>
+                <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+              </div>
               <p style={{ fontSize:'13px', color:'#6B7280', lineHeight:1.7, margin:0 }}>{w.desc}</p>
             </div>
           ))}
@@ -334,7 +336,7 @@ function TravelGuidelines() {
           <h2 style={{ fontSize:'clamp(22px,4vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
             Travel Smart Across India
           </h2>
-          <p style={{ fontSize:'15px', color:'#6B7280', maxWidth:'500px', margin:'0 auto', lineHeight:1.7 }}>
+          <p style={{ fontSize:'15px', color:'#6B7280', margin:'0 auto', lineHeight:1.7 }}>
             Keep these guidelines in mind for a safe, responsible, and hassle-free journey.
           </p>
         </div>
@@ -346,10 +348,12 @@ function TravelGuidelines() {
               border:'1.5px solid #E5E7EB', display:'flex', flexDirection:'column', gap:'10px',
               transition:'box-shadow 0.2s',
             }}>
-              <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'24px' }}>
-                {g.emoji}
+              <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+                <div style={{ width:'44px', height:'44px', borderRadius:'12px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'22px', flexShrink:0 }}>
+                  {g.emoji}
+                </div>
+                <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{g.title}</h3>
               </div>
-              <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{g.title}</h3>
               <p style={{ fontSize:'13px', color:'#6B7280', lineHeight:1.7, margin:0 }}>{g.desc}</p>
             </div>
           ))}
