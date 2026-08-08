@@ -8,7 +8,7 @@ const quickLinks = [
   { label: 'Home',        to: '/' },
   { label: 'Trips',       to: '/trips' },
   { label: 'Captains',    to: '/captains' },
-  { label: 'Custom Trip', to: '/custom-trip' },
+  { label: 'Custom Trip', to: '/trips/custom' },
   { label: 'Community',   to: '/community' },
   { label: 'Gallery',     to: '/gallery' },
 ];

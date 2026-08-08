@@ -51,7 +51,7 @@ const TRIP_TYPE_CARDS = [
     key: 'domestic',
     title: 'Domestic Trips', subtitle: 'Explore India',
     desc: "From the peaks of Ladakh to the backwaters of Kerala — India's hidden gems, led by Captains who call them home.",
-    emoji: '🏔️', to: '/trips/domestic',
+    emoji: '🚆', to: '/trips/domestic',
     gradient: 'linear-gradient(135deg,#022c22 0%,#047857 100%)', accent: '#34D399',
     badge: 'Available Now', badgeBg: '#D1FAE5', badgeColor: '#065F46',
   },
@@ -256,7 +256,7 @@ export default function TripsPage() {
               <button onClick={scrollToList} style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'13px 28px', background:'#007AFF', color:'#fff', borderRadius:9999, fontWeight:700, fontSize:15, border:'none', cursor:'pointer', fontFamily:font }}>
                 Browse All Trips <ArrowRight size={16} />
               </button>
-              <Link to="/custom-trip" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'13px 28px', background:'rgba(255,255,255,0.1)', backdropFilter:'blur(8px)', color:'#fff', borderRadius:9999, fontWeight:600, fontSize:15, textDecoration:'none', border:'1px solid rgba(255,255,255,0.25)' }}>
+              <Link to="/trips/custom" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'13px 28px', background:'rgba(255,255,255,0.1)', backdropFilter:'blur(8px)', color:'#fff', borderRadius:9999, fontWeight:600, fontSize:15, textDecoration:'none', border:'1px solid rgba(255,255,255,0.25)' }}>
                 Plan Custom Trip
               </Link>
             </div>
@@ -396,7 +396,7 @@ export default function TripsPage() {
           <div style={{ fontSize:40, marginBottom:16 }}>🗺️</div>
           <h2 style={{ fontSize:'clamp(20px,3.5vw,34px)', fontWeight:800, margin:'0 0 12px', letterSpacing:'-0.5px' }}>{"Can't Find What You're Looking For?"}</h2>
           <p style={{ fontSize:16, opacity:0.8, maxWidth:500, margin:'0 auto 28px', lineHeight:'1.6' }}>Tell us your dream destination and we will build a completely custom trip just for you.</p>
-          <Link to="/custom-trip" style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#007AFF', color:'#fff', padding:'14px 32px', borderRadius:9999, fontWeight:700, fontSize:16, textDecoration:'none' }}>
+          <Link to="/trips/custom" style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#007AFF', color:'#fff', padding:'14px 32px', borderRadius:9999, fontWeight:700, fontSize:16, textDecoration:'none' }}>
             Plan a Custom Trip <ArrowRight size={16} />
           </Link>
         </motion.div>

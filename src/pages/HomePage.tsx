@@ -1,25 +1,14 @@
-import { useState, type CSSProperties } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useRef, useEffect, type CSSProperties } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Plane,
-  Users,
-  MessageCircle,
-  MapPin,
   Search,
-  // CheckCircle,
   Star,
-  ArrowRight,
-  Shield,
-  Headphones,
-  Globe,
-  Heart,
 } from 'lucide-react';
 import Layout from '../components/Layout';
-import { colors, shadows } from '../lib/colors';
+import { colors } from '../lib/colors';
 import {
   mockDestinations,
-  mockCaptains,
   mockTestimonials,
 } from '../data/mock';
 
@@ -113,9 +102,10 @@ function HeroSection() {
 
 
   return (
-    <section style={sectionStyle}>
+    <section className="hero-section" style={sectionStyle}>
       {/* Background video */}
       <video
+        className="hero-video"
         style={videoStyle}
         src="/video1.mp4"
         autoPlay
@@ -123,9 +113,20 @@ function HeroSection() {
         muted
         playsInline
       />
-      <div style={overlayStyle} />
+      <div className="hero-overlay" style={overlayStyle} />
       <style>{`
         .hero-search-input::placeholder { color: rgba(255,255,255,0.5); }
+        @media (max-width: 960px) {
+          .hero-section {
+            height: auto !important;
+            min-height: unset !important;
+            aspect-ratio: 16/9;
+          }
+          .hero-video {
+            object-fit: cover !important;
+            object-position: center !important;
+          }
+        }
         @media (max-width: 768px) {
           .hero-h1      { font-size: 32px !important; letter-spacing: -0.5px !important; }
           .hero-accent  { font-size: 32px !important; letter-spacing: -0.5px !important; }
@@ -136,6 +137,8 @@ function HeroSection() {
         }
         @media(max-width:600px){
           .search-fields-grid { grid-template-columns: 1fr 1fr !important; }
+          .search-section { padding: 32px 16px 40px !important; }
+          .search-heading { font-size: 24px !important; }
         }
         @media(max-width:420px){
           .search-fields-grid { grid-template-columns: 1fr !important; }
@@ -332,6 +335,7 @@ function SearchBar() {
 
   return (
     <motion.div
+      className="search-section"
       style={sectionStyle}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -340,7 +344,7 @@ function SearchBar() {
     >
       <div style={innerStyle}>
         {/* Heading */}
-        <h2 style={headingStyle}>Find Your Perfect Trip</h2>
+        <h2 className="search-heading" style={headingStyle}>Find Your Perfect Trip</h2>
         <p style={subStyle}>Search from 1,200+ captains and 85+ destinations</p>
 
         <div style={cardStyle}>
@@ -435,195 +439,6 @@ function SearchBar() {
   );
 }
 
-// ─── 3. CORE SERVICES ────────────────────────────────────────────────────────
-
-// ─── COMPANION BANNER ────────────────────────────────────────────────────────
-
-function CompanionBanner() {
-  const navigate = useNavigate();
-  return (
-    <div style={{ position: 'relative', background: 'linear-gradient(180deg, #EBF5FF 0%, #F8FAFC 100%)' }}>
-      <style>{`
-        .companion-hero { height: 500px; }
-        .companion-label { font-size: 72px; }
-        @media(max-width:900px) { .companion-hero { height: 380px !important; } }
-        @media(max-width:600px) { .companion-hero { height: 280px !important; } .companion-label { font-size: 52px !important; } }
-      `}</style>
-
-      {/* Title + image all in one unified block */}
-      <div
-        className="companion-hero"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          position: 'relative',
-          overflow: 'hidden',
-          height: 'auto',
-          paddingTop: 56,
-          marginBottom: 0,
-        }}
-      >
-        {/* Title + subtitle */}
-        <div style={{ textAlign: 'center', marginBottom: 8, position: 'relative', zIndex: 4, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
-          <h2 style={{ fontSize: 'clamp(28px,4vw,40px)', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 10px' }}>
-            Everything You Need to Travel Better
-          </h2>
-          <p style={{ fontSize: 16, color: '#64748B', margin: 0 }}>
-            From booking to boarding — we handle it all.
-          </p>
-        </div>
-
-        {/* Guide group image */}
-        <img
-          src="/meet-our-captain.png"
-          alt="Trippy Mates Captain with group"
-          style={{
-            height: 480,
-            width: 'auto',
-            maxWidth: '90%',
-            objectFit: 'contain',
-            objectPosition: 'bottom',
-            display: 'block',
-            position: 'relative',
-            zIndex: 2,
-            marginTop: 20,
-          }}
-        />
-
-        {/* CTA button */}
-        <button
-          onClick={() => navigate('/captains')}
-          style={{
-            position: 'absolute',
-            bottom: 60,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 3,
-            background: 'rgba(255,255,255,0.95)',
-            color: '#111827',
-            border: 'none',
-            borderRadius: '9999px',
-            padding: '14px 32px',
-            fontSize: '15px',
-            fontWeight: 700,
-            cursor: 'pointer',
-            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-            whiteSpace: 'nowrap',
-            backdropFilter: 'blur(8px)',
-          }}
-        >
-          Hire a Captain →
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function CoreServices() {
-  const sectionStyle: CSSProperties = {
-    padding: '0px 24px 80px',
-    background: colors.background,
-    fontFamily: font,
-  };
-
-  const containerStyle: CSSProperties = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-  };
-
-  const gridStyle: CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '24px',
-  };
-
-  const services = [
-    {
-      icon: <Plane size={24} color={colors.primary} />,
-      iconBg: colors.skyWash,
-      title: 'Book Trips',
-      desc: 'Join curated travel experiences crafted by local experts for every kind of traveler.',
-      link: '/trips',
-    },
-    {
-      icon: <Users size={24} color="#F26110" />,
-      iconBg: '#FFF3EB',
-      title: 'Book a Captain',
-      desc: 'Hire verified local experts who know every hidden gem, shortcut, and secret in their city.',
-      link: '/captains',
-    },
-    {
-      icon: <MessageCircle size={24} color="#9552E0" />,
-      iconBg: colors.lilacMist,
-      title: 'Travel Communities',
-      desc: 'Connect with like-minded travelers worldwide — share stories, tips, and adventures.',
-      link: '/community',
-    },
-    {
-      icon: <MapPin size={24} color="#10B981" />,
-      iconBg: colors.sprout,
-      title: 'Custom Trip Planning',
-      desc: 'Get a personalized itinerary tailored to your dates, budget, and travel style.',
-      link: '/custom-trip',
-    },
-  ];
-
-  return (
-    <section style={sectionStyle}>
-      <style>{`
-        @media (max-width: 900px) {
-          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 540px) {
-          .services-grid { grid-template-columns: 1fr !important; }
-          .services-title { font-size: 28px !important; }
-        }
-      `}</style>
-      <div style={containerStyle}>
-        <div className="services-grid" style={gridStyle}>
-          {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              style={{
-                background: colors.surface,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '16px',
-                padding: '28px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-                cursor: 'default',
-              }}
-              whileHover={{ y: -4, boxShadow: shadows.lg }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: s.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  {s.icon}
-                </div>
-                <div style={{ fontSize: '18px', fontWeight: 700, color: colors.text }}>{s.title}</div>
-              </div>
-              <div style={{ fontSize: '14px', color: colors.textSecondary, lineHeight: 1.6 }}>{s.desc}</div>
-              <Link
-                to={s.link}
-                style={{ fontSize: '14px', color: colors.primary, fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}
-              >
-                Learn More <ArrowRight size={13} />
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── 4. FEATURED DESTINATIONS ────────────────────────────────────────────────
 
 function FeaturedDestinations() {
@@ -633,7 +448,7 @@ function FeaturedDestinations() {
   const filters = [
     { key: 'all',           label: 'All',           emoji: '🌍' },
     { key: 'international', label: 'International',  emoji: '✈️' },
-    { key: 'domestic',      label: 'Domestic',       emoji: '🇮🇳' },
+    { key: 'domestic',      label: 'Domestic',       emoji: '🚆' },
   ] as const;
 
   const filtered = activeFilter === 'all'
@@ -641,7 +456,7 @@ function FeaturedDestinations() {
     : mockDestinations.filter((d) => d.type === activeFilter);
 
   return (
-    <section style={{ padding: '64px 0 80px', background: '#FFFFFF', fontFamily: font }}>
+    <section className="dest-section" style={{ padding: '64px 0 80px', background: '#FFFFFF', fontFamily: font }}>
       <style>{`
         .dest-scroll-wrap {
           overflow-x: auto;
@@ -680,6 +495,12 @@ function FeaturedDestinations() {
         }
         .dest-filter-pill:hover { border-color: #007AFF; color: #007AFF; }
         .dest-filter-pill.active { background: #007AFF; color: #fff; border-color: #007AFF; }
+        @media(max-width:600px) {
+          .dest-oval-grid { grid-auto-columns: 130px; gap: 16px 14px; }
+          .dest-scroll-wrap { padding: 0 16px 16px 24px; }
+          .dest-heading { font-size: 26px !important; }
+          .dest-section { padding: 48px 0 56px !important; }
+        }
       `}</style>
 
       {/* Header */}
@@ -690,7 +511,7 @@ function FeaturedDestinations() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 style={{ fontSize: '36px', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 20px' }}>
+          <h2 className="dest-heading" style={{ fontSize: '36px', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 20px' }}>
             Explore Destinations
           </h2>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -774,217 +595,6 @@ function FeaturedDestinations() {
   );
 }
 
-// ─── 5. BOOK A CAPTAIN ───────────────────────────────────────────────────────
-
-function BookACaptain() {
-  const navigate = useNavigate();
-
-  const sectionStyle: CSSProperties = {
-    background: 'linear-gradient(135deg, #EBF5FF 0%, #F0F9FF 100%)',
-    padding: '80px 24px',
-    fontFamily: font,
-  };
-
-  const containerStyle: CSSProperties = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '64px',
-    alignItems: 'center',
-  };
-
-  const titleStyle: CSSProperties = {
-    fontSize: '40px',
-    fontWeight: 800,
-    color: colors.text,
-    letterSpacing: '-0.5px',
-    lineHeight: 1.15,
-    marginBottom: '16px',
-  };
-
-  const descStyle: CSSProperties = {
-    fontSize: '16px',
-    color: colors.textSecondary,
-    lineHeight: 1.7,
-    marginBottom: '28px',
-  };
-
-  const featureListStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '14px',
-    marginBottom: '36px',
-  };
-
-  const featureItemStyle: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-    fontSize: '15px',
-    color: colors.text,
-    fontWeight: 500,
-  };
-
-  const checkStyle: CSSProperties = {
-    width: '22px',
-    height: '22px',
-    borderRadius: '50%',
-    background: colors.skyWash,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  };
-
-  const btnStyle: CSSProperties = {
-    background: colors.primary,
-    color: '#FFFFFF',
-    border: 'none',
-    borderRadius: '9999px',
-    padding: '14px 32px',
-    fontSize: '15px',
-    fontWeight: 600,
-    cursor: 'pointer',
-    fontFamily: font,
-  };
-
-  const rightStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-    position: 'relative',
-  };
-
-  const features = [
-    { icon: <MapPin size={14} color={colors.primary} />, label: 'Physical Guidance on the ground' },
-    { icon: <Headphones size={14} color={colors.primary} />, label: 'Virtual Assistance anytime' },
-    { icon: <Globe size={14} color={colors.primary} />, label: 'Language Support for seamless communication' },
-    { icon: <Heart size={14} color={colors.primary} />, label: 'Local Recommendations you cannot Google' },
-    { icon: <Shield size={14} color={colors.primary} />, label: 'Emergency Help when you need it most' },
-  ];
-
-  const captainColors = ['#4FBEFF', '#F26110', '#9552E0'];
-
-  return (
-    <section style={sectionStyle}>
-      <style>{`
-        @media (max-width: 900px) {
-          .captain-container { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .captain-title { font-size: 30px !important; }
-        }
-      `}</style>
-
-      <div className="captain-container" style={{ ...containerStyle, paddingTop: 80 }}>
-        {/* Left */}
-        <motion.div
-          initial={{ opacity: 0, x: -32 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="captain-title" style={titleStyle}>Travel with a Local Expert</h2>
-          <p style={descStyle}>
-            Our verified captains are more than guides — they're your local friend who knows the best spots, speaks the language, and ensures you experience the destination like a true local.
-          </p>
-          <div style={featureListStyle}>
-            {features.map((f) => (
-              <div key={f.label} style={featureItemStyle}>
-                <div style={checkStyle}>{f.icon}</div>
-                {f.label}
-              </div>
-            ))}
-          </div>
-          <button style={btnStyle} onClick={() => navigate('/captains')}>Browse Captains</button>
-        </motion.div>
-
-        {/* Right — Captain preview cards */}
-        <motion.div
-          style={rightStyle}
-          initial={{ opacity: 0, x: 32 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          {mockCaptains.slice(0, 3).map((captain, i) => (
-            <motion.div
-              key={captain.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
-              whileHover={{ x: 4, boxShadow: shadows.lg }}
-              style={{
-                background: colors.surface,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '16px',
-                padding: '18px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                boxShadow: shadows.md,
-                cursor: 'pointer',
-              }}
-            >
-              <div
-                style={{
-                  width: '52px',
-                  height: '52px',
-                  borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${captainColors[i]}, ${captainColors[i]}99)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '20px',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                  flexShrink: 0,
-                }}
-              >
-                {captain.name.charAt(0)}
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: colors.text }}>{captain.name}</div>
-                <div style={{ fontSize: '13px', color: colors.textSecondary }}>
-                  {captain.city}, {captain.country}
-                </div>
-                <div style={{ fontSize: '12px', color: colors.textMuted, marginTop: '2px' }}>
-                  ⭐ {captain.rating} · {captain.review_count} reviews
-                </div>
-              </div>
-              <div
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  background: captain.availability === 'available' ? '#D3F6E3' : '#FEE2E2',
-                  color: captain.availability === 'available' ? '#10B981' : '#EF4444',
-                  borderRadius: '9999px',
-                  padding: '4px 10px',
-                }}
-              >
-                {captain.availability === 'available' ? 'Available' : 'Busy'}
-              </div>
-            </motion.div>
-          ))}
-          <Link
-            to="/captains"
-            style={{
-              textAlign: 'center',
-              fontSize: '14px',
-              color: colors.primary,
-              fontWeight: 600,
-              textDecoration: 'none',
-              padding: '12px',
-              display: 'block',
-            }}
-          >
-            View all {mockCaptains.length} captains →
-          </Link>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 
 // ─── 6b. WHY TRIPPY MATES ────────────────────────────────────────────────────
@@ -1002,11 +612,6 @@ function WhyTrippyMates() {
       desc: "From the moment you book to the moment you return, we've got you covered — no compromises on comfort, safety, or reliability.",
     },
     {
-      emoji: '🧭',
-      title: 'Captains who truly care.',
-      desc: "Our group captains are more than guides — they're companions who shape the vibe, keep the energy right, and make every trip unforgettable.",
-    },
-    {
       emoji: '💸',
       title: 'What you see is what you pay.',
       desc: 'No middlemen, no hidden charges. Book directly with us for honest pricing, lower costs, and support that actually responds.',
@@ -1019,18 +624,16 @@ function WhyTrippyMates() {
   ];
 
   return (
-    <section style={{ background: '#F0F7F7', padding: '88px 24px 96px', fontFamily: font, position: 'relative', overflow: 'hidden' }}>
+    <section className="wtm-section" style={{ background: '#F0F7F7', padding: '88px 24px 96px', fontFamily: font, position: 'relative', overflow: 'hidden' }}>
       <style>{`
-        .wtm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px; }
-        .wtm-row2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 780px; margin: 0 auto; }
+        .wtm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         @media (max-width: 960px) {
           .wtm-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .wtm-row2 { grid-template-columns: repeat(2, 1fr) !important; max-width: 100% !important; }
         }
         @media (max-width: 560px) {
           .wtm-grid { grid-template-columns: 1fr !important; }
-          .wtm-row2 { grid-template-columns: 1fr !important; }
           .wtm-title { font-size: 26px !important; }
+          .wtm-section { padding: 56px 16px 64px !important; }
         }
         .wtm-card { transition: transform 0.22s ease, box-shadow 0.22s ease; }
         .wtm-card:hover { transform: translateY(-5px) !important; box-shadow: 0 14px 36px rgba(0,0,0,0.11) !important; }
@@ -1060,9 +663,8 @@ function WhyTrippyMates() {
           </p>
         </motion.div>
 
-        {/* Row 1 — 3 cards */}
         <div className="wtm-grid">
-          {reasons.slice(0, 3).map((r, i) => (
+          {reasons.map((r, i) => (
             <motion.div
               key={r.title}
               className="wtm-card"
@@ -1088,128 +690,6 @@ function WhyTrippyMates() {
             </motion.div>
           ))}
         </div>
-
-        {/* Row 2 — 2 cards centered */}
-        <div className="wtm-row2">
-          {reasons.slice(3).map((r, i) => (
-            <motion.div
-              key={r.title}
-              className="wtm-card"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.42, delay: i * 0.09 }}
-              style={{
-                background: '#FFFFFF',
-                borderRadius: '20px',
-                padding: '32px 26px',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.06)',
-                border: '1px solid #E8F0FE',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#EEF4FF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', flexShrink: 0 }}>
-                  {r.emoji}
-                </div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', lineHeight: 1.3 }}>{r.title}</div>
-              </div>
-              <div style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.7 }}>{r.desc}</div>
-            </motion.div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-// ─── 7. COMMUNITY ────────────────────────────────────────────────────────────
-
-function CommunitySection() {
-  const navigate = useNavigate();
-
-
-  const perks = [
-    { icon: '🤝', title: 'Meet Like-minded Travelers', desc: 'Connect with people who share your travel vibe — before, during, and after the trip.' },
-    { icon: '📸', title: 'Share Real Experiences', desc: 'Post photos, write stories, and inspire others with your adventures.' },
-    { icon: '🗓️', title: 'Plan Together', desc: 'Coordinate itineraries, split costs, and build travel squads for upcoming trips.' },
-    { icon: '🛡️', title: 'Safe & Verified Groups', desc: 'Every community is moderated by a verified Captain to keep it genuine.' },
-  ];
-
-  return (
-    <section style={{ background: '#F8FAFC', padding: '88px 24px', fontFamily: font, position: 'relative', overflow: 'hidden' }}>
-      <style>{`
-        .comm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .comm-perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 56px; }
-        @media (max-width: 1000px) { .comm-grid { grid-template-columns: repeat(2, 1fr); } .comm-perks { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px)  { .comm-grid { grid-template-columns: 1fr; } .comm-perks { grid-template-columns: 1fr; } }
-        .comm-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.10) !important; border-color: #007AFF !important; }
-        .comm-join-btn:hover { background: #0056CC !important; }
-      `}</style>
-
-      <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
-          style={{ textAlign: 'center', marginBottom: '56px' }}
-        >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: '#EEF4FF', border: '1px solid #C7DCFF', borderRadius: '9999px', padding: '5px 16px', marginBottom: '18px' }}>
-            <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#007AFF', display: 'inline-block' }} />
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#007AFF', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Community</span>
-          </div>
-          <h2 style={{ fontSize: 'clamp(30px, 5vw, 48px)', fontWeight: 900, color: '#111827', margin: '0 0 6px', letterSpacing: '-1px', lineHeight: 1.1 }}>
-            Travel Together,
-          </h2>
-          <h2 style={{ fontSize: 'clamp(30px, 5vw, 48px)', fontWeight: 900, margin: '0 0 18px', letterSpacing: '-1px', lineHeight: 1.1, color: '#007AFF' }}>
-            Not Alone.
-          </h2>
-          <p style={{ fontSize: '17px', color: '#6B7280', maxWidth: '520px', margin: '0 auto', lineHeight: 1.6 }}>
-            Join destination communities, share your stories, and meet fellow travelers who get it.
-          </p>
-        </motion.div>
-
-        {/* Perks row */}
-        <div className="comm-perks">
-          {perks.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: '16px', padding: '22px 20px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                <div style={{ fontSize: '24px', flexShrink: 0 }}>{p.icon}</div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#111827' }}>{p.title}</div>
-              </div>
-              <div style={{ fontSize: '13px', color: '#6B7280', lineHeight: 1.6 }}>{p.desc}</div>
-            </motion.div>
-          ))}
-        </div>
-
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <button
-            className="comm-join-btn"
-            onClick={() => navigate('/community')}
-            style={{ background: '#007AFF', color: '#fff', border: 'none', borderRadius: '9999px', padding: '14px 40px', fontSize: '15px', fontWeight: 700, cursor: 'pointer', fontFamily: font, boxShadow: '0 4px 20px rgba(0,122,255,0.4)', transition: 'background 0.15s', display: 'flex', alignItems: 'center', gap: '8px' }}
-          >
-            Explore All Communities
-            <ArrowRight size={16} />
-          </button>
-        </motion.div>
 
       </div>
     </section>
@@ -1219,6 +699,35 @@ function CommunitySection() {
 // ─── 9. TESTIMONIALS ─────────────────────────────────────────────────────────
 
 function Testimonials() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const testimonials = [...mockTestimonials, ...mockTestimonials, ...mockTestimonials];
+  const cardWidth = 344;
+  const setSize = mockTestimonials.length * cardWidth;
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollLeft = setSize + 160;
+      }
+    });
+  }, []);
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    if (el.scrollLeft >= setSize * 2) {
+      el.scrollLeft -= setSize;
+    } else if (el.scrollLeft <= 0) {
+      el.scrollLeft += setSize;
+    }
+  };
+
+  const scroll = (dir: 'left' | 'right') => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' });
+  };
+
   const sectionStyle: CSSProperties = {
     padding: '80px 24px',
     background: colors.background,
@@ -1246,21 +755,31 @@ function Testimonials() {
     marginBottom: '52px',
   };
 
-  const gridStyle: CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '24px',
+  const arrowBtn: CSSProperties = {
+    width: '42px',
+    height: '42px',
+    borderRadius: '50%',
+    border: `1px solid ${colors.border}`,
+    background: colors.surface,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    fontSize: '18px',
+    color: colors.text,
+    flexShrink: 0,
   };
 
   return (
-    <section style={sectionStyle}>
+    <section className="testimonials-section" style={sectionStyle}>
       <style>{`
-        @media (max-width: 900px) {
-          .testimonials-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        .testimonials-scroll::-webkit-scrollbar { display: none; }
+        @media (max-width: 768px) {
+          .testimonials-scroll { padding-left: 20px !important; padding-right: 20px !important; }
         }
         @media (max-width: 540px) {
-          .testimonials-grid { grid-template-columns: 1fr !important; }
           .testimonials-title { font-size: 28px !important; }
+          .testimonials-section { padding: 56px 0 !important; }
         }
       `}</style>
       <div style={containerStyle}>
@@ -1283,78 +802,95 @@ function Testimonials() {
         >
           Real stories from real travelers who explored the world with Trippy Mates.
         </motion.p>
+      </div>
 
-        <div className="testimonials-grid" style={gridStyle}>
-          {mockTestimonials.slice(0, 3).map((t, i) => (
-            <motion.div
-              key={t.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              whileHover={{ y: -4, boxShadow: shadows.lg }}
-              style={{
-                background: colors.surface,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '16px',
-                padding: '28px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              }}
-            >
-              {/* Stars */}
-              <div style={{ display: 'flex', gap: '3px' }}>
-                {Array.from({ length: 5 }).map((_, si) => (
-                  <Star key={si} size={15} fill="#F59E0B" color="#F59E0B" />
-                ))}
-              </div>
-              {/* Quote */}
-              <p style={{ fontSize: '14px', color: colors.textSecondary, lineHeight: 1.7, flex: 1, margin: 0, fontStyle: 'italic' }}>
-                "{t.text}"
-              </p>
-              {/* Author */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '50%',
-                    background: t.avatarColor,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 700,
-                    color: '#FFFFFF',
-                    flexShrink: 0,
-                  }}
-                >
-                  {t.avatarInitial}
-                </div>
-                <div>
-                  <div style={{ fontSize: '14px', fontWeight: 700, color: colors.text }}>{t.name}</div>
-                  <div style={{ fontSize: '12px', color: colors.textMuted }}>{t.role}</div>
-                </div>
-              </div>
-              {/* Destination */}
+        <div style={{ position: 'relative' }}>
+          <button style={{ ...arrowBtn, position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} onClick={() => scroll('left')} aria-label="Scroll left">&#8249;</button>
+
+          <div
+            className="testimonials-scroll"
+            ref={scrollRef}
+            onScroll={handleScroll}
+            style={{
+              display: 'flex',
+              gap: '24px',
+              overflowX: 'auto',
+              scrollSnapType: 'none',
+              scrollbarWidth: 'none',
+              paddingLeft: '0',
+              paddingRight: '0',
+            }}
+          >
+            {testimonials.map((t, i) => (
               <div
+                key={`${t.id}-${i}`}
                 style={{
-                  fontSize: '12px',
-                  color: colors.primary,
-                  fontWeight: 500,
-                  background: colors.skyWash,
-                  borderRadius: '9999px',
-                  padding: '4px 12px',
-                  alignSelf: 'flex-start',
+                  background: colors.surface,
+                  border: `1px solid ${colors.border}`,
+                  borderRadius: '16px',
+                  padding: '28px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px',
+                  minWidth: '320px',
+                  maxWidth: '320px',
+                  flexShrink: 0,
                 }}
               >
-                📍 {t.destination}
+                {/* Stars */}
+                <div style={{ display: 'flex', gap: '3px' }}>
+                  {Array.from({ length: 5 }).map((_, si) => (
+                    <Star key={si} size={15} fill="#F59E0B" color="#F59E0B" />
+                  ))}
+                </div>
+                {/* Quote */}
+                <p style={{ fontSize: '14px', color: colors.textSecondary, lineHeight: 1.7, flex: 1, margin: 0, fontStyle: 'italic' }}>
+                  "{t.text}"
+                </p>
+                {/* Author */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div
+                    style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '50%',
+                      background: t.avatarColor,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '18px',
+                      fontWeight: 700,
+                      color: '#FFFFFF',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {t.avatarInitial}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '14px', fontWeight: 700, color: colors.text }}>{t.name}</div>
+                    <div style={{ fontSize: '12px', color: colors.textMuted }}>{t.role}</div>
+                  </div>
+                </div>
+                {/* Destination */}
+                <div
+                  style={{
+                    fontSize: '12px',
+                    color: colors.primary,
+                    fontWeight: 500,
+                    background: colors.skyWash,
+                    borderRadius: '9999px',
+                    padding: '4px 12px',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  📍 {t.destination}
+                </div>
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+
+          <button style={{ ...arrowBtn, position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} onClick={() => scroll('right')} aria-label="Scroll right">&#8250;</button>
         </div>
-      </div>
     </section>
   );
 }
@@ -1425,10 +961,11 @@ function FinalCTA() {
   };
 
   return (
-    <section style={sectionStyle}>
+    <section className="final-cta-section" style={sectionStyle}>
       <style>{`
         @media (max-width: 540px) {
           .final-cta-title { font-size: 28px !important; }
+          .final-cta-section { padding: 56px 16px !important; }
         }
       `}</style>
       <motion.div
@@ -1440,16 +977,16 @@ function FinalCTA() {
       >
         <div style={{ fontSize: '36px', marginBottom: '16px' }}>⛵</div>
         <h2 className="final-cta-title" style={titleStyle}>
-          Your Next Adventure<br />Needs a Captain.
+          Ready for Your<br />Next Adventure?
         </h2>
         <p style={descStyle}>
-          Stop travelling as a tourist. Start experiencing the world as a local. Find your captain and create memories that last a lifetime.
+          Whether you want a local captain by your side or a fully custom itinerary — we've got you covered. Start planning today.
         </p>
         <div style={btnRowStyle}>
           <button style={btnPrimaryStyle} onClick={() => navigate('/captains')}>
             Book a Captain
           </button>
-          <button style={btnOutlineStyle} onClick={() => navigate('/custom-trip')}>
+          <button style={btnOutlineStyle} onClick={() => navigate('/trips/custom')}>
             Plan Custom Trip
           </button>
         </div>
@@ -1465,12 +1002,8 @@ export default function HomePage() {
     <Layout>
       <HeroSection />
       <SearchBar />
-      <CompanionBanner />
-      <CoreServices />
       <FeaturedDestinations />
-      <BookACaptain />
       <WhyTrippyMates />
-      <CommunitySection />
       <Testimonials />
       <FinalCTA />
     </Layout>

@@ -6,10 +6,10 @@ const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
 
 const tripsDropdown = [
   { label: 'All Trips',          to: '/trips',               emoji: '🗺️', desc: 'Browse all our trips' },
-  { label: 'Explore India',      to: '/trips/domestic',      emoji: '🇮🇳', desc: 'Domestic destinations' },
+  { label: 'Explore India',      to: '/trips/domestic',      emoji: '🚆', desc: 'Domestic destinations' },
   { label: 'Explore the World',  to: '/trips/international', emoji: '✈️', desc: 'International adventures' },
   { label: 'Corporate Trips',    to: '/trips/corporate',     emoji: '💼', desc: 'Team & corporate travel' },
-  { label: 'Custom Trip',        to: '/custom-trip',         emoji: '✏️', desc: 'Plan your own adventure' },
+  { label: 'Custom Trip',        to: '/trips/custom',         emoji: '✏️', desc: 'Plan your own adventure' },
 ];
 
 const navLinks = [

@@ -235,7 +235,7 @@ export default function App() {
           <Route path="/captains" element={<CaptainsPage />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/custom-trip" element={<CustomTripPage />} />
+          <Route path="/trips/custom" element={<CustomTripPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/referrals" element={<ReferralsPage />} />

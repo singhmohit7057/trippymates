@@ -655,6 +655,26 @@ export const mockTestimonials: Testimonial[] = [
     rating: 5,
     destination: 'Chopta Tungnath, India',
   },
+  {
+    id: 'test7',
+    name: 'Meera Joshi',
+    role: 'Couple Traveler, Jaipur',
+    text: 'Our honeymoon in Andaman with Captain Ravi was unforgettable. He arranged a private sunset kayak at Havelock and a secluded beach picnic — felt like we had the island to ourselves.',
+    avatarColor: '#F43F5E',
+    avatarInitial: 'M',
+    rating: 5,
+    destination: 'Andaman Islands, India',
+  },
+  {
+    id: 'test8',
+    name: 'Aditya Sharma',
+    role: 'Adventure Seeker, Kolkata',
+    text: 'The Zanskar frozen river trek was the hardest and most rewarding thing I\'ve ever done. Our captain Stanzin knew the ice like the back of his hand — never once felt unsafe despite -25°C nights.',
+    avatarColor: '#6366F1',
+    avatarInitial: 'A',
+    rating: 5,
+    destination: 'Zanskar, Ladakh',
+  },
 ];
 
 export interface Destination {

@@ -424,7 +424,7 @@ export default function CaptainsPage() {
           <div style={{ fontSize:40, marginBottom:16 }}>🧭</div>
           <h2 style={{ fontSize:'clamp(20px,3.5vw,34px)', fontWeight:800, margin:'0 0 12px', letterSpacing:'-0.5px' }}>{"Can't find the right Captain?"}</h2>
           <p style={{ fontSize:16, opacity:0.8, maxWidth:480, margin:'0 auto 28px', lineHeight:'1.6' }}>Tell us your destination and we will personally match you with the perfect local Captain for your trip.</p>
-          <a href="/custom-trip" style={{ display:'inline-flex', alignItems:'center', gap:8, background:PURPLE, color:'#fff', padding:'14px 32px', borderRadius:9999, fontWeight:700, fontSize:16, textDecoration:'none' }}>
+          <a href="/trips/custom" style={{ display:'inline-flex', alignItems:'center', gap:8, background:PURPLE, color:'#fff', padding:'14px 32px', borderRadius:9999, fontWeight:700, fontSize:16, textDecoration:'none' }}>
             Plan a Custom Trip →
           </a>
         </motion.div>

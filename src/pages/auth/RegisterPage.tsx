@@ -40,54 +40,56 @@ export default function RegisterPage() {
 
   const page: CSSProperties = {
     minHeight: '100vh',
+    height: '100vh',
     background: '#F8FAFC',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-    padding: '24px',
+    padding: '16px',
+    overflow: 'hidden',
   };
 
   const card: CSSProperties = {
     background: '#FFFFFF',
     borderRadius: '16px',
     boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-    padding: '40px',
+    padding: '28px 32px',
     width: '100%',
-    maxWidth: '420px',
+    maxWidth: '400px',
   };
 
   const logoRow: CSSProperties = {
     display: 'flex',
     alignItems: 'center',
     gap: '12px',
-    marginBottom: '28px',
+    marginBottom: '16px',
     justifyContent: 'center',
   };
 
   const heading: CSSProperties = {
-    fontSize: '24px',
+    fontSize: '22px',
     fontWeight: 700,
     color: '#111827',
-    margin: '0 0 4px',
+    margin: '0 0 2px',
     textAlign: 'center',
   };
 
   const subtitle: CSSProperties = {
-    fontSize: '14px',
+    fontSize: '13px',
     color: '#6B7280',
     textAlign: 'center',
-    marginBottom: '28px',
+    marginBottom: '18px',
   };
 
-  const fieldWrapper: CSSProperties = { marginBottom: '16px' };
+  const fieldWrapper: CSSProperties = { marginBottom: '12px' };
 
   const label: CSSProperties = {
     display: 'block',
-    fontSize: '13px',
+    fontSize: '12px',
     fontWeight: 600,
     color: '#374151',
-    marginBottom: '6px',
+    marginBottom: '4px',
   };
 
   const inputRow: CSSProperties = {
@@ -107,10 +109,10 @@ export default function RegisterPage() {
 
   const inputBase: CSSProperties = {
     width: '100%',
-    padding: '11px 12px 11px 38px',
+    padding: '9px 12px 9px 36px',
     border: '1.5px solid #E5E7EB',
     borderRadius: '10px',
-    fontSize: '14px',
+    fontSize: '13px',
     color: '#111827',
     outline: 'none',
     background: '#fff',
@@ -137,7 +139,7 @@ export default function RegisterPage() {
     display: 'flex',
     alignItems: 'flex-start',
     gap: '10px',
-    marginBottom: '20px',
+    marginBottom: '14px',
     marginTop: '4px',
   };
 
@@ -160,19 +162,19 @@ export default function RegisterPage() {
 
   const btnPrimary: CSSProperties = {
     width: '100%',
-    padding: '13px',
+    padding: '11px',
     background: loading ? '#3395FF' : '#007AFF',
     color: '#fff',
     border: 'none',
     borderRadius: '9999px',
-    fontSize: '15px',
+    fontSize: '14px',
     fontWeight: 700,
     cursor: loading ? 'not-allowed' : 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     gap: '8px',
-    marginBottom: '20px',
+    marginBottom: '14px',
   };
 
   const bottomText: CSSProperties = { textAlign: 'center', fontSize: '13px', color: '#6B7280' };
@@ -187,7 +189,7 @@ export default function RegisterPage() {
         style={card}
       >
         <div style={logoRow}>
-          <img src="/logo.png" alt="Trippy Mates" style={{ height: '52px', width: 'auto', display: 'block', objectFit: 'contain' }} />
+          <img src="/logo.png" alt="Trippy Mates" style={{ height: '40px', width: 'auto', display: 'block', objectFit: 'contain' }} />
         </div>
 
         <h2 style={heading}>Create account</h2>
