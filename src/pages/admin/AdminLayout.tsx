@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Map, Users, Star, MessageSquare, Globe, LogOut, Menu, X } from 'lucide-react';
+import { Map, Users, Star, MessageSquare, Globe, LogOut, Menu, X, Image } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const NAV = [
@@ -9,6 +9,7 @@ const NAV = [
   { to: '/admin/captains', label: 'Captains', icon: Users },
   { to: '/admin/testimonials', label: 'Testimonials', icon: Star },
   { to: '/admin/enquiries', label: 'Enquiries', icon: MessageSquare },
+  { to: '/admin/gallery', label: 'Gallery', icon: Image },
 ];
 
 export default function AdminLayout() {

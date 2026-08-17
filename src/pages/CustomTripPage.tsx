@@ -262,7 +262,7 @@ export default function CustomTripPage() {
           <motion.div initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6 }} style={{ textAlign:'center', maxWidth:680, width:'100%' }}>
 
             <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:9999, padding:'6px 18px', fontSize:13, fontWeight:600, color:'#80BDFF', marginBottom:20, backdropFilter:'blur(8px)' }}>
-              <Sparkles size={13} /> Plan Your Perfect Trip — Free
+              ✨ Plan Your Perfect Trip — Free
             </div>
 
             <h1 style={{ fontSize:'clamp(30px,5.5vw,58px)', fontWeight:900, margin:'0 0 16px', lineHeight:'1.12', letterSpacing:'-1.5px' }}>

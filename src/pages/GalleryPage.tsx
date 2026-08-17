@@ -1,56 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, X, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import Layout from '../components/Layout';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { mockGallery, type GalleryPhoto, type GalleryCategory } from '../data/mock';
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
-type Category = 'All' | 'Himalayan' | 'Nature' | 'Culture' | 'International' | 'Valleys';
+type Category = 'All' | GalleryCategory;
 
-interface Photo {
-  id: string;
-  src: string;
-  destination: string;
-  category: Category;
-  caption: string;
-  height: number;
-}
-
-const photos: Photo[] = [
-  // Himalayan
-  { id: 'p1',  src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80', destination: 'Leh Ladakh',       category: 'Himalayan',    caption: 'Magnetic Hill — Where gravity plays tricks', height: 280 },
-  { id: 'p2',  src: 'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=800&q=80', destination: 'Spiti Valley',      category: 'Himalayan',    caption: 'Key Monastery perched at 4,166m', height: 240 },
-  { id: 'p3',  src: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80', destination: 'Kedarnath',        category: 'Himalayan',    caption: 'The divine abode wrapped in clouds', height: 320 },
-  { id: 'p4',  src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80', destination: 'Chopta Tungnath',  category: 'Himalayan',    caption: 'Highest Shiva temple in the world', height: 260 },
-  { id: 'p5',  src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80', destination: 'Munsiyari',        category: 'Himalayan',    caption: 'Little Kashmir — Snow peaks at every turn', height: 200 },
-  { id: 'p6',  src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80', destination: 'Harsil Valley',    category: 'Himalayan',    caption: 'Bhagirathi River at golden hour', height: 300 },
-
-  // Nature
-  { id: 'p7',  src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80', destination: 'Meghalaya',        category: 'Nature',       caption: 'Living Root Bridges deep in rain forests', height: 260 },
-  { id: 'p8',  src: 'https://images.unsplash.com/photo-1612528443702-f6741f70a049?auto=format&fit=crop&w=800&q=80', destination: 'Munnar',           category: 'Nature',       caption: "Endless tea estates at Kerala's roof", height: 220 },
-  { id: 'p9',  src: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=800&q=80', destination: 'Meghalaya',        category: 'Nature',       caption: 'Nohkalikai Falls — India\'s tallest plunge', height: 340 },
-  { id: 'p10', src: 'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?auto=format&fit=crop&w=800&q=80', destination: 'Jibhi & Tirthan', category: 'Nature',       caption: 'Tirthan River trail through pine forest', height: 240 },
-  { id: 'p11', src: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80', destination: 'Harsil Valley',    category: 'Nature',       caption: 'Apple orchards under snow-capped giants', height: 280 },
-
-  // Culture
-  { id: 'p12', src: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=800&q=80', destination: 'McLeodganj',       category: 'Culture',      caption: 'Tibetan prayer flags over Dharamshala', height: 260 },
-  { id: 'p13', src: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=800&q=80', destination: 'Madmaheshwar',     category: 'Culture',      caption: 'Ancient Shiva temple in the Panch Kedar circuit', height: 220 },
-  { id: 'p14', src: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=800&q=80', destination: 'Leh Ladakh',       category: 'Culture',      caption: 'Hemis Festival — Monks perform sacred Cham dance', height: 300 },
-  { id: 'p15', src: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80', destination: 'McLeodganj',       category: 'Culture',      caption: 'Sunrise from Triund — the trek worth every step', height: 240 },
-
-  // International
-  { id: 'p16', src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=800&q=80', destination: 'Thailand',         category: 'International', caption: 'Wat Arun glowing at dusk on the Chao Phraya', height: 280 },
-  { id: 'p17', src: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80', destination: 'Vietnam',          category: 'International', caption: 'Halong Bay — Limestone karsts rise from emerald water', height: 240 },
-  { id: 'p18', src: 'https://images.unsplash.com/photo-1491555103944-7c647fd857e6?auto=format&fit=crop&w=800&q=80', destination: 'Nepal',            category: 'International', caption: 'Boudhanath Stupa — Spiritual heart of Kathmandu', height: 320 },
-  { id: 'p19', src: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?auto=format&fit=crop&w=800&q=80', destination: 'Bhutan',           category: 'International', caption: 'Tiger\'s Nest Monastery — Clinging to a cliff at 3,120m', height: 260 },
-
-  // Valleys
-  { id: 'p20', src: 'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80', destination: 'Kasol',            category: 'Valleys',      caption: 'Parvati Valley — Where rivers meet the mountains', height: 220 },
-  { id: 'p21', src: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=800&q=80', destination: 'Jibhi & Tirthan', category: 'Valleys',      caption: 'Hidden valley life — Serolsar Lake trail', height: 300 },
-  { id: 'p22', src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80', destination: 'Munsiyari',        category: 'Valleys',      caption: 'Johar Valley — the gateway to Milam Glacier', height: 260 },
-  { id: 'p23', src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', destination: 'Goa',              category: 'Valleys',      caption: 'Agonda Beach — The quiet side of Goa', height: 240 },
-  { id: 'p24', src: 'https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80', destination: 'Spiti Valley',     category: 'Valleys',      caption: 'Pin Valley meadows under an infinite sky', height: 280 },
-];
+interface Photo extends GalleryPhoto {}
 
 const FILTERS: { key: Category; emoji: string }[] = [
   { key: 'All',           emoji: '🌍' },
@@ -62,9 +21,16 @@ const FILTERS: { key: Category; emoji: string }[] = [
 ];
 
 export default function GalleryPage() {
+  const [photos, setPhotos] = useState<Photo[]>(mockGallery);
   const [activeFilter, setActiveFilter] = useState<Category>('All');
   const [lightbox, setLightbox]         = useState<number | null>(null);
   const [search, setSearch]             = useState('');
+
+  useEffect(() => {
+    if (!isSupabaseConfigured()) return;
+    supabase.from('gallery').select('*').order('created_at', { ascending: false })
+      .then(({ data }) => { if (data) setPhotos(data as Photo[]); });
+  }, []);
 
   const filtered = photos.filter(p => {
     const matchCat = activeFilter === 'All' || p.category === activeFilter;

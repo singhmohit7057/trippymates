@@ -33,7 +33,7 @@ export default function InternationalTripsPage() {
     { value: `${uniqueDestinations}+`,              label: 'Destinations' },
     { value: `${avgRating}★`,                       label: 'Avg Rating' },
     { value: '10+',                                 label: 'Countries' },
-    { value: `$${minPrice.toLocaleString()}`,        label: 'Starting Price' },
+    { value: `₹${minPrice.toLocaleString('en-IN')}`,  label: 'Starting Price' },
   ];
 
   const filtered = international.filter(t => {
@@ -91,7 +91,7 @@ export default function InternationalTripsPage() {
           <div style={{ maxWidth:'900px', width:'100%', textAlign:'center', padding:'40px 0 24px' }}>
             {/* Badge */}
             <div style={{ display:'inline-flex', alignItems:'center', gap:'8px', background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:'9999px', padding:'7px 18px', fontSize:'13px', fontWeight:600, marginBottom:'24px', backdropFilter:'blur(8px)' }}>
-              <Globe size={14} /> International Trips
+              ✈️ International Trips
             </div>
 
             <h1 style={{ fontSize:'clamp(36px, 6vw, 64px)', fontWeight:900, margin:'0 0 18px', letterSpacing:'-2px', lineHeight:1.05 }}>
@@ -389,11 +389,10 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
   const catColor = categoryColorMap[trip.category] ?? '#007AFF';
 
   return (
-    <div className="int-card"
-      style={{ background:'#fff', borderRadius:'20px', overflow:'hidden', display:'flex', flexDirection:'column', boxShadow:'0 4px 16px rgba(0,0,0,0.07)', border:'1.5px solid #F0F2F5' }}
+    <Link to={`/trips/${trip.slug}`} className="int-card"
+      style={{ background:'#fff', borderRadius:'20px', overflow:'hidden', display:'flex', flexDirection:'column', boxShadow:'0 4px 16px rgba(0,0,0,0.07)', border:'1.5px solid #F0F2F5', textDecoration:'none', color:'inherit' }}
     >
-      {/* Image — clickable to detail page */}
-      <Link to={`/trips/${trip.slug}`} style={{ display:'block', height:'220px', overflow:'hidden', position:'relative', flexShrink:0 }}>
+      <div style={{ display:'block', height:'220px', overflow:'hidden', position:'relative', flexShrink:0 }}>
         <div className="int-card-img" style={{
           width:'100%', height:'100%',
           backgroundImage:`url(${trip.image_url})`,
@@ -418,7 +417,7 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
         {/* Bottom-left: price */}
         <div style={{ position:'absolute', bottom:'12px', left:'12px' }}>
           <span style={{ fontSize:'22px', fontWeight:800, color:'#fff', letterSpacing:'-0.5px', textShadow:'0 2px 8px rgba(0,0,0,0.4)' }}>
-            ${trip.price_per_person.toLocaleString()}
+            ₹{trip.price_per_person.toLocaleString('en-IN')}
           </span>
           <span style={{ fontSize:'12px', color:'rgba(255,255,255,0.8)', marginLeft:'4px' }}>/person</span>
         </div>
@@ -427,7 +426,7 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
         <div style={{ position:'absolute', bottom:'12px', right:'12px', background:'rgba(0,0,0,0.55)', backdropFilter:'blur(6px)', color:'#fff', borderRadius:'9999px', padding:'4px 10px', fontSize:'11px', fontWeight:700, display:'flex', alignItems:'center', gap:'4px' }}>
           <Clock size={10} />{trip.duration_days}D
         </div>
-      </Link>
+      </div>
 
       {/* Content */}
       <div style={{ padding:'20px', flex:1, display:'flex', flexDirection:'column', gap:'10px' }}>
@@ -460,10 +459,11 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
         </div>
 
         <a href={`https://wa.me/918981256860?text=${encodeURIComponent(`Hi, I'm interested in the trip: ${trip.title} (${trip.destination}, ${trip.duration_days} days, ₹${trip.price_per_person.toLocaleString('en-IN')}/person) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="int-book-btn"
+          onClick={e => e.stopPropagation()}
           style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'6px', background:'#007AFF', color:'#fff', borderRadius:'12px', padding:'13px', fontWeight:700, fontSize:'14px', textDecoration:'none', marginTop:'auto' }}>
           Book Now →
         </a>
       </div>
-    </div>
+    </Link>
   );
 }

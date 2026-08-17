@@ -189,6 +189,9 @@ const AdminEnquiries = lazy(() =>
 const AdminDestinations = lazy(() =>
   import('./pages/admin/AdminDestinations').catch(() => ({ default: () => <ComingSoon label="Admin Destinations" /> }))
 );
+const AdminGallery = lazy(() =>
+  import('./pages/admin/AdminGallery').catch(() => ({ default: () => <ComingSoon label="Admin Gallery" /> }))
+);
 
 // System
 const ComingSoonPage = lazy(() =>
@@ -295,6 +298,7 @@ export default function App() {
             <Route path="captains" element={<AdminCaptains />} />
             <Route path="testimonials" element={<AdminTestimonials />} />
             <Route path="enquiries" element={<AdminEnquiries />} />
+            <Route path="gallery" element={<AdminGallery />} />
           </Route>
 
           {/* System */}

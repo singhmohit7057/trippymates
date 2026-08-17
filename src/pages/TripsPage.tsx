@@ -427,6 +427,7 @@ function TripCard({ trip, delay }: { trip: Trip; delay: number }) {
 
   return (
     <motion.div className="trips-card" initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay }}>
+      <Link to={`/trips/${trip.slug}`} style={{ textDecoration:'none', color:'inherit', display:'flex', flexDirection:'column', flex:1 }}>
       <div style={{ height:200, position:'relative', overflow:'hidden', background:'#E5E7EB', flexShrink:0 }}>
         <img src={trip.image_url} alt={trip.title} className="trips-card-img" />
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 55%)', pointerEvents:'none' }} />
@@ -485,8 +486,9 @@ function TripCard({ trip, delay }: { trip: Trip; delay: number }) {
           </p>
         </div>
 
-        <Link to={`/trips/${trip.slug}`} className="trips-book-btn">Book Now</Link>
+        <a href={`https://wa.me/918981256860?text=${encodeURIComponent(`Hi, I'm interested in the trip: ${trip.title} (${trip.destination}, ${trip.duration_days} days, ₹${trip.price_per_person.toLocaleString('en-IN')}/person) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="trips-book-btn" onClick={e => e.stopPropagation()}>Book Now</a>
       </div>
+      </Link>
     </motion.div>
   );
 }

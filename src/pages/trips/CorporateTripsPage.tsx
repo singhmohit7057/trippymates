@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Mail, CheckCircle, ChevronDown, Globe, Users, Target, Award, Shield, Plane } from 'lucide-react';
+import { Mail, CheckCircle, ChevronDown, Globe, Users, Target, Award, Shield, Plane } from 'lucide-react';
 import Layout from '../../components/Layout';
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
@@ -106,7 +106,7 @@ export default function CorporateTripsPage() {
             {/* Badge */}
             <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}>
               <div style={{ display:'inline-flex', alignItems:'center', gap:'8px', background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:'9999px', padding:'7px 18px', fontSize:'13px', fontWeight:600, marginBottom:'24px', backdropFilter:'blur(8px)' }}>
-                <Briefcase size={14} /> Corporate Travel Solutions
+                💼 Corporate Travel Solutions
               </div>
 
               <h1 style={{ fontSize:'clamp(36px, 6vw, 64px)', fontWeight:900, margin:'0 0 18px', letterSpacing:'-2px', lineHeight:1.05 }}>
