@@ -10,6 +10,7 @@ import { colors } from '../lib/colors';
 import {
   mockDestinations,
   mockTestimonials,
+  mockTrips,
 } from '../data/mock';
 
 // ─── shared helpers ──────────────────────────────────────────────────────────
@@ -441,156 +442,100 @@ function SearchBar() {
 
 // ─── 4. FEATURED DESTINATIONS ────────────────────────────────────────────────
 
-function FeaturedDestinations() {
+function DestCarousel({ title, description, destinations }: { title: string; description: string; destinations: typeof mockDestinations }) {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState<'all' | 'international' | 'domestic'>('all');
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const filters = [
-    { key: 'all',           label: 'All',           emoji: '🌍' },
-    { key: 'international', label: 'International',  emoji: '✈️' },
-    { key: 'domestic',      label: 'Domestic',       emoji: '🚆' },
-  ] as const;
-
-  const filtered = activeFilter === 'all'
-    ? mockDestinations
-    : mockDestinations.filter((d) => d.type === activeFilter);
+  const scroll = (dir: 'left' | 'right') => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: dir === 'left' ? -320 : 320, behavior: 'smooth' });
+  };
 
   return (
-    <section className="dest-section" style={{ padding: '64px 0 80px', background: '#FFFFFF', fontFamily: font }}>
-      <style>{`
-        .dest-scroll-wrap {
-          overflow-x: auto;
-          overflow-y: hidden;
-          padding: 0 24px 16px 48px;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .dest-scroll-wrap::-webkit-scrollbar { display: none; }
-        .dest-oval-grid {
-          display: grid;
-          grid-template-rows: repeat(2, auto);
-          grid-auto-flow: column;
-          grid-auto-columns: 160px;
-          gap: 24px 18px;
-          width: max-content;
-        }
-
-        .dest-oval-card:hover .dest-oval-img { transform: scale(1.07); }
-        .dest-oval-card:hover .dest-oval-name { color: #007AFF; }
-
-        .dest-filter-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 7px 18px;
-          border-radius: 9999px;
-          font-size: 14px;
-          font-weight: 600;
-          cursor: pointer;
-          border: 1.5px solid #E5E7EB;
-          background: #fff;
-          color: #6B7280;
-          transition: all 0.15s;
-          font-family: ${font};
-        }
-        .dest-filter-pill:hover { border-color: #007AFF; color: #007AFF; }
-        .dest-filter-pill.active { background: #007AFF; color: #fff; border-color: #007AFF; }
-        @media(max-width:600px) {
-          .dest-oval-grid { grid-auto-columns: 130px; gap: 16px 14px; }
-          .dest-scroll-wrap { padding: 0 16px 16px 24px; }
-          .dest-heading { font-size: 26px !important; }
-          .dest-section { padding: 48px 0 56px !important; }
-        }
-      `}</style>
-
-      {/* Header */}
-      <div style={{ maxWidth: '1200px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 28, padding: '0 24px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="dest-heading" style={{ fontSize: '36px', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 20px' }}>
-            Explore Destinations
-          </h2>
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-            {filters.map((f) => (
-              <button
-                key={f.key}
-                className={`dest-filter-pill${activeFilter === f.key ? ' active' : ''}`}
-                onClick={() => setActiveFilter(f.key)}
-              >
-                <span>{f.emoji}</span>
-                {f.label}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Oval grid — full width scroll */}
-      <div className="dest-scroll-wrap">
-        <div className="dest-oval-grid">
-          {filtered.map((dest, i) => (
-            <motion.div
-              key={dest.id}
-              className="dest-oval-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              onClick={() => navigate('/trips')}
-              style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}
-            >
-              {/* Oval image */}
-              <div
-                style={{
-                  width: '100%',
-                  aspectRatio: '3 / 4',
-                  borderRadius: '9999px',
-                  overflow: 'hidden',
-                  background: `linear-gradient(135deg, ${dest.color}, ${dest.secondaryColor})`,
-                  flexShrink: 0,
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
-                }}
-              >
-                <img
-                  className="dest-oval-img"
-                  src={dest.image_url}
-                  alt={dest.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    display: 'block',
-                    transition: 'transform 0.4s ease',
-                  }}
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              </div>
-
-              {/* Name below oval */}
-              <span
-                className="dest-oval-name"
-                style={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  color: '#111827',
-                  textAlign: 'center',
-                  lineHeight: 1.3,
-                  transition: 'color 0.15s',
-                }}
-              >
-                {dest.name}
-              </span>
-            </motion.div>
-          ))}
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', marginBottom: 48 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+        <h3 style={{ fontSize: 24, fontWeight: 800, color: '#1a1a2e', margin: 0, fontFamily: font }}>
+          Popular {title} <span style={{ color: '#007AFF' }}>Packages</span>
+        </h3>
+        <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+          <button onClick={() => scroll('left')} style={arrowBtn} aria-label="Scroll left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button onClick={() => scroll('right')} style={{ ...arrowBtn, background: '#007AFF', color: '#fff', borderColor: '#007AFF' }} aria-label="Scroll right">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
       </div>
+      <p style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.6, margin: '0 0 20px', maxWidth: 800 }}>{description}</p>
+
+      <div ref={scrollRef} className="dest-carousel-scroll" style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 8 }}>
+        {destinations.map((dest) => {
+          const tripsForDest = mockTrips.filter(t => t.state === dest.name || t.destination.toLowerCase().includes(dest.name.toLowerCase()));
+          const tourCount = tripsForDest.length;
+          const totalReviews = tripsForDest.reduce((sum, t) => sum + t.review_count, 0);
+          return (
+            <div
+              key={dest.id}
+              className="dest-carousel-card"
+              onClick={() => navigate(`/trips/${dest.type}?search=${encodeURIComponent(dest.name)}`)}
+              style={{ flex: '0 0 220px', cursor: 'pointer', borderRadius: 16, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 16px rgba(0,0,0,0.08)', transition: 'transform 0.25s, box-shadow 0.25s' }}
+            >
+              <div style={{ position: 'relative', width: 220, height: 180, overflow: 'hidden' }}>
+                <img
+                  src={dest.image_url}
+                  alt={dest.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s' }}
+                  className="dest-carousel-img"
+                />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px 14px 12px', background: 'linear-gradient(transparent, rgba(0,0,0,0.65))' }}>
+                  <span style={{ color: '#fff', fontSize: 16, fontWeight: 700, fontFamily: font }}>{dest.name}</span>
+                </div>
+              </div>
+              <div style={{ padding: '10px 14px 14px', textAlign: 'center' }}>
+                <p style={{ fontSize: 12, color: '#374151', margin: 0, fontWeight: 500 }}>
+                  {tourCount} {tourCount === 1 ? 'tour' : 'tours'} &nbsp;|&nbsp; {totalReviews} reviews
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+const arrowBtn: CSSProperties = {
+  width: 38, height: 38, borderRadius: '50%', border: '2px solid #007AFF',
+  background: '#fff', color: '#007AFF', display: 'flex', alignItems: 'center',
+  justifyContent: 'center', cursor: 'pointer', padding: 0, transition: 'all 0.2s',
+};
+
+function FeaturedDestinations() {
+  const domestic = mockDestinations.filter(d => d.type === 'domestic');
+  const international = mockDestinations.filter(d => d.type === 'international');
+
+  return (
+    <section style={{ padding: '56px 0 40px', background: '#fff', fontFamily: font }}>
+      <style>{`
+        .dest-carousel-scroll::-webkit-scrollbar { display: none; }
+        .dest-carousel-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .dest-carousel-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important; }
+        .dest-carousel-card:hover .dest-carousel-img { transform: scale(1.05); }
+        @media(max-width:600px) {
+          .dest-carousel-card { flex: 0 0 180px !important; }
+          .dest-carousel-card > div:first-child { width: 180px !important; height: 150px !important; }
+        }
+      `}</style>
+      <DestCarousel
+        title="Domestic Tour"
+        description="India is a diverse country, a land of spirituality and peace with a rich culture, history, heritage, incredible wildlife, and natural beauty. Explore our handpicked domestic destinations."
+        destinations={domestic}
+      />
+      <DestCarousel
+        title="International Tour"
+        description="If you're looking for an adventure abroad, check out our most popular international tour packages. Whether you're travelling for business or leisure, there's no shortage of options."
+        destinations={international}
+      />
     </section>
   );
 }

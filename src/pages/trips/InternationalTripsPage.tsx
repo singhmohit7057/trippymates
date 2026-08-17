@@ -1,5 +1,5 @@
 import { type CSSProperties, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Star, Users, Clock, MapPin, ChevronDown, Globe, SlidersHorizontal, Search } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { mockTrips } from '../../data/mock';
@@ -18,9 +18,10 @@ const CATEGORIES = [
 ];
 
 export default function InternationalTripsPage() {
+  const [searchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState('All');
   const [sortBy, setSortBy]   = useState<SortOption>('default');
-  const [search, setSearch]   = useState('');
+  const [search, setSearch]   = useState(searchParams.get('search') || '');
 
   const international = mockTrips.filter(t => t.type === 'international');
 
@@ -37,7 +38,8 @@ export default function InternationalTripsPage() {
 
   const filtered = international.filter(t => {
     const matchCat    = activeCategory === 'All' || t.category.toLowerCase() === activeCategory.toLowerCase();
-    const matchSearch = !search || t.title.toLowerCase().includes(search.toLowerCase()) || t.destination.toLowerCase().includes(search.toLowerCase());
+    const s = search.toLowerCase();
+    const matchSearch = !search || t.title.toLowerCase().includes(s) || t.destination.toLowerCase().includes(s) || (t.state || '').toLowerCase().includes(s);
     return matchCat && matchSearch;
   });
 
@@ -384,15 +386,14 @@ const categoryColorMap: Record<string, string> = {
 function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
   const spotsLeft = trip.max_travelers - trip.current_travelers;
   const pct = Math.round((trip.current_travelers / trip.max_travelers) * 100);
-  const isHot = pct >= 75;
   const catColor = categoryColorMap[trip.category] ?? '#007AFF';
 
   return (
     <div className="int-card"
       style={{ background:'#fff', borderRadius:'20px', overflow:'hidden', display:'flex', flexDirection:'column', boxShadow:'0 4px 16px rgba(0,0,0,0.07)', border:'1.5px solid #F0F2F5' }}
     >
-      {/* Image */}
-      <div style={{ height:'220px', overflow:'hidden', position:'relative', flexShrink:0 }}>
+      {/* Image — clickable to detail page */}
+      <Link to={`/trips/${trip.slug}`} style={{ display:'block', height:'220px', overflow:'hidden', position:'relative', flexShrink:0 }}>
         <div className="int-card-img" style={{
           width:'100%', height:'100%',
           backgroundImage:`url(${trip.image_url})`,
@@ -402,19 +403,11 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
         {/* Gradient overlay */}
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%)', pointerEvents:'none' }} />
 
-        {/* Top badges */}
-        <div style={{ position:'absolute', top:'12px', left:'12px', display:'flex', gap:'6px' }}>
-          <span style={{ background:'rgba(0,0,0,0.55)', backdropFilter:'blur(6px)', color:'#fff', borderRadius:'9999px', padding:'4px 10px', fontSize:'11px', fontWeight:700, display:'flex', alignItems:'center', gap:'4px' }}>
-            <Clock size={10} />{trip.duration_days}D
-          </span>
+        {/* Top-left: category */}
+        <div style={{ position:'absolute', top:'12px', left:'12px' }}>
           <span style={{ background: catColor, color:'#fff', borderRadius:'9999px', padding:'4px 10px', fontSize:'11px', fontWeight:700 }}>
             {trip.category.charAt(0).toUpperCase() + trip.category.slice(1)}
           </span>
-          {isHot && (
-            <span style={{ background:'#EF4444', color:'#fff', borderRadius:'9999px', padding:'4px 10px', fontSize:'11px', fontWeight:700 }}>
-              🔥 Hot
-            </span>
-          )}
         </div>
 
         {/* Top-right: destination */}
@@ -422,14 +415,19 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
           <MapPin size={10} color="#007AFF" style={{ flexShrink:0 }} />{trip.destination}
         </div>
 
-        {/* Bottom: price overlay */}
+        {/* Bottom-left: price */}
         <div style={{ position:'absolute', bottom:'12px', left:'12px' }}>
           <span style={{ fontSize:'22px', fontWeight:800, color:'#fff', letterSpacing:'-0.5px', textShadow:'0 2px 8px rgba(0,0,0,0.4)' }}>
             ${trip.price_per_person.toLocaleString()}
           </span>
           <span style={{ fontSize:'12px', color:'rgba(255,255,255,0.8)', marginLeft:'4px' }}>/person</span>
         </div>
-      </div>
+
+        {/* Bottom-right: duration */}
+        <div style={{ position:'absolute', bottom:'12px', right:'12px', background:'rgba(0,0,0,0.55)', backdropFilter:'blur(6px)', color:'#fff', borderRadius:'9999px', padding:'4px 10px', fontSize:'11px', fontWeight:700, display:'flex', alignItems:'center', gap:'4px' }}>
+          <Clock size={10} />{trip.duration_days}D
+        </div>
+      </Link>
 
       {/* Content */}
       <div style={{ padding:'20px', flex:1, display:'flex', flexDirection:'column', gap:'10px' }}>
@@ -461,10 +459,10 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
           </p>
         </div>
 
-        <Link to={`/trips/${trip.slug}`} className="int-book-btn"
+        <a href={`https://wa.me/917057059498?text=${encodeURIComponent(`Hi, I'm interested in the trip: ${trip.title} (${trip.destination}, ${trip.duration_days} days, ₹${trip.price_per_person.toLocaleString('en-IN')}/person) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="int-book-btn"
           style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'6px', background:'#007AFF', color:'#fff', borderRadius:'12px', padding:'13px', fontWeight:700, fontSize:'14px', textDecoration:'none', marginTop:'auto' }}>
-          View Trip →
-        </Link>
+          Book Now →
+        </a>
       </div>
     </div>
   );

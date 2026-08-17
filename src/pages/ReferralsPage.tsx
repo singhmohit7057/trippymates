@@ -35,15 +35,20 @@ export default function ReferralsPage() {
   };
 
   const hero: CSSProperties = {
-    background: 'linear-gradient(135deg, #007AFF 0%, #0056CC 50%, #FF6B35 100%)',
-    padding: '80px 24px 64px',
+    background: 'linear-gradient(135deg, #001F5B 0%, #0043C4 55%, #007AFF 100%)',
+    height: 'calc(50vh - 26px)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '88px 24px 80px',
     textAlign: 'center',
     color: '#fff',
   };
 
   const heroTitle: CSSProperties = {
-    fontSize: 'clamp(32px, 5vw, 52px)',
-    fontWeight: 800,
+    fontSize: 'clamp(32px, 5.5vw, 56px)',
+    fontWeight: 900,
     margin: '0 0 14px',
     letterSpacing: '-0.5px',
   };
@@ -228,6 +233,9 @@ export default function ReferralsPage() {
     <Layout>
       {/* Hero */}
       <section style={hero}>
+        <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.22)', borderRadius:'9999px', padding:'6px 16px', fontSize:'13px', fontWeight:600, marginBottom:'20px', backdropFilter:'blur(6px)' }}>
+          🎁 Referral Program
+        </div>
         <h1 style={heroTitle}>Earn While You Travel</h1>
         <p style={heroSub}>
           Share Trippy Mates with friends. Earn ₹500 for every successful booking they make.

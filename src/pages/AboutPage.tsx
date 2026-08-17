@@ -62,7 +62,11 @@ export default function AboutPage() {
       <div
         style={{
           background: 'linear-gradient(135deg, #007AFF 0%, #0056CC 60%, #003A99 100%)',
-          padding: '80px 24px 72px',
+          height: 'calc(50vh - 26px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '88px 24px 80px',
           textAlign: 'center',
           color: '#fff',
         }}
@@ -86,8 +90,8 @@ export default function AboutPage() {
           </div>
           <h1
             style={{
-              fontSize: 'clamp(30px, 5vw, 52px)',
-              fontWeight: 800,
+              fontSize: 'clamp(32px, 5.5vw, 56px)',
+              fontWeight: 900,
               margin: '0 0 16px',
               letterSpacing: '-0.5px',
             }}

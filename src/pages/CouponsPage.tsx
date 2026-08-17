@@ -230,17 +230,22 @@ export default function CouponsPage() {
   const filtered = activeCategory === 'All' ? COUPONS : COUPONS.filter(c => c.category === activeCategory);
 
   const hero: CSSProperties = {
-    background: 'linear-gradient(135deg, #F59E0B 0%, #EF4444 60%, #9552E0 100%)',
-    padding: '72px 24px 56px',
+    background: 'linear-gradient(135deg, #001F5B 0%, #0043C4 55%, #007AFF 100%)',
+    height: 'calc(50vh - 26px)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '88px 24px 80px',
     textAlign: 'center',
     color: '#fff',
   };
 
   const heroTitle: CSSProperties = {
-    fontSize: 'clamp(28px, 5vw, 48px)',
-    fontWeight: 800,
-    margin: '0 0 12px',
-    letterSpacing: '-0.5px',
+    fontSize: 'clamp(32px, 5.5vw, 56px)',
+    fontWeight: 900,
+    margin: '0 0 16px',
+    letterSpacing: '-1.5px',
   };
 
   const heroSub: CSSProperties = {
@@ -302,6 +307,9 @@ export default function CouponsPage() {
     <Layout>
       {/* Hero */}
       <section style={hero}>
+        <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.22)', borderRadius:'9999px', padding:'6px 16px', fontSize:'13px', fontWeight:600, marginBottom:'20px', backdropFilter:'blur(6px)' }}>
+          🏷️ Offers & Savings
+        </div>
         <h1 style={heroTitle}>Exclusive Deals & Coupons</h1>
         <p style={heroSub}>
           Save more on every trip. Exclusive discount codes for Trippy Mates members.

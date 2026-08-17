@@ -129,11 +129,11 @@ function CaptainCard({ captain, delay }: { captain: Captain; delay: number }) {
 
         {/* languages */}
         <div style={{ display:'flex', flexWrap:'wrap', gap:5, justifyContent:'center' }}>
-          {captain.languages.slice(0,3).map(l => (
+          {captain.languages.slice(0,4).map(l => (
             <span key={l} style={{ background:PURPLE_LIGHT, color:PURPLE_MID, fontSize:11, fontWeight:600, padding:'3px 9px', borderRadius:9999 }}>{l}</span>
           ))}
-          {captain.languages.length > 3 && (
-            <span style={{ background:'#F3F4F6', color:'#6B7280', fontSize:11, fontWeight:600, padding:'3px 9px', borderRadius:9999 }}>+{captain.languages.length - 3}</span>
+          {captain.languages.length > 4 && (
+            <span style={{ background:'#F3F4F6', color:'#6B7280', fontSize:11, fontWeight:600, padding:'3px 9px', borderRadius:9999 }}>+{captain.languages.length - 4}</span>
           )}
         </div>
 
@@ -162,7 +162,7 @@ function CaptainCard({ captain, delay }: { captain: Captain; delay: number }) {
         </div>
 
         {/* CTA */}
-        <a className="cap-book-btn" style={{ display:'block', textAlign:'center', background:PURPLE, color:'#fff', borderRadius:9999, padding:'11px', fontWeight:700, fontSize:14, textDecoration:'none', fontFamily:font, marginTop:'auto' }}>
+        <a href={`https://wa.me/917057059498?text=${encodeURIComponent(`Hi, I want to book Captain ${captain.name} (${captain.city}, ${captain.country}) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="cap-book-btn" style={{ display:'block', textAlign:'center', background:PURPLE, color:'#fff', borderRadius:9999, padding:'11px', fontWeight:700, fontSize:14, textDecoration:'none', fontFamily:font, marginTop:'auto' }}>
           Book Captain
         </a>
       </div>

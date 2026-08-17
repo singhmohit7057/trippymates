@@ -201,12 +201,12 @@ export default function FAQPage() {
       `}</style>
 
       {/* ── Hero ── */}
-      <section style={{ background: 'linear-gradient(135deg, #007AFF 0%, #0056CC 60%, #003A99 100%)', padding: '80px 24px 72px', textAlign: 'center', color: '#fff', fontFamily: font }}>
+      <section style={{ background: 'linear-gradient(135deg, #007AFF 0%, #0056CC 60%, #003A99 100%)', height: 'calc(50vh - 26px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '88px 24px 80px', textAlign: 'center', color: '#fff', fontFamily: font }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-          <span style={{ display:'inline-block', background:'rgba(255,255,255,0.15)', border:'1px solid rgba(255,255,255,0.3)', borderRadius:'9999px', padding:'4px 14px', fontSize:'11px', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'18px' }}>
-            Help Center
-          </span>
-          <h1 style={{ fontSize:'clamp(28px,5vw,50px)', fontWeight:900, margin:'0 0 14px', letterSpacing:'-1px', lineHeight:1.1 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.22)', borderRadius:'9999px', padding:'6px 16px', fontSize:'13px', fontWeight:600, marginBottom:'20px', backdropFilter:'blur(6px)' }}>
+            ❓ Help Center
+          </div>
+          <h1 style={{ fontSize:'clamp(32px,5.5vw,56px)', fontWeight:900, margin:'0 0 14px', letterSpacing:'-1.5px', lineHeight:1.1 }}>
             How can we help you?
           </h1>
           <p style={{ fontSize:'17px', opacity:0.85, maxWidth:'460px', margin:'0 auto', lineHeight:1.65 }}>

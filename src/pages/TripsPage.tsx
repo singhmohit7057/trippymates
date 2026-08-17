@@ -1,10 +1,10 @@
-import { type CSSProperties, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { type CSSProperties, useState, useRef, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Star, Users, Clock, MapPin, Briefcase, Search,
   ArrowRight, Compass, Shield, Award, Zap, ChevronDown,
-  SlidersHorizontal,
+  SlidersHorizontal, Train, Plane,
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import { mockTrips } from '../data/mock';
@@ -83,11 +83,17 @@ function sortTrips(trips: Trip[], sort: string): Trip[] {
 }
 
 export default function TripsPage() {
+  const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab]     = useState<TabKey>('all');
   const [activeCategory, setCategory] = useState('All');
   const [sort, setSort]               = useState('popular');
-  const [search, setSearch]           = useState('');
+  const [search, setSearch]           = useState(searchParams.get('search') || '');
   const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const q = searchParams.get('search');
+    if (q) setSearch(q);
+  }, [searchParams]);
 
   const allTrips   = mockTrips;
   const uniqueDest = new Set(allTrips.map(t => t.destination)).size;
@@ -115,6 +121,7 @@ export default function TripsPage() {
     filtered = filtered.filter(t =>
       t.title.toLowerCase().includes(q) ||
       t.destination.toLowerCase().includes(q) ||
+      t.state.toLowerCase().includes(q) ||
       t.category.toLowerCase().includes(q)
     );
   }
@@ -448,7 +455,7 @@ function TripCard({ trip, delay }: { trip: Trip; delay: number }) {
           <Clock size={12} color="#9CA3AF" />
           <span style={{ fontSize:12, color:'#9CA3AF', fontWeight:500 }}>{trip.duration_days} days</span>
           <span style={{ marginLeft:'auto', display:'inline-flex', alignItems:'center', gap:4, fontSize:11, color:'#007AFF', fontWeight:600, background:'#EBF5FF', padding:'2px 8px', borderRadius:9999 }}>
-            {trip.type === 'domestic' ? '🇮🇳' : '✈️'} {trip.type.charAt(0).toUpperCase() + trip.type.slice(1)}
+            {trip.type === 'domestic' ? <Train size={11} /> : <Plane size={11} />} {trip.type.charAt(0).toUpperCase() + trip.type.slice(1)}
           </span>
         </div>
 

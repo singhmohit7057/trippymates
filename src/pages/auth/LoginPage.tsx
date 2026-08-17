@@ -2,13 +2,15 @@ import React, { type CSSProperties, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../../context/AuthContext';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { signIn, isAdmin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string; form?: string }>({});
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
@@ -25,9 +27,13 @@ export default function LoginPage() {
     evt.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
+    const { error } = await signIn(email, password);
     setLoading(false);
-    navigate('/');
+    if (error) {
+      setErrors({ form: error });
+      return;
+    }
+    navigate(isAdmin ? '/admin' : '/');
   };
 
   const page: CSSProperties = {
@@ -241,6 +247,11 @@ export default function LoginPage() {
         <p style={subtitle}>Sign in to your account</p>
 
         <form onSubmit={handleSubmit} noValidate>
+          {errors.form && (
+            <div style={{ background: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 10, padding: '10px 14px', marginBottom: 16, fontSize: 13, color: '#DC2626' }}>
+              {errors.form}
+            </div>
+          )}
           <div style={fieldWrapper}>
             <label style={label} htmlFor="email">Email</label>
             <div style={inputRow}>

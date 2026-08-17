@@ -115,6 +115,7 @@ export default function ContactPage() {
       {/* ── HERO ──────────────────────────────────────────────────────────────── */}
       <section style={{
         background: 'linear-gradient(135deg, #001F5B 0%, #0043C4 55%, #007AFF 100%)',
+        height: 'calc(50vh - 26px)', display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: '88px 24px 80px', textAlign: 'center', color: '#fff',
         fontFamily: font, position: 'relative', overflow: 'hidden',
       }}>
@@ -124,7 +125,7 @@ export default function ContactPage() {
         <motion.div initial={{ opacity:0, y:28 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.55 }}
           style={{ maxWidth:'600px', margin:'0 auto' }}>
           <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.22)', borderRadius:'9999px', padding:'6px 16px', fontSize:'13px', fontWeight:600, marginBottom:'20px', backdropFilter:'blur(6px)' }}>
-            💬 We'd love to hear from you
+            💬 Contact Us
           </div>
           <h1 style={{ fontSize:'clamp(32px,5.5vw,56px)', fontWeight:900, margin:'0 0 16px', lineHeight:1.1, letterSpacing:'-1.5px' }}>
             Get in Touch

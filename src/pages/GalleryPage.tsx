@@ -105,12 +105,12 @@ export default function GalleryPage() {
       `}</style>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #0B1120 0%, #1a2340 100%)', padding: '80px 24px 64px', textAlign: 'center', fontFamily: font }}>
+      <section style={{ background: 'linear-gradient(135deg, #001F5B 0%, #0043C4 55%, #007AFF 100%)', height: 'calc(50vh - 26px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '88px 24px 80px', textAlign: 'center', fontFamily: font }}>
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <span style={{ display:'inline-block', background:'rgba(0,122,255,0.2)', border:'1px solid rgba(0,122,255,0.4)', color:'#60A5FA', fontSize:'11px', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', borderRadius:'9999px', padding:'4px 14px', marginBottom:'18px' }}>
-            Photo Gallery
-          </span>
-          <h1 style={{ fontSize:'clamp(32px,5vw,52px)', fontWeight:900, color:'#fff', margin:'0 0 14px', letterSpacing:'-1px', lineHeight:1.1 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.22)', borderRadius:'9999px', padding:'6px 16px', fontSize:'13px', fontWeight:600, color:'#fff', marginBottom:'20px', backdropFilter:'blur(6px)' }}>
+            📸 Photo Gallery
+          </div>
+          <h1 style={{ fontSize:'clamp(32px,5.5vw,56px)', fontWeight:900, color:'#fff', margin:'0 0 14px', letterSpacing:'-1.5px', lineHeight:1.1 }}>
             Moments from the Road
           </h1>
           <p style={{ fontSize:'17px', color:'rgba(255,255,255,0.6)', maxWidth:'480px', margin:'0 auto 28px', lineHeight:1.65 }}>

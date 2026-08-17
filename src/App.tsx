@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // ── Scroll to top on every route change ──────────────────────────────────────
 function ScrollToTop() {
@@ -88,6 +90,9 @@ const InternationalTripsPage = lazy(() =>
 const CorporateTripsPage = lazy(() =>
   import('./pages/trips/CorporateTripsPage').catch(() => ({ default: () => <ComingSoon label="Corporate Trips" /> }))
 );
+const TripDetailPage = lazy(() =>
+  import('./pages/trips/TripDetailPage').catch(() => ({ default: () => <ComingSoon label="Trip Details" /> }))
+);
 
 // Core pages
 const CaptainsPage = lazy(() =>
@@ -165,10 +170,27 @@ const TermsPage = lazy(() =>
   import('./pages/legal/TermsPage').catch(() => ({ default: () => <ComingSoon label="Terms & Conditions" /> }))
 );
 
-// System
-const AdminPage = lazy(() =>
-  import('./pages/system/AdminPage').catch(() => ({ default: () => <ComingSoon label="Admin" /> }))
+// Admin
+const AdminLayout = lazy(() =>
+  import('./pages/admin/AdminLayout').catch(() => ({ default: () => <ComingSoon label="Admin" /> }))
 );
+const AdminTrips = lazy(() =>
+  import('./pages/admin/AdminTrips').catch(() => ({ default: () => <ComingSoon label="Admin Trips" /> }))
+);
+const AdminCaptains = lazy(() =>
+  import('./pages/admin/AdminCaptains').catch(() => ({ default: () => <ComingSoon label="Admin Captains" /> }))
+);
+const AdminTestimonials = lazy(() =>
+  import('./pages/admin/AdminTestimonials').catch(() => ({ default: () => <ComingSoon label="Admin Testimonials" /> }))
+);
+const AdminEnquiries = lazy(() =>
+  import('./pages/admin/AdminEnquiries').catch(() => ({ default: () => <ComingSoon label="Admin Enquiries" /> }))
+);
+const AdminDestinations = lazy(() =>
+  import('./pages/admin/AdminDestinations').catch(() => ({ default: () => <ComingSoon label="Admin Destinations" /> }))
+);
+
+// System
 const ComingSoonPage = lazy(() =>
   import('./pages/system/ComingSoonPage').catch(() => ({ default: () => <ComingSoon label="Coming Soon" /> }))
 );
@@ -217,6 +239,7 @@ function ComingSoon({ label }: { label: string }) {
 export default function App() {
   return (
     <BrowserRouter>
+      <AuthProvider>
       <ScrollToTop />
       <BackToTop />
       <Suspense fallback={<PageLoader />}>
@@ -230,6 +253,7 @@ export default function App() {
           <Route path="/trips/domestic" element={<DomesticTripsPage />} />
           <Route path="/trips/international" element={<InternationalTripsPage />} />
           <Route path="/trips/corporate" element={<CorporateTripsPage />} />
+          <Route path="/trips/:slug" element={<TripDetailPage />} />
 
           {/* Core */}
           <Route path="/captains" element={<CaptainsPage />} />
@@ -263,12 +287,22 @@ export default function App() {
           <Route path="/cookies-policy" element={<CookiesPolicyPage />} />
           <Route path="/terms-and-conditions" element={<TermsPage />} />
 
+          {/* Admin */}
+          <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+            <Route index element={<Navigate to="/admin/destinations" replace />} />
+            <Route path="destinations" element={<AdminDestinations />} />
+            <Route path="trips" element={<AdminTrips />} />
+            <Route path="captains" element={<AdminCaptains />} />
+            <Route path="testimonials" element={<AdminTestimonials />} />
+            <Route path="enquiries" element={<AdminEnquiries />} />
+          </Route>
+
           {/* System */}
-          <Route path="/admin" element={<AdminPage />} />
           <Route path="/coming-soon" element={<ComingSoonPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

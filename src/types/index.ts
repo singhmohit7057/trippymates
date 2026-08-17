@@ -31,6 +31,7 @@ export interface Trip {
   title: string;
   slug: string;
   destination: string;
+  state: string;
   country: string;
   image_url: string;
   duration_days: number;
@@ -47,6 +48,7 @@ export interface Trip {
   description: string;
   highlights: string[];
   inclusions: string[];
+  gallery_images?: string[];
   created_at: string;
 }
 
@@ -102,5 +104,14 @@ export interface Review {
   captain_id?: string;
   rating: number;
   comment: string;
+  created_at: string;
+}
+
+export interface Destination {
+  id: string;
+  name: string;
+  slug: string;
+  image_url: string;
+  type: 'domestic' | 'international';
   created_at: string;
 }

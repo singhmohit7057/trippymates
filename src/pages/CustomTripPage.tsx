@@ -6,6 +6,7 @@ import {
   Phone, Sparkles, MapPin, Clock, Star,
 } from 'lucide-react';
 import Layout from '../components/Layout';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 const PURPLE = '#007AFF';
@@ -179,11 +180,31 @@ export default function CustomTripPage() {
     return Object.keys(e).length === 0;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1400);
+    if (isSupabaseConfigured()) {
+      const payload = {
+        full_name: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        destination: form.destination,
+        start_date: form.startDate,
+        end_date: form.endDate,
+        travelers: Number(form.travelers),
+        budget_range: form.budgetRange,
+        trip_type: form.tripType,
+        captain_required: form.captainRequired,
+        captain_type: form.captainType || null,
+        accommodation_needed: form.accommodationNeeded === 'yes',
+        transport_needed: form.transportNeeded === 'yes',
+        additional_requirements: form.additionalRequirements || null,
+      };
+      await supabase.from('custom_trip_enquiries').insert(payload);
+    }
+    setLoading(false);
+    setSubmitted(true);
   }
 
   return (
