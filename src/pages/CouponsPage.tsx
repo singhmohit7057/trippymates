@@ -123,7 +123,7 @@ function CouponCard({ coupon }: { coupon: Coupon }) {
   };
 
   const contentStyle: CSSProperties = {
-    padding: '20px 20px 20px 18px',
+    padding: '24px 20px',
     flex: 1,
   };
 
@@ -271,7 +271,7 @@ export default function CouponsPage() {
   const body: CSSProperties = {
     maxWidth: '1100px',
     margin: '0 auto',
-    padding: '0 24px 80px',
+    padding: '0 24px 56px',
   };
 
   const filtersRow: CSSProperties = {
@@ -353,8 +353,8 @@ export default function CouponsPage() {
         <div style={{
           marginTop: '48px',
           background: '#EBF5FF',
-          borderRadius: '12px',
-          padding: '20px 24px',
+          borderRadius: '16px',
+          padding: '24px 20px',
           display: 'flex',
           alignItems: 'flex-start',
           gap: '12px',

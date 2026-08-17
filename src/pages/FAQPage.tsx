@@ -15,7 +15,7 @@ const faqData: Record<Category, FAQ[]> = {
     { q: 'How is Trippy Mates different from a regular travel agency?', a: 'Traditional agencies sell packaged tours. We match you with a local Captain who lives and breathes your destination. Every trip is led by someone who knows the hidden gems, local cuisine, and offbeat stories no tourist brochure mentions.' },
     { q: 'Is Trippy Mates available outside India?', a: "Yes! We currently operate in India (domestic trips) as well as Thailand, Nepal, Vietnam, Bhutan, and several other countries internationally. We're expanding our Captain network rapidly — new destinations are added every month." },
     { q: 'Do I need to create an account to browse trips?', a: "You can browse all trips and Captain profiles without an account. However, you'll need to register to make bookings, save favourites, join communities, and access your travel history." },
-    { q: 'How do I contact Trippy Mates support?', a: 'You can reach us via our Contact page, WhatsApp (+91 82876 36079), or email at support@trippymates.com. Our team is available Monday–Friday, 9 AM to 7 PM IST.' },
+    { q: 'How do I contact Trippy Mates support?', a: 'You can reach us via our Contact page, WhatsApp (+91 89812 56860), or email at support@trippymates.com. Our team is available Monday–Friday, 9 AM to 7 PM IST.' },
   ],
   Captains: [
     { q: 'Who are Captains?', a: 'Captains are verified local experts — guides, hosts, and travel enthusiasts who know their destination deeply. They design itineraries, lead groups, share stories, and ensure every traveler has a safe, authentic, and memorable experience.' },
@@ -195,7 +195,7 @@ export default function FAQPage() {
         .faq-pill { display:inline-flex; align-items:center; gap:6px; padding:9px 18px; border-radius:9999px; font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid #E5E7EB; background:#fff; color:#6B7280; transition:all 0.15s; font-family:${font}; }
         .faq-pill:hover { border-color:#007AFF; color:#007AFF; }
         .faq-pill.active { background:#007AFF; color:#fff; border-color:#007AFF; }
-        .faq-item { background:#fff; border-radius:14px; border:1px solid #E5E7EB; margin-bottom:10px; overflow:hidden; transition:border-color 0.15s, box-shadow 0.15s; }
+        .faq-item { background:#fff; border-radius:16px; border:1px solid #E5E7EB; margin-bottom:10px; overflow:hidden; transition:border-color 0.15s, box-shadow 0.15s; }
         .faq-item:hover { border-color:#C7DCFF; box-shadow:0 4px 16px rgba(0,122,255,0.07); }
         .faq-item.open { border-color:#007AFF; box-shadow:0 4px 16px rgba(0,122,255,0.10); }
       `}</style>
@@ -215,7 +215,7 @@ export default function FAQPage() {
           {/* Quick contact chips */}
           <div style={{ display:'flex', gap:'12px', flexWrap:'wrap', justifyContent:'center', marginTop:'28px' }}>
             {[
-              { icon: <Phone size={13} />, label: '+91 82876 36079' },
+              { icon: <Phone size={13} />, label: '+91 89812 56860' },
               { icon: <Mail size={13} />, label: 'support@trippymates.com' },
               { icon: <MessageCircle size={13} />, label: 'WhatsApp Us' },
             ].map(c => (
@@ -228,7 +228,7 @@ export default function FAQPage() {
       </section>
 
       {/* ── Body ── */}
-      <div style={{ maxWidth:'1100px', margin:'0 auto', padding:'60px 24px 80px', fontFamily: font }}>
+      <div style={{ maxWidth:'1100px', margin:'0 auto', padding:'56px 24px', fontFamily: font }}>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 420px', gap:'48px', alignItems:'start' }} className="faq-layout">
           <style>{`@media(max-width:900px){ .faq-layout { grid-template-columns: 1fr !important; } }`}</style>
 
@@ -298,7 +298,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.15 }}
-              style={{ background:'#fff', borderRadius:'20px', boxShadow:'0 4px 32px rgba(0,0,0,0.09)', border:'1px solid #F0F0F0', overflow:'hidden', position:'sticky', top:'110px' }}
+              style={{ background:'#fff', borderRadius:'16px', boxShadow:'0 4px 32px rgba(0,0,0,0.09)', border:'1px solid #F0F0F0', overflow:'hidden', position:'sticky', top:'110px' }}
             >
               {/* Form header */}
               <div style={{ background:'linear-gradient(135deg, #007AFF, #0056CC)', padding:'24px 28px' }}>
@@ -310,7 +310,7 @@ export default function FAQPage() {
                 </p>
               </div>
 
-              <div style={{ padding:'28px' }}>
+              <div style={{ padding:'24px 20px' }}>
                 <EnquiryForm />
               </div>
             </motion.div>

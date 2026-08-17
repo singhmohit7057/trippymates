@@ -149,7 +149,7 @@ export default function TripDetailPage() {
 
               {/* CTA */}
               <a
-                href={`https://wa.me/917057059498?text=${waMsg}`}
+                href={`https://wa.me/918981256860?text=${waMsg}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: BLUE, color: '#fff', borderRadius: 12, padding: 14, fontWeight: 700, fontSize: 15, textDecoration: 'none', width: '100%', boxSizing: 'border-box' }}

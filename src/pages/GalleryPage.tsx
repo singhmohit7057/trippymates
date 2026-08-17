@@ -127,7 +127,7 @@ export default function GalleryPage() {
       </section>
 
       {/* Body */}
-      <div style={{ maxWidth:'1240px', margin:'0 auto', padding:'0 24px 80px', fontFamily: font }}>
+      <div style={{ maxWidth:'1240px', margin:'0 auto', padding:'0 24px 56px', fontFamily: font }}>
 
         {/* Filter + Search row */}
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:'16px', margin:'40px 0 32px', flexWrap:'wrap' }}>

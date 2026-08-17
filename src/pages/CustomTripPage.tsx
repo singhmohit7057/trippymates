@@ -295,19 +295,19 @@ export default function CustomTripPage() {
       </div>
 
       {/* ── HOW IT WORKS ──────────────────────────────────────────────────────── */}
-      <div style={{ background:'#F9FAFB', padding:'72px 24px', fontFamily:font }}>
+      <div style={{ background:'#F9FAFB', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:1100, margin:'0 auto' }}>
           <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ textAlign:'center', marginBottom:48 }}>
             <div style={{ display:'inline-block', background:PURPLE_LIGHT, color:PURPLE_MID, padding:'4px 14px', borderRadius:9999, fontSize:12, fontWeight:700, letterSpacing:'0.5px', textTransform:'uppercase', marginBottom:12 }}>HOW IT WORKS</div>
-            <h2 style={{ fontSize:'clamp(22px,3.5vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 10px', letterSpacing:'-0.5px' }}>From idea to itinerary in 4 steps</h2>
-            <p style={{ fontSize:15, color:'#6B7280', margin:0 }}>Simple, fast, and built entirely around you.</p>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 10px', letterSpacing:'-0.5px' }}>From idea to itinerary in 4 steps</h2>
+            <p style={{ fontSize:14, color:'#6B7280', margin:0 }}>Simple, fast, and built entirely around you.</p>
           </motion.div>
 
           <div className="ct-steps-grid" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:20 }}>
             {HOW_STEPS.map((s, i) => (
               <motion.div key={s.num} className="ct-step"
                 initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay:i*0.1 }}
-                style={{ background:'#fff', border:'1.5px solid #E5E7EB', borderRadius:20, padding:'28px 22px', boxShadow:'0 2px 10px rgba(0,0,0,0.05)' }}
+                style={{ background:'#fff', border:'1.5px solid #E5E7EB', borderRadius:16, padding:'24px 20px', boxShadow:'0 2px 10px rgba(0,0,0,0.05)' }}
               >
                 <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:12 }}>
                   <div style={{ width:44, height:44, borderRadius:12, background:`linear-gradient(135deg,${PURPLE},${PURPLE_MID})`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:`0 6px 14px rgba(124,58,237,0.3)` }}>
@@ -328,8 +328,8 @@ export default function CustomTripPage() {
 
           <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ textAlign:'center', marginBottom:32 }}>
             <div style={{ display:'inline-block', background:PURPLE_LIGHT, color:PURPLE_MID, padding:'4px 14px', borderRadius:9999, fontSize:12, fontWeight:700, letterSpacing:'0.5px', textTransform:'uppercase', marginBottom:8 }}>CUSTOM TRIP ENQUIRY</div>
-            <h2 style={{ fontSize:'clamp(22px,3.5vw,32px)', fontWeight:800, color:'#111827', margin:'0 0 8px', letterSpacing:'-0.5px' }}>Build your perfect journey</h2>
-            <p style={{ fontSize:15, color:'#6B7280', margin:'0 auto' }}>Fill in the details and we will craft your dream trip — completely free.</p>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 8px', letterSpacing:'-0.5px' }}>Build your perfect journey</h2>
+            <p style={{ fontSize:14, color:'#6B7280', margin:'0 auto' }}>Fill in the details and we will craft your dream trip — completely free.</p>
           </motion.div>
 
           <div className="ct-main-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1.5fr', gap:36, alignItems:'start' }}>
@@ -382,7 +382,7 @@ export default function CustomTripPage() {
                 </div>
                 <div>
                   <p style={{ fontSize:13, fontWeight:600, color:'#374151', margin:'0 0 4px' }}>Prefer to talk?</p>
-                  <a href="tel:+918287636079" style={{ fontSize:15, fontWeight:700, color:PURPLE, textDecoration:'none' }}>+91 82876 36079</a>
+                  <a href="tel:+918981256860" style={{ fontSize:15, fontWeight:700, color:PURPLE, textDecoration:'none' }}>+91 89812 56860</a>
                   <p style={{ fontSize:12, color:'#9CA3AF', margin:'2px 0 0' }}>Mon–Sat · 9 AM – 7 PM</p>
                 </div>
               </div>
@@ -406,7 +406,7 @@ export default function CustomTripPage() {
                     <p style={{ fontSize:14, color:'#9CA3AF', margin:'0 0 28px' }}>
                       Confirmation sent to <strong style={{ color:'#111827' }}>{form.email}</strong>
                     </p>
-                    <a href="tel:+918287636079" style={{ display:'inline-flex', alignItems:'center', gap:8, background:PURPLE_LIGHT, color:PURPLE_MID, borderRadius:9999, padding:'11px 22px', fontSize:14, fontWeight:600, textDecoration:'none' }}>
+                    <a href="tel:+918981256860" style={{ display:'inline-flex', alignItems:'center', gap:8, background:PURPLE_LIGHT, color:PURPLE_MID, borderRadius:9999, padding:'11px 22px', fontSize:14, fontWeight:600, textDecoration:'none' }}>
                       <Phone size={14} /> Or call us directly
                     </a>
                   </motion.div>
@@ -555,7 +555,7 @@ export default function CustomTripPage() {
 
                           <p style={{ textAlign:'center', fontSize:13, color:'#9CA3AF', margin:'2px 0 0' }}>
                             Or call us at{' '}
-                            <a href="tel:+918287636079" style={{ color:PURPLE, fontWeight:600, textDecoration:'none' }}>+91 82876 36079</a>
+                            <a href="tel:+918981256860" style={{ color:PURPLE, fontWeight:600, textDecoration:'none' }}>+91 89812 56860</a>
                             {' '}— we are happy to plan over the phone.
                           </p>
                         </div>
@@ -570,16 +570,16 @@ export default function CustomTripPage() {
       </div>
 
       {/* Why Trippy Mates */}
-      <section style={{ background:'#fff', padding:'72px 24px', fontFamily:font }}>
+      <section style={{ background:'#fff', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:1100, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', borderRadius:9999, padding:'5px 16px', fontSize:12, fontWeight:700, marginBottom:14, textTransform:'uppercase', letterSpacing:'0.08em' }}>
               Why Trippy Mates?
             </div>
-            <h2 style={{ fontSize:'clamp(22px,4vw,38px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
               Your trip, your way
             </h2>
-            <p style={{ fontSize:15, color:'#6B7280', maxWidth:480, margin:'0 auto', lineHeight:1.7 }}>
+            <p style={{ fontSize:14, color:'#6B7280', maxWidth:480, margin:'0 auto', lineHeight:1.7 }}>
               We don't sell packages — we build trips from scratch around what you actually want.
             </p>
           </div>
@@ -587,7 +587,7 @@ export default function CustomTripPage() {
             {CT_WHY.map((w, i) => (
               <div key={i} style={{
                 background:'linear-gradient(145deg, #F0F8FF, #EBF5FF)',
-                borderRadius:20, padding:'28px 24px',
+                borderRadius:16, padding:'24px 20px',
                 border:'1.5px solid #CCE4FF', display:'flex', flexDirection:'column', gap:12,
               }}>
                 <div style={{ display:'flex', alignItems:'center', gap:10 }}>
@@ -602,16 +602,16 @@ export default function CustomTripPage() {
       </section>
 
       {/* FAQ */}
-      <section style={{ background:'#F8FAFC', padding:'72px 24px', fontFamily:font }}>
+      <section style={{ background:'#F8FAFC', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:760, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', borderRadius:9999, padding:'5px 16px', fontSize:12, fontWeight:700, marginBottom:14, textTransform:'uppercase', letterSpacing:'0.08em' }}>
               FAQ
             </div>
-            <h2 style={{ fontSize:'clamp(22px,4vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
               Frequently Asked Questions
             </h2>
-            <p style={{ fontSize:15, color:'#6B7280', margin:0, lineHeight:1.7 }}>
+            <p style={{ fontSize:14, color:'#6B7280', margin:0, lineHeight:1.7 }}>
               Everything you need to know about custom trip planning.
             </p>
           </div>

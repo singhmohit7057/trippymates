@@ -113,7 +113,7 @@ export default function AboutPage() {
       </div>
 
       {/* Mission */}
-      <div style={{ background: '#fff', padding: '80px 24px' }}>
+      <div style={{ background: '#fff', padding: '56px 24px' }}>
         <div style={{ ...section, maxWidth: '720px', textAlign: 'center' }}>
           <motion.div {...fadeUp()}>
             <div
@@ -134,7 +134,7 @@ export default function AboutPage() {
             </div>
             <h2
               style={{
-                fontSize: 'clamp(22px, 4vw, 36px)',
+                fontSize: '24px',
                 fontWeight: 800,
                 color: '#111827',
                 margin: '0 0 20px',
@@ -143,7 +143,7 @@ export default function AboutPage() {
             >
               Connecting travelers with the world's best local experts
             </h2>
-            <p style={{ fontSize: '17px', color: '#6B7280', lineHeight: '1.75', margin: 0 }}>
+            <p style={{ fontSize: '14px', color: '#6B7280', lineHeight: '1.75', margin: 0 }}>
               Trippy Mates was built on a single belief: the best travel experiences happen when you explore with someone who truly belongs there. Our platform connects curious travelers with verified local Captains across the world — people who know the hidden alleys, secret restaurants, off-trail hikes, and timeless sunsets that guidebooks never cover.
             </p>
           </motion.div>
@@ -151,7 +151,7 @@ export default function AboutPage() {
       </div>
 
       {/* Story */}
-      <div style={{ background: '#F8FAFC', padding: '80px 24px' }}>
+      <div style={{ background: '#F8FAFC', padding: '56px 24px' }}>
         <div style={section}>
           <div
             style={{
@@ -180,7 +180,7 @@ export default function AboutPage() {
               </div>
               <h2
                 style={{
-                  fontSize: 'clamp(22px, 3vw, 32px)',
+                  fontSize: '24px',
                   fontWeight: 800,
                   color: '#111827',
                   margin: '0 0 16px',
@@ -189,10 +189,10 @@ export default function AboutPage() {
               >
                 Born from a solo trip gone wrong — and right
               </h2>
-              <p style={{ fontSize: '15px', color: '#6B7280', lineHeight: '1.8', margin: '0 0 16px' }}>
+              <p style={{ fontSize: '14px', color: '#6B7280', lineHeight: '1.8', margin: '0 0 16px' }}>
                 In 2021, our co-founder Vikram took a solo trip to Bali. Despite meticulous planning, he spent the first two days lost, overcharged by tourist traps, and eating mediocre food. On day three, he met Wayan — a local who spent an afternoon showing him the "real" Bali. That afternoon changed everything.
               </p>
-              <p style={{ fontSize: '15px', color: '#6B7280', lineHeight: '1.8', margin: 0 }}>
+              <p style={{ fontSize: '14px', color: '#6B7280', lineHeight: '1.8', margin: 0 }}>
                 Back in Bengaluru, Vikram and his childhood friend Asha built the first version of Trippy Mates in a tiny apartment, fuelled by filter coffee and an obsession with making travel feel human again. Two years later, we've helped over 50,000 travelers discover the world through local eyes.
               </p>
             </motion.div>
@@ -227,12 +227,12 @@ export default function AboutPage() {
       </div>
 
       {/* Team */}
-      <div style={{ background: '#fff', padding: '80px 24px' }}>
+      <div style={{ background: '#fff', padding: '56px 24px' }}>
         <div style={section}>
           <motion.div {...fadeUp()} style={{ textAlign: 'center', marginBottom: '48px' }}>
             <h2
               style={{
-                fontSize: 'clamp(22px, 4vw, 36px)',
+                fontSize: '24px',
                 fontWeight: 800,
                 color: '#111827',
                 margin: '0 0 12px',
@@ -240,7 +240,7 @@ export default function AboutPage() {
             >
               Meet the team
             </h2>
-            <p style={{ fontSize: '16px', color: '#6B7280', maxWidth: '480px', margin: '0 auto' }}>
+            <p style={{ fontSize: '14px', color: '#6B7280', maxWidth: '480px', margin: '0 auto' }}>
               A small team with a big heart for travel, technology, and people.
             </p>
           </motion.div>
@@ -258,8 +258,8 @@ export default function AboutPage() {
                 {...fadeUp(i * 0.08)}
                 style={{
                   background: '#fff',
-                  borderRadius: '20px',
-                  padding: '32px 20px 28px',
+                  borderRadius: '16px',
+                  padding: '24px 20px',
                   textAlign: 'center',
                   border: '1px solid #E5E7EB',
                   boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
@@ -326,12 +326,12 @@ export default function AboutPage() {
       </div>
 
       {/* Values */}
-      <div style={{ background: '#F8FAFC', padding: '80px 24px' }}>
+      <div style={{ background: '#F8FAFC', padding: '56px 24px' }}>
         <div style={section}>
           <motion.div {...fadeUp()} style={{ textAlign: 'center', marginBottom: '48px' }}>
             <h2
               style={{
-                fontSize: 'clamp(22px, 4vw, 36px)',
+                fontSize: '24px',
                 fontWeight: 800,
                 color: '#111827',
                 margin: '0 0 12px',
@@ -339,7 +339,7 @@ export default function AboutPage() {
             >
               Our values
             </h2>
-            <p style={{ fontSize: '16px', color: '#6B7280', maxWidth: '480px', margin: '0 auto' }}>
+            <p style={{ fontSize: '14px', color: '#6B7280', maxWidth: '480px', margin: '0 auto' }}>
               These principles guide every decision we make at Trippy Mates.
             </p>
           </motion.div>
@@ -358,7 +358,7 @@ export default function AboutPage() {
                 style={{
                   background: '#fff',
                   borderRadius: '16px',
-                  padding: '28px 24px',
+                  padding: '24px 20px',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                   border: '1px solid #E5E7EB',
                 }}
@@ -393,16 +393,16 @@ export default function AboutPage() {
       <div
         style={{
           background: 'linear-gradient(135deg, #007AFF 0%, #0056CC 100%)',
-          padding: '80px 24px',
+          padding: '56px 24px',
           textAlign: 'center',
           color: '#fff',
         }}
       >
         <motion.div {...fadeUp()}>
-          <h2 style={{ fontSize: 'clamp(22px, 4vw, 36px)', fontWeight: 800, margin: '0 0 16px' }}>
+          <h2 style={{ fontSize: '24px', fontWeight: 800, margin: '0 0 16px' }}>
             Join us on this journey
           </h2>
-          <p style={{ fontSize: '17px', opacity: 0.88, maxWidth: '480px', margin: '0 auto 32px', lineHeight: '1.6' }}>
+          <p style={{ fontSize: '14px', opacity: 0.88, maxWidth: '480px', margin: '0 auto 32px', lineHeight: '1.6' }}>
             Whether you're a traveler seeking authentic experiences or a local ready to share your world — Trippy Mates is for you.
           </p>
           <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>

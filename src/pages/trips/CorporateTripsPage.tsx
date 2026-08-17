@@ -144,16 +144,16 @@ export default function CorporateTripsPage() {
       </section>
 
       {/* ── WHAT WE WILL OFFER ─────────────────────────────────────────────── */}
-      <section style={{ background:'#fff', padding:'80px 24px', fontFamily:font }}>
+      <section style={{ background:'#fff', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:'1100px', margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:'52px' }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#007AFF', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
               What We Will Offer
             </div>
-            <h2 style={{ fontSize:'clamp(22px,4vw,38px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
               Every kind of corporate travel, coming your way.
             </h2>
-            <p style={{ fontSize:'15px', color:'#6B7280', maxWidth:'500px', margin:'0 auto', lineHeight:1.7 }}>
+            <p style={{ fontSize:'14px', color:'#6B7280', maxWidth:'500px', margin:'0 auto', lineHeight:1.7 }}>
               Whether it will be a 10-person offsite or a 200-person incentive tour, we will have the expertise to pull it off seamlessly.
             </p>
           </div>
@@ -163,7 +163,7 @@ export default function CorporateTripsPage() {
               <motion.div key={o.title}
                 initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay: i * 0.07 }}
                 className="corp-card"
-                style={{ background:'#fff', borderRadius:'20px', padding:'28px 26px', border:'1.5px solid #F0F2F5', boxShadow:'0 4px 16px rgba(0,0,0,0.05)', display:'flex', flexDirection:'column', gap:'14px' }}
+                style={{ background:'#fff', borderRadius:'16px', padding:'24px 20px', border:'1.5px solid #F0F2F5', boxShadow:'0 4px 16px rgba(0,0,0,0.05)', display:'flex', flexDirection:'column', gap:'14px' }}
               >
                 <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
                   <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:o.bg, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'24px', flexShrink:0 }}>
@@ -179,22 +179,22 @@ export default function CorporateTripsPage() {
       </section>
 
       {/* ── WHY TRIPPY MATES ───────────────────────────────────────────────── */}
-      <section style={{ background:'#F8FAFC', padding:'80px 24px', fontFamily:font }}>
+      <section style={{ background:'#F8FAFC', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:'1100px', margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:'52px' }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
               Why Trippy Mates?
             </div>
-            <h2 style={{ fontSize:'clamp(22px,4vw,38px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
               Corporate travel, done right
             </h2>
-            <p style={{ fontSize:'15px', color:'#6B7280', maxWidth:'480px', margin:'0 auto', lineHeight:1.7 }}>
+            <p style={{ fontSize:'14px', color:'#6B7280', maxWidth:'480px', margin:'0 auto', lineHeight:1.7 }}>
               We will be more than a travel vendor — we will be an extension of your people & culture team.
             </p>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(230px, 1fr))', gap:'22px' }}>
             {WHY.map((w, i) => (
-              <div key={i} className="corp-why-card" style={{ background:'linear-gradient(145deg, #EBF5FF, #CCE4FF)', borderRadius:'20px', padding:'28px 24px', border:'1.5px solid #99CEFF', display:'flex', flexDirection:'column', gap:'12px' }}>
+              <div key={i} className="corp-why-card" style={{ background:'linear-gradient(145deg, #EBF5FF, #CCE4FF)', borderRadius:'16px', padding:'24px 20px', border:'1.5px solid #99CEFF', display:'flex', flexDirection:'column', gap:'12px' }}>
                 <div style={{ display:'flex', alignItems:'center', gap:10 }}>
                   <div style={{ fontSize:'24px', flexShrink:0 }}>{w.emoji}</div>
                   <h3 style={{ fontSize:'15px', fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
@@ -207,7 +207,7 @@ export default function CorporateTripsPage() {
       </section>
 
       {/* ── WAITLIST ───────────────────────────────────────────────────────── */}
-      <section style={{ background:'#F8FAFC', padding:'80px 24px', fontFamily:font }}>
+      <section style={{ background:'#F8FAFC', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:'1100px', margin:'0 auto' }}>
           <motion.div
             initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.55 }}
@@ -229,10 +229,10 @@ export default function CorporateTripsPage() {
                 Launching Q4 2026
               </div>
 
-              <h2 style={{ fontSize:'clamp(24px,3vw,36px)', fontWeight:900, color:'#fff', margin:'0 0 16px', letterSpacing:'-0.5px', lineHeight:1.15 }}>
+              <h2 style={{ fontSize:'24px', fontWeight:900, color:'#fff', margin:'0 0 16px', letterSpacing:'-0.5px', lineHeight:1.15 }}>
                 Be the first to know<br />when we launch.
               </h2>
-              <p style={{ fontSize:'15px', color:'rgba(255,255,255,0.72)', margin:'0 0 32px', lineHeight:1.75 }}>
+              <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.72)', margin:'0 0 32px', lineHeight:1.75 }}>
                 Join the waitlist and get early access, exclusive launch offers, and a dedicated corporate travel specialist assigned to your company.
               </p>
 
@@ -305,16 +305,16 @@ export default function CorporateTripsPage() {
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────────────────────── */}
-      <section style={{ background:'#F8FAFC', padding:'80px 24px', fontFamily:font }}>
+      <section style={{ background:'#F8FAFC', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:'760px', margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:'48px' }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
               FAQ
             </div>
-            <h2 style={{ fontSize:'clamp(22px,4vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
               Frequently Asked Questions
             </h2>
-            <p style={{ fontSize:'15px', color:'#6B7280', margin:0, lineHeight:1.7 }}>
+            <p style={{ fontSize:'14px', color:'#6B7280', margin:0, lineHeight:1.7 }}>
               Everything you need to know about corporate travel with Trippy Mates.
             </p>
           </div>
@@ -344,23 +344,23 @@ export default function CorporateTripsPage() {
       </section>
 
       {/* ── TRAVEL GUIDELINES ─────────────────────────────────────────────── */}
-      <section style={{ background:'#fff', padding:'80px 24px 96px', fontFamily:font }}>
+      <section style={{ background:'#fff', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:'1100px', margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:'52px' }}>
             <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'#CCE4FF', color:'#0056CC', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
               <Plane size={13} /> Corporate Travel Guidelines
             </div>
-            <h2 style={{ fontSize:'clamp(22px,4vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
               Plan Your Corporate Trip Right
             </h2>
-            <p style={{ fontSize:'15px', color:'#6B7280', maxWidth:'500px', margin:'0 auto', lineHeight:1.7 }}>
+            <p style={{ fontSize:'14px', color:'#6B7280', maxWidth:'500px', margin:'0 auto', lineHeight:1.7 }}>
               Keep these pointers in mind for a smooth, compliant, and impactful corporate travel experience.
             </p>
           </div>
 
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(235px, 1fr))', gap:'20px' }}>
             {GUIDELINES.map((g, i) => (
-              <div key={i} style={{ background:'#F8FAFC', borderRadius:'18px', padding:'26px 22px', border:'1.5px solid #E5E7EB', display:'flex', flexDirection:'column', gap:'10px' }}>
+              <div key={i} style={{ background:'#F8FAFC', borderRadius:'16px', padding:'24px 20px', border:'1.5px solid #E5E7EB', display:'flex', flexDirection:'column', gap:'10px' }}>
                 <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
                   <div style={{ width:'44px', height:'44px', borderRadius:'12px', background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'22px', flexShrink:0 }}>
                     {g.emoji}

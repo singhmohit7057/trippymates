@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type CSSProperties } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, Search, Headset, ChevronDown, Phone, Mail } from 'lucide-react';
+import { Menu, X, Search, Headset, ChevronDown, Phone, Mail, MapPin } from 'lucide-react';
+import { mockTrips } from '../data/mock';
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
@@ -23,17 +24,29 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen]       = useState(false);
   const [searchVal, setSearchVal]         = useState('');
+  const [searchFocused, setSearchFocused] = useState(false);
   const [tripsOpen, setTripsOpen]         = useState(false);
   const [mobileTripsOpen, setMobileTripsOpen] = useState(false);
   const [supportOpen, setSupportOpen]     = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const supportRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const searchSuggestions = searchVal.trim().length >= 2
+    ? mockTrips.filter(t => {
+        const q = searchVal.trim().toLowerCase();
+        return t.title.toLowerCase().includes(q) ||
+          t.destination.toLowerCase().includes(q) ||
+          t.state.toLowerCase().includes(q);
+      }).slice(0, 5)
+    : [];
 
   const handleSearch = () => {
     const q = searchVal.trim();
     if (!q) return;
     navigate(`/trips?search=${encodeURIComponent(q)}`);
     setSearchVal('');
+    setSearchFocused(false);
   };
 
   useEffect(() => {
@@ -43,6 +56,9 @@ export default function Navbar() {
       }
       if (supportRef.current && !supportRef.current.contains(e.target as Node)) {
         setSupportOpen(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchFocused(false);
       }
     };
     document.addEventListener('mousedown', handler);
@@ -197,11 +213,39 @@ export default function Navbar() {
           </Link>
 
           {/* Search */}
-          <div className="tm-search-bar" style={searchBarStyle}>
+          <div className="tm-search-bar" style={searchBarStyle} ref={searchRef}>
             <Search size={15} style={{...searchIconStyle, cursor: 'pointer'}} onClick={handleSearch} />
             <input style={searchInputStyle} type="text" placeholder="Search your trip..."
               value={searchVal} onChange={(e) => setSearchVal(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
               onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }} />
+            {searchFocused && searchSuggestions.length > 0 && (
+              <div style={{ position:'absolute', top:'calc(100% + 6px)', left:0, right:0, background:'#fff', borderRadius:12, boxShadow:'0 8px 32px rgba(0,0,0,0.12)', border:'1px solid #E5E7EB', padding:6, zIndex:9999 }}>
+                {searchSuggestions.map(t => (
+                  <Link key={t.id} to={`/trips/${t.slug}`} onClick={() => { setSearchVal(''); setSearchFocused(false); }}
+                    style={{ display:'flex', alignItems:'center', gap:10, padding:'8px 10px', borderRadius:8, textDecoration:'none', transition:'background 0.12s' }}
+                    onMouseEnter={e => (e.currentTarget.style.background = '#F0F7FF')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                  >
+                    <div style={{ width:32, height:32, borderRadius:8, background:'#EBF5FF', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                      <MapPin size={14} color="#007AFF" />
+                    </div>
+                    <div style={{ overflow:'hidden' }}>
+                      <div style={{ fontSize:13, fontWeight:600, color:'#111827', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{t.title}</div>
+                      <div style={{ fontSize:11, color:'#9CA3AF' }}>{t.destination} · {t.state}</div>
+                    </div>
+                  </Link>
+                ))}
+                <div style={{ borderTop:'1px solid #F3F4F6', marginTop:4, paddingTop:4 }}>
+                  <button onClick={handleSearch} style={{ width:'100%', padding:'8px', background:'none', border:'none', fontSize:12, fontWeight:600, color:'#007AFF', cursor:'pointer', fontFamily:font, borderRadius:6, transition:'background 0.12s' }}
+                    onMouseEnter={e => (e.currentTarget.style.background = '#F0F7FF')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                  >
+                    See all results for "{searchVal}"
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Nav Links */}
@@ -262,11 +306,11 @@ export default function Navbar() {
               </button>
               {supportOpen && (
                 <div className="tm-support-dropdown">
-                  <a href="tel:+918287636079" className="tm-support-item">
+                  <a href="tel:+918981256860" className="tm-support-item">
                     <div className="tm-support-icon"><Phone size={18} color="#007AFF" /></div>
                     <div>
                       <div className="tm-support-label">Call Support</div>
-                      <div className="tm-support-detail">Tel : (+91) 82876 36079</div>
+                      <div className="tm-support-detail">Tel : (+91) 89812 56860</div>
                     </div>
                   </a>
                   <a href="mailto:support@trippymates.com" className="tm-support-item">
@@ -276,7 +320,7 @@ export default function Navbar() {
                       <div className="tm-support-detail">support@trippymates.com</div>
                     </div>
                   </a>
-                  <a href="https://wa.me/918287636079" target="_blank" rel="noopener noreferrer" className="tm-support-item">
+                  <a href="https://wa.me/918981256860" target="_blank" rel="noopener noreferrer" className="tm-support-item">
                     <div className="tm-support-icon" style={{ background: '#E8F5E9' }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     </div>

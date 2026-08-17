@@ -50,32 +50,32 @@ export default function UnsubscribePage() {
       {/* ── Hero banner ─────────────────────────────────────────────────────── */}
       <div style={{
         background: 'linear-gradient(135deg, #001F5B 0%, #0056CC 60%, #003A99 100%)',
-        padding: '72px 24px 60px', textAlign: 'center', color: '#fff', fontFamily: font,
+        padding: '48px 24px 40px', textAlign: 'center', color: '#fff', fontFamily: font,
       }}>
-        <div style={{ fontSize: '52px', marginBottom: '16px' }}>📭</div>
-        <h1 style={{ fontSize: 'clamp(26px,5vw,42px)', fontWeight: 900, margin: '0 0 12px', letterSpacing: '-1px' }}>
+        <div style={{ fontSize: '40px', marginBottom: '12px' }}>📭</div>
+        <h1 style={{ fontSize: '28px', fontWeight: 900, margin: '0 0 10px', letterSpacing: '-0.5px' }}>
           Unsubscribe from Emails
         </h1>
-        <p style={{ fontSize: '16px', opacity: 0.78, maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
+        <p style={{ fontSize: '14px', opacity: 0.78, maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
           We're sorry to see you go. Enter your email below and we'll remove you from our mailing list right away.
         </p>
       </div>
 
       {/* ── Main card ───────────────────────────────────────────────────────── */}
-      <div style={{ background: '#F8FAFC', padding: '60px 24px 96px', fontFamily: font, minHeight: '50vh' }}>
+      <div style={{ background: '#F8FAFC', padding: '40px 24px 56px', fontFamily: font }}>
         <div style={{ maxWidth: '520px', margin: '0 auto' }}>
 
           {/* ── STEP 1: Form ─────────────────────────────────────────────── */}
           {step === 'form' && (
-            <div style={{ background: '#fff', borderRadius: '24px', padding: '40px 36px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1.5px solid #E5E7EB' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#111827', margin: '0 0 6px', letterSpacing: '-0.3px' }}>
+            <div style={{ background: '#fff', borderRadius: '16px', padding: '24px 20px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1.5px solid #E5E7EB' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#111827', margin: '0 0 6px', letterSpacing: '-0.3px' }}>
                 Remove my email
               </h2>
-              <p style={{ fontSize: '14px', color: '#6B7280', margin: '0 0 28px', lineHeight: 1.6 }}>
+              <p style={{ fontSize: '14px', color: '#6B7280', margin: '0 0 20px', lineHeight: 1.6 }}>
                 You'll stop receiving all marketing and newsletter emails from Trippy Mates. Booking confirmations and important trip updates will still be sent.
               </p>
 
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* Email */}
                 <div>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#374151', marginBottom: '7px' }}>
@@ -125,8 +125,8 @@ export default function UnsubscribePage() {
 
                 {/* Submit */}
                 <button type="submit" style={{
-                  height: '48px', borderRadius: '12px', background: '#007AFF', color: '#fff',
-                  border: 'none', fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+                  height: '44px', borderRadius: '10px', background: '#007AFF', color: '#fff',
+                  border: 'none', fontSize: '14px', fontWeight: 700, cursor: 'pointer',
                   fontFamily: font, marginTop: '4px',
                   boxShadow: '0 4px 16px rgba(0,122,255,0.3)',
                   transition: 'opacity 0.15s, transform 0.15s',
@@ -149,8 +149,8 @@ export default function UnsubscribePage() {
 
           {/* ── STEP 2: Confirm ──────────────────────────────────────────── */}
           {step === 'confirm' && (
-            <div style={{ background: '#fff', borderRadius: '24px', padding: '40px 36px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1.5px solid #E5E7EB', textAlign: 'center' }}>
-              <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: '#FEF2F2', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '32px' }}>
+            <div style={{ background: '#fff', borderRadius: '16px', padding: '24px 20px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1.5px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#FEF2F2', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: '26px' }}>
                 ⚠️
               </div>
               <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#111827', margin: '0 0 10px' }}>
@@ -193,8 +193,8 @@ export default function UnsubscribePage() {
 
           {/* ── STEP 3: Done ─────────────────────────────────────────────── */}
           {step === 'done' && (
-            <div style={{ background: '#fff', borderRadius: '24px', padding: '48px 36px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1.5px solid #E5E7EB', textAlign: 'center' }}>
-              <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'linear-gradient(135deg, #007AFF, #0056CC)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontSize: '36px' }}>
+            <div style={{ background: '#fff', borderRadius: '16px', padding: '24px 20px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1.5px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #007AFF, #0056CC)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: '28px' }}>
                 ✓
               </div>
               <h2 style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '0 0 12px', letterSpacing: '-0.3px' }}>

@@ -184,7 +184,7 @@ export default function DomesticTripsPage() {
       </div>
 
       {/* ── TRIP GRID ──────────────────────────────────────────────────────── */}
-      <div style={{ background:'#F8FAFC', padding:'40px 24px 80px', fontFamily:font }}>
+      <div style={{ background:'#F8FAFC', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:'1200px', margin:'0 auto' }}>
           {sorted.length > 0 ? (
             <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(330px, 1fr))', gap:'28px' }}>
@@ -222,16 +222,16 @@ const WHY = [
 
 function WhyUs() {
   return (
-    <section style={{ background:'#fff', padding:'80px 24px', fontFamily:font }}>
+    <section style={{ background:'#fff', padding:'56px 24px', fontFamily:font }}>
       <div style={{ maxWidth:'1100px', margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:'52px' }}>
           <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
             Why Trippy Mates?
           </div>
-          <h2 style={{ fontSize:'clamp(22px,4vw,38px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
+          <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>
             Travel that feels personal
           </h2>
-          <p style={{ fontSize:'15px', color:'#6B7280', maxWidth:'480px', margin:'0 auto', lineHeight:1.7 }}>
+          <p style={{ fontSize:'14px', color:'#6B7280', maxWidth:'480px', margin:'0 auto', lineHeight:1.7 }}>
             We're not a booking engine — we're your travel crew, built for real explorers.
           </p>
         </div>
@@ -239,7 +239,7 @@ function WhyUs() {
           {WHY.map((w, i) => (
             <div key={i} style={{
               background:'linear-gradient(145deg, #F0F8FF, #EBF5FF)',
-              borderRadius:'20px', padding:'28px 24px',
+              borderRadius:'16px', padding:'24px 20px',
               border:'1.5px solid #CCE4FF', display:'flex', flexDirection:'column', gap:'12px',
             }}>
               <div style={{ display:'flex', alignItems:'center', gap:10 }}>
@@ -270,16 +270,16 @@ const FAQS = [
 function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section style={{ background:'#F8FAFC', padding:'80px 24px', fontFamily:font }}>
+    <section style={{ background:'#F8FAFC', padding:'56px 24px', fontFamily:font }}>
       <div style={{ maxWidth:'760px', margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:'48px' }}>
           <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
             FAQ
           </div>
-          <h2 style={{ fontSize:'clamp(22px,4vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
+          <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
             Frequently Asked Questions
           </h2>
-          <p style={{ fontSize:'15px', color:'#6B7280', margin:0, lineHeight:1.7 }}>
+          <p style={{ fontSize:'14px', color:'#6B7280', margin:0, lineHeight:1.7 }}>
             Everything you need to know before booking your domestic trip.
           </p>
         </div>
@@ -329,16 +329,16 @@ const GUIDELINES = [
 
 function TravelGuidelines() {
   return (
-    <section style={{ background:'#fff', padding:'80px 24px 96px', fontFamily:font }}>
+    <section style={{ background:'#fff', padding:'56px 24px', fontFamily:font }}>
       <div style={{ maxWidth:'1100px', margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:'52px' }}>
           <div style={{ display:'inline-flex', alignItems:'center', gap:'7px', background:'#CCE4FF', color:'#0056CC', borderRadius:'9999px', padding:'5px 16px', fontSize:'12px', fontWeight:700, marginBottom:'14px', textTransform:'uppercase', letterSpacing:'0.08em' }}>
             <Globe size={13} /> Domestic Travel Guidelines
           </div>
-          <h2 style={{ fontSize:'clamp(22px,4vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
+          <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.4px' }}>
             Travel Smart Across India
           </h2>
-          <p style={{ fontSize:'15px', color:'#6B7280', margin:'0 auto', lineHeight:1.7 }}>
+          <p style={{ fontSize:'14px', color:'#6B7280', margin:'0 auto', lineHeight:1.7 }}>
             Keep these guidelines in mind for a safe, responsible, and hassle-free journey.
           </p>
         </div>
@@ -346,7 +346,7 @@ function TravelGuidelines() {
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(235px, 1fr))', gap:'20px' }}>
           {GUIDELINES.map((g, i) => (
             <div key={i} style={{
-              background:'#F8FAFC', borderRadius:'18px', padding:'26px 22px',
+              background:'#F8FAFC', borderRadius:'16px', padding:'24px 20px',
               border:'1.5px solid #E5E7EB', display:'flex', flexDirection:'column', gap:'10px',
               transition:'box-shadow 0.2s',
             }}>
@@ -450,7 +450,7 @@ function TripCard({ trip, index: _index }: { trip: Trip; index: number }) {
           </p>
         </div>
 
-        <a href={`https://wa.me/917057059498?text=${encodeURIComponent(`Hi, I'm interested in the trip: ${trip.title} (${trip.destination}, ${trip.duration_days} days, ₹${trip.price_per_person.toLocaleString('en-IN')}/person) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="dom-book-btn"
+        <a href={`https://wa.me/918981256860?text=${encodeURIComponent(`Hi, I'm interested in the trip: ${trip.title} (${trip.destination}, ${trip.duration_days} days, ₹${trip.price_per_person.toLocaleString('en-IN')}/person) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="dom-book-btn"
           style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'6px', background:'#007AFF', color:'#fff', borderRadius:'12px', padding:'13px', fontWeight:700, fontSize:'14px', textDecoration:'none', marginTop:'auto' }}>
           Book Now →
         </a>

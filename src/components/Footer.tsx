@@ -162,9 +162,9 @@ export default function Footer() {
 
               {/* contact snippets */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 22 }}>
-                <a href="tel:+918287636079" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s' }}
+                <a href="tel:+918981256860" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#fff')} onMouseLeave={e => (e.currentTarget.style.color = '#94A3B8')}>
-                  <Phone size={13} color="#007AFF" /> +91 82876 36079
+                  <Phone size={13} color="#007AFF" /> +91 89812 56860
                 </a>
                 <a href="mailto:hello@trippymates.in" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#fff')} onMouseLeave={e => (e.currentTarget.style.color = '#94A3B8')}>

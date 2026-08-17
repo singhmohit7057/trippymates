@@ -205,7 +205,7 @@ function SearchBar() {
 
   const sectionStyle: CSSProperties = {
     background: '#FFFFFF',
-    padding: '48px 24px 56px',
+    padding: '56px 24px',
     fontFamily: font,
   };
 
@@ -215,7 +215,7 @@ function SearchBar() {
   };
 
   const headingStyle: CSSProperties = {
-    fontSize: '32px',
+    fontSize: '24px',
     fontWeight: 800,
     color: '#111827',
     textAlign: 'center',
@@ -515,7 +515,7 @@ function FeaturedDestinations() {
   const international = mockDestinations.filter(d => d.type === 'international');
 
   return (
-    <section style={{ padding: '56px 0 40px', background: '#fff', fontFamily: font }}>
+    <section style={{ padding: '56px 0', background: '#fff', fontFamily: font }}>
       <style>{`
         .dest-carousel-scroll::-webkit-scrollbar { display: none; }
         .dest-carousel-scroll { -ms-overflow-style: none; scrollbar-width: none; }
@@ -569,7 +569,7 @@ function WhyTrippyMates() {
   ];
 
   return (
-    <section className="wtm-section" style={{ background: '#F0F7F7', padding: '88px 24px 96px', fontFamily: font, position: 'relative', overflow: 'hidden' }}>
+    <section className="wtm-section" style={{ background: '#F0F7F7', padding: '56px 24px', fontFamily: font, position: 'relative', overflow: 'hidden' }}>
       <style>{`
         .wtm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         @media (max-width: 960px) {
@@ -592,18 +592,18 @@ function WhyTrippyMates() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          style={{ textAlign: 'center', marginBottom: '56px' }}
+          style={{ textAlign: 'center', marginBottom: '32px' }}
         >
-          <span style={{ display: 'inline-block', background: '#007AFF', color: '#fff', fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', borderRadius: '9999px', padding: '4px 14px', marginBottom: '16px' }}>
+          <span style={{ display: 'inline-block', background: '#007AFF', color: '#fff', fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', borderRadius: '9999px', padding: '4px 14px', marginBottom: '12px' }}>
             Why Trippy Mates
           </span>
           <h2
             className="wtm-title"
-            style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 900, color: '#111827', letterSpacing: '-0.8px', margin: '0 0 14px', lineHeight: 1.15 }}
+            style={{ fontSize: '24px', fontWeight: 800, color: '#111827', letterSpacing: '-0.5px', margin: '0 0 10px', lineHeight: 1.15 }}
           >
             Every reason you need to travel with us.
           </h2>
-          <p style={{ fontSize: '16px', color: '#6B7280', maxWidth: '500px', margin: '0 auto', lineHeight: 1.65 }}>
+          <p style={{ fontSize: '14px', color: '#6B7280', maxWidth: '500px', margin: '0 auto', lineHeight: 1.65 }}>
             We don't just plan trips — we make memories you'll talk about for years.
           </p>
         </motion.div>
@@ -619,19 +619,19 @@ function WhyTrippyMates() {
               transition={{ duration: 0.42, delay: i * 0.09 }}
               style={{
                 background: '#FFFFFF',
-                borderRadius: '20px',
-                padding: '32px 26px',
+                borderRadius: '16px',
+                padding: '24px 20px',
                 boxShadow: '0 4px 14px rgba(0,0,0,0.06)',
                 border: '1px solid #E8F0FE',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#EEF4FF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', flexShrink: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#EEF4FF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>
                   {r.emoji}
                 </div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#111827', lineHeight: 1.3 }}>{r.title}</div>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#111827', lineHeight: 1.3 }}>{r.title}</div>
               </div>
-              <div style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.7 }}>{r.desc}</div>
+              <div style={{ fontSize: '13px', color: '#6B7280', lineHeight: 1.7 }}>{r.desc}</div>
             </motion.div>
           ))}
         </div>
@@ -674,7 +674,7 @@ function Testimonials() {
   };
 
   const sectionStyle: CSSProperties = {
-    padding: '80px 24px',
+    padding: '56px 24px',
     background: colors.background,
     fontFamily: font,
   };
@@ -685,7 +685,7 @@ function Testimonials() {
   };
 
   const titleStyle: CSSProperties = {
-    fontSize: '36px',
+    fontSize: '24px',
     fontWeight: 800,
     color: colors.text,
     letterSpacing: '-0.5px',
@@ -694,10 +694,10 @@ function Testimonials() {
   };
 
   const subtitleStyle: CSSProperties = {
-    fontSize: '16px',
+    fontSize: '14px',
     color: colors.textSecondary,
     textAlign: 'center',
-    marginBottom: '52px',
+    marginBottom: '32px',
   };
 
   const arrowBtn: CSSProperties = {
@@ -772,38 +772,38 @@ function Testimonials() {
                 style={{
                   background: colors.surface,
                   border: `1px solid ${colors.border}`,
-                  borderRadius: '16px',
-                  padding: '28px',
+                  borderRadius: '14px',
+                  padding: '20px',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '16px',
-                  minWidth: '320px',
-                  maxWidth: '320px',
+                  gap: '12px',
+                  minWidth: '260px',
+                  maxWidth: '260px',
                   flexShrink: 0,
                 }}
               >
                 {/* Stars */}
-                <div style={{ display: 'flex', gap: '3px' }}>
+                <div style={{ display: 'flex', gap: '2px' }}>
                   {Array.from({ length: 5 }).map((_, si) => (
-                    <Star key={si} size={15} fill="#F59E0B" color="#F59E0B" />
+                    <Star key={si} size={13} fill="#F59E0B" color="#F59E0B" />
                   ))}
                 </div>
                 {/* Quote */}
-                <p style={{ fontSize: '14px', color: colors.textSecondary, lineHeight: 1.7, flex: 1, margin: 0, fontStyle: 'italic' }}>
+                <p style={{ fontSize: '12px', color: colors.textSecondary, lineHeight: 1.6, flex: 1, margin: 0, fontStyle: 'italic' }}>
                   "{t.text}"
                 </p>
                 {/* Author */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <div
                     style={{
-                      width: '44px',
-                      height: '44px',
+                      width: '34px',
+                      height: '34px',
                       borderRadius: '50%',
                       background: t.avatarColor,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '18px',
+                      fontSize: '14px',
                       fontWeight: 700,
                       color: '#FFFFFF',
                       flexShrink: 0,
@@ -812,19 +812,19 @@ function Testimonials() {
                     {t.avatarInitial}
                   </div>
                   <div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: colors.text }}>{t.name}</div>
-                    <div style={{ fontSize: '12px', color: colors.textMuted }}>{t.role}</div>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: colors.text }}>{t.name}</div>
+                    <div style={{ fontSize: '11px', color: colors.textMuted }}>{t.role}</div>
                   </div>
                 </div>
                 {/* Destination */}
                 <div
                   style={{
-                    fontSize: '12px',
+                    fontSize: '11px',
                     color: colors.primary,
                     fontWeight: 500,
                     background: colors.skyWash,
                     borderRadius: '9999px',
-                    padding: '4px 12px',
+                    padding: '3px 10px',
                     alignSelf: 'flex-start',
                   }}
                 >
@@ -846,8 +846,8 @@ function FinalCTA() {
   const navigate = useNavigate();
 
   const sectionStyle: CSSProperties = {
-    background: colors.background,
-    padding: '80px 24px',
+    background: '#FFFFFF',
+    padding: '56px 24px',
     fontFamily: font,
     textAlign: 'center',
   };
@@ -858,16 +858,16 @@ function FinalCTA() {
   };
 
   const titleStyle: CSSProperties = {
-    fontSize: '40px',
+    fontSize: '24px',
     fontWeight: 800,
     color: colors.text,
-    letterSpacing: '-0.75px',
+    letterSpacing: '-0.5px',
     lineHeight: 1.2,
     marginBottom: '16px',
   };
 
   const descStyle: CSSProperties = {
-    fontSize: '17px',
+    fontSize: '15px',
     color: colors.textSecondary,
     lineHeight: 1.7,
     marginBottom: '36px',

@@ -198,7 +198,7 @@ export default function TripsPage() {
         .sort-sel:focus { border-color: #007AFF; }
 
         .why-card {
-          border-radius: 16px; padding: 28px 24px;
+          border-radius: 16px; padding: 24px 20px;
           transition: transform 0.2s, box-shadow 0.2s;
         }
         .why-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
@@ -256,7 +256,7 @@ export default function TripsPage() {
 
             <div style={{ position:'relative', maxWidth:500, margin:'0 auto 28px' }}>
               <Search size={17} style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', color:'rgba(255,255,255,0.6)', pointerEvents:'none', zIndex:1 }} />
-              <input className="trips-search-inp" placeholder="Search destinations, experiences…" value={search} onChange={e => setSearch(e.target.value)} onFocus={scrollToList} />
+              <input className="trips-search-inp" placeholder="Search destinations, experiences…" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') scrollToList(); }} />
             </div>
 
             <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
@@ -282,19 +282,19 @@ export default function TripsPage() {
       </div>
 
       {/* TRIP TYPE CARDS */}
-      <div style={{ background:'#F9FAFB', padding:'72px 24px', fontFamily:font }}>
+      <div style={{ background:'#F9FAFB', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
-          <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ textAlign:'center', marginBottom:48 }}>
+          <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ textAlign:'center', marginBottom:32 }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', padding:'4px 14px', borderRadius:9999, fontSize:12, fontWeight:700, letterSpacing:'0.5px', textTransform:'uppercase', marginBottom:12 }}>EXPLORE BY TYPE</div>
-            <h2 style={{ fontSize:'clamp(22px,3.5vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>Choose Your Adventure</h2>
-            <p style={{ fontSize:16, color:'#6B7280', maxWidth:520, margin:'0 auto', lineHeight:'1.6' }}>Whether you want to explore India, cross borders, or bond with your team — we have a trip for you.</p>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>Choose Your Adventure</h2>
+            <p style={{ fontSize:14, color:'#6B7280', maxWidth:520, margin:'0 auto', lineHeight:'1.6' }}>Whether you want to explore India, cross borders, or bond with your team — we have a trip for you.</p>
           </motion.div>
 
           <div className="type-cards-row" style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:24, alignItems:'stretch' }}>
             {TRIP_TYPE_CARDS.map((tc, i) => (
               <motion.div key={tc.key} initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.1 }} style={{ display:'flex', flexDirection:'column' }}>
                 <Link to={tc.to} className="type-card" style={{ flex:1 }}>
-                  <div style={{ background:tc.gradient, padding:'40px 32px', height:'100%', boxSizing:'border-box', display:'flex', flexDirection:'column', justifyContent:'space-between', position:'relative', overflow:'hidden' }}>
+                  <div style={{ background:tc.gradient, padding:'32px 24px', height:'100%', boxSizing:'border-box', display:'flex', flexDirection:'column', justifyContent:'space-between', position:'relative', overflow:'hidden' }}>
                     <div style={{ display:'inline-flex', alignSelf:'flex-start', background:tc.badgeBg, color:tc.badgeColor, padding:'4px 12px', borderRadius:9999, fontSize:11, fontWeight:700, letterSpacing:'0.3px' }}>{tc.badge}</div>
                     <div style={{ position:'absolute', right:24, top:20, fontSize:64, opacity:0.12, lineHeight:1, pointerEvents:'none' }}>{tc.emoji}</div>
                     <div style={{ marginTop:20 }}>
@@ -319,11 +319,11 @@ export default function TripsPage() {
       </div>
 
       {/* ALL TRIPS */}
-      <div ref={listRef} style={{ background:'#fff', padding:'72px 24px 80px', fontFamily:font }}>
+      <div ref={listRef} style={{ background:'#fff', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ marginBottom:32 }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', padding:'4px 14px', borderRadius:9999, fontSize:12, fontWeight:700, letterSpacing:'0.5px', textTransform:'uppercase', marginBottom:12 }}>ALL TRIPS</div>
-            <h2 style={{ fontSize:'clamp(22px,3.5vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 6px', letterSpacing:'-0.5px' }}>Find Your Perfect Trip</h2>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 6px', letterSpacing:'-0.5px' }}>Find Your Perfect Trip</h2>
             <p style={{ fontSize:15, color:'#6B7280', margin:0 }}>{filtered.length} trip{filtered.length !== 1 ? 's' : ''} available</p>
           </motion.div>
 
@@ -374,20 +374,20 @@ export default function TripsPage() {
       </div>
 
       {/* WHY TRIPPY MATES */}
-      <div style={{ background:'#F9FAFB', padding:'72px 24px', fontFamily:font }}>
+      <div style={{ background:'#F9FAFB', padding:'56px 24px', fontFamily:font }}>
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
-          <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ textAlign:'center', marginBottom:48 }}>
+          <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ textAlign:'center', marginBottom:32 }}>
             <div style={{ display:'inline-block', background:'#EBF5FF', color:'#0056CC', padding:'4px 14px', borderRadius:9999, fontSize:12, fontWeight:700, letterSpacing:'0.5px', textTransform:'uppercase', marginBottom:12 }}>WHY TRIPPY MATES</div>
-            <h2 style={{ fontSize:'clamp(22px,3.5vw,36px)', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>Travel the Right Way</h2>
-            <p style={{ fontSize:16, color:'#6B7280', maxWidth:500, margin:'0 auto', lineHeight:'1.6' }}>We go beyond bookings — every trip is an experience crafted with care, expertise, and heart.</p>
+            <h2 style={{ fontSize:'24px', fontWeight:800, color:'#111827', margin:'0 0 12px', letterSpacing:'-0.5px' }}>Travel the Right Way</h2>
+            <p style={{ fontSize:14, color:'#6B7280', maxWidth:500, margin:'0 auto', lineHeight:'1.6' }}>We go beyond bookings — every trip is an experience crafted with care, expertise, and heart.</p>
           </motion.div>
           <div className="why-grid" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:20 }}>
             {WHY_US.map((w, i) => (
               <motion.div key={w.title} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay:i*0.1 }}>
                 <div className="why-card" style={{ background:w.grad, boxShadow:'0 2px 8px rgba(0,0,0,0.06)' }}>
-                  <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:10 }}>
-                    <div style={{ width:44, height:44, borderRadius:12, background:'rgba(255,255,255,0.7)', display:'flex', alignItems:'center', justifyContent:'center', color:'#0056CC', flexShrink:0 }}>{w.icon}</div>
-                    <h3 style={{ fontSize:16, fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
+                  <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:8 }}>
+                    <div style={{ width:36, height:36, borderRadius:10, background:'rgba(255,255,255,0.7)', display:'flex', alignItems:'center', justifyContent:'center', color:'#0056CC', flexShrink:0 }}>{w.icon}</div>
+                    <h3 style={{ fontSize:15, fontWeight:700, color:'#111827', margin:0 }}>{w.title}</h3>
                   </div>
                   <p style={{ fontSize:13, color:'#4B5563', lineHeight:'1.6', margin:0 }}>{w.desc}</p>
                 </div>
@@ -401,9 +401,9 @@ export default function TripsPage() {
       <div style={{ background:'linear-gradient(135deg,#001F5B,#001F5B)', padding:'56px 24px', fontFamily:font, textAlign:'center', color:'#fff' }}>
         <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }}>
           <div style={{ fontSize:40, marginBottom:16 }}>🗺️</div>
-          <h2 style={{ fontSize:'clamp(20px,3.5vw,34px)', fontWeight:800, margin:'0 0 12px', letterSpacing:'-0.5px' }}>{"Can't Find What You're Looking For?"}</h2>
-          <p style={{ fontSize:16, opacity:0.8, maxWidth:500, margin:'0 auto 28px', lineHeight:'1.6' }}>Tell us your dream destination and we will build a completely custom trip just for you.</p>
-          <Link to="/trips/custom" style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#007AFF', color:'#fff', padding:'14px 32px', borderRadius:9999, fontWeight:700, fontSize:16, textDecoration:'none' }}>
+          <h2 style={{ fontSize:'24px', fontWeight:800, margin:'0 0 12px', letterSpacing:'-0.5px' }}>{"Can't Find What You're Looking For?"}</h2>
+          <p style={{ fontSize:14, opacity:0.8, maxWidth:500, margin:'0 auto 28px', lineHeight:'1.6' }}>Tell us your dream destination and we will build a completely custom trip just for you.</p>
+          <Link to="/trips/custom" style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#007AFF', color:'#fff', padding:'14px 32px', borderRadius:9999, fontWeight:700, fontSize:15, textDecoration:'none' }}>
             Plan a Custom Trip <ArrowRight size={16} />
           </Link>
         </motion.div>

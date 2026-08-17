@@ -162,7 +162,7 @@ function CaptainCard({ captain, delay }: { captain: Captain; delay: number }) {
         </div>
 
         {/* CTA */}
-        <a href={`https://wa.me/917057059498?text=${encodeURIComponent(`Hi, I want to book Captain ${captain.name} (${captain.city}, ${captain.country}) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="cap-book-btn" style={{ display:'block', textAlign:'center', background:PURPLE, color:'#fff', borderRadius:9999, padding:'11px', fontWeight:700, fontSize:14, textDecoration:'none', fontFamily:font, marginTop:'auto' }}>
+        <a href={`https://wa.me/918981256860?text=${encodeURIComponent(`Hi, I want to book Captain ${captain.name} (${captain.city}, ${captain.country}) on Trippy Mates.`)}`} target="_blank" rel="noopener noreferrer" className="cap-book-btn" style={{ display:'block', textAlign:'center', background:PURPLE, color:'#fff', borderRadius:9999, padding:'11px', fontWeight:700, fontSize:14, textDecoration:'none', fontFamily:font, marginTop:'auto' }}>
           Book Captain
         </a>
       </div>
@@ -289,7 +289,7 @@ export default function CaptainsPage() {
       </div>
 
       {/* ── FILTER TOOLBAR ────────────────────────────────────────────────────── */}
-      <div style={{ background:'#fff', borderBottom:'1px solid #F3F4F6', position:'sticky', top:80, zIndex:20, fontFamily:font, boxShadow:'0 2px 12px rgba(0,0,0,0.05)' }}>
+      <div style={{ background:'#fff', borderBottom:'1px solid #F3F4F6', position:'sticky', top:52, zIndex:20, fontFamily:font, boxShadow:'0 2px 12px rgba(0,0,0,0.05)' }}>
         <div style={{ maxWidth:1200, margin:'0 auto', padding:'12px 24px' }}>
 
           {/* category pills */}

@@ -76,7 +76,7 @@ export default function ReferralsPage() {
   const body: CSSProperties = {
     maxWidth: '900px',
     margin: '0 auto',
-    padding: '0 24px 80px',
+    padding: '0 24px 56px',
   };
 
   const sectionTitle: CSSProperties = {
@@ -87,7 +87,7 @@ export default function ReferralsPage() {
   };
 
   const sectionSub: CSSProperties = {
-    fontSize: '15px',
+    fontSize: '14px',
     color: '#6B7280',
     margin: '0 0 28px',
   };
@@ -96,7 +96,7 @@ export default function ReferralsPage() {
     background: '#FFFFFF',
     borderRadius: '16px',
     boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-    padding: '28px 28px',
+    padding: '24px 20px',
   };
 
   // Steps
@@ -111,7 +111,7 @@ export default function ReferralsPage() {
     background: '#FFFFFF',
     borderRadius: '16px',
     boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-    padding: '28px 24px',
+    padding: '24px 20px',
     textAlign: 'center',
     borderTop: `4px solid ${color}`,
   });
@@ -158,7 +158,7 @@ export default function ReferralsPage() {
 
   const statCard = (_color: string): CSSProperties => ({
     background: '#FFFFFF',
-    borderRadius: '12px',
+    borderRadius: '16px',
     boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
     padding: '24px 20px',
     textAlign: 'center',
