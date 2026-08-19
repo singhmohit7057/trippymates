@@ -63,28 +63,28 @@ export default function Footer() {
     <>
       <style>{`
         .tf-link {
-          font-size: 14px; color: #64748B; text-decoration: none;
+          font-size: 14px; color: rgba(255,255,255,0.9); text-decoration: none;
           font-family: ${font}; transition: color 0.15s; line-height: 1.4;
           display: flex; align-items: center; gap: 6px;
         }
-        .tf-link:hover { color: #007AFF; }
-        .tf-link:hover .tf-link-dot { background: #007AFF; }
+        .tf-link:hover { color: #fff; }
+        .tf-link:hover .tf-link-dot { background: #fff; }
         .tf-link-dot {
           width: 5px; height: 5px; border-radius: 50%;
-          background: #CBD5E1; flex-shrink: 0; transition: background 0.15s;
+          background: rgba(255,255,255,0.6); flex-shrink: 0; transition: background 0.15s;
         }
         .tf-social {
           width: 38px; height: 38px; border-radius: 10px;
-          background: #EBF5FF; border: 1px solid #99CEFF;
+          background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
           display: inline-flex; align-items: center; justify-content: center;
-          color: #007AFF; text-decoration: none; transition: all 0.18s;
+          color: #fff; text-decoration: none; transition: all 0.18s;
         }
-        .tf-social:hover { background: #007AFF; border-color: #007AFF; color: #fff; transform: translateY(-2px); }
+        .tf-social:hover { background: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.5); color: #fff; transform: translateY(-2px); }
         .tf-col-head {
-          font-size: 11px; font-weight: 700; color: #111827;
+          font-size: 11px; font-weight: 700; color: #fff;
           letter-spacing: 0.08em; text-transform: uppercase;
           margin: 0 0 18px; padding-bottom: 10px;
-          border-bottom: 1px solid #99CEFF;
+          border-bottom: 1px solid rgba(255,255,255,0.25);
         }
         @media(max-width:900px) {
           .tf-top  { grid-template-columns: 1fr 1fr 1fr !important; }
@@ -108,19 +108,19 @@ export default function Footer() {
         }
       `}</style>
 
-      <footer style={{ background: '#EBF5FF', color: '#111827', fontFamily: font, borderTop: '1px solid #99CEFF' }}>
+      <footer style={{ background: '#007AFF', color: '#fff', fontFamily: font, borderTop: 'none' }}>
 
         {/* ── top accent bar ─────────────────────────────────────────────────── */}
-        <div style={{ height: 3, background: 'linear-gradient(90deg, #007AFF, #4DB2FF, #007AFF)' }} />
+        <div style={{ height: 3, background: 'linear-gradient(90deg, #007AFF, #80BDFF, #007AFF)' }} />
 
         {/* ── newsletter strip ───────────────────────────────────────────────── */}
-        <div style={{ borderBottom: '1px solid #99CEFF', padding: '36px 24px', background: '#CCE4FF' }}>
+        <div style={{ borderBottom: '1px solid rgba(255,255,255,0.2)', padding: '36px 24px', background: '#0a1628' }}>
           <div className="tf-newsletter" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
             <div>
-              <h3 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 4px', letterSpacing: '-0.3px', color: '#111827' }}>
+              <h3 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 4px', letterSpacing: '-0.3px', color: '#fff' }}>
                 Get trip ideas in your inbox 📬
               </h3>
-              <p style={{ fontSize: 13, color: '#64748B', margin: 0 }}>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', margin: 0 }}>
                 New destinations, deals & travel guides — no spam, ever.
               </p>
             </div>
@@ -129,13 +129,13 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  style={{ padding: '10px 16px', borderRadius: 9, border: '1.5px solid #99CEFF', background: '#fff', color: '#111827', fontSize: 14, fontFamily: font, outline: 'none', width: 220 }}
+                  style={{ padding: '10px 16px', borderRadius: 9, border: '1.5px solid rgba(255,255,255,0.3)', background: '#fff', color: '#111827', fontSize: 14, fontFamily: font, outline: 'none', width: 220 }}
                 />
-                <button style={{ padding: '10px 20px', borderRadius: 9, background: '#007AFF', color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: font, whiteSpace: 'nowrap' }}>
+                <button style={{ padding: '10px 20px', borderRadius: 9999, background: '#007AFF', color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: font, whiteSpace: 'nowrap' }}>
                   Subscribe
                 </button>
               </div>
-              <p className="tf-newsletter-unsub" style={{ margin: 0, fontSize: 12, color: '#64748B', textAlign: 'right' }}>
+              <p className="tf-newsletter-unsub" style={{ margin: 0, fontSize: 12, color: 'rgba(255,255,255,0.6)', textAlign: 'right' }}>
                 Already subscribed?{' '}
                 <Link to="/unsubscribe" style={{ color: '#007AFF', textDecoration: 'none', fontWeight: 600 }}>
                   Unsubscribe here.
@@ -154,24 +154,24 @@ export default function Footer() {
               <img
                 src="/logo.png"
                 alt="Trippy Mates"
-                style={{ height: 44, width: 'auto', display: 'block', objectFit: 'contain', marginBottom: 14, filter: 'none' }}
+                style={{ height: 44, width: 'auto', display: 'block', objectFit: 'contain', marginBottom: 14 }}
               />
-              <p style={{ fontSize: 14, color: '#64748B', lineHeight: '1.7', margin: '0 0 20px', maxWidth: 280 }}>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', lineHeight: '1.7', margin: '0 0 20px', maxWidth: 280 }}>
                 Handcrafted trips led by local Captains. Every journey is designed to go beyond the checklist.
               </p>
 
               {/* contact snippets */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 22 }}>
-                <a href="tel:+918981256860" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')} onMouseLeave={e => (e.currentTarget.style.color = '#94A3B8')}>
-                  <Phone size={13} color="#007AFF" /> +91 89812 56860
+                <a href="tel:+918981256860" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'rgba(255,255,255,0.85)', textDecoration: 'none', transition: 'color 0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}>
+                  <Phone size={13} color="#fff" /> +91 89812 56860
                 </a>
-                <a href="mailto:hello@trippymates.in" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')} onMouseLeave={e => (e.currentTarget.style.color = '#94A3B8')}>
-                  <Mail size={13} color="#007AFF" /> hello@trippymates.in
+                <a href="mailto:hello@trippymates.in" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'rgba(255,255,255,0.85)', textDecoration: 'none', transition: 'color 0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}>
+                  <Mail size={13} color="#fff" /> hello@trippymates.in
                 </a>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748B' }}>
-                  <MapPin size={13} color="#007AFF" /> India · Operating Nationwide
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'rgba(255,255,255,0.85)' }}>
+                  <MapPin size={13} color="#fff" /> India · Operating Nationwide
                 </div>
               </div>
 
@@ -232,28 +232,28 @@ export default function Footer() {
               {/* trust badges */}
               <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {['🔒 Secure Payments', '✅ Verified Captains', '📞 24/7 Support'].map(t => (
-                  <div key={t} style={{ fontSize: 12, color: '#64748B', display: 'flex', alignItems: 'center', gap: 6 }}>{t}</div>
+                  <div key={t} style={{ fontSize: 12, color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: 6 }}>{t}</div>
                 ))}
               </div>
             </div>
           </div>
 
           {/* divider */}
-          <div style={{ borderTop: '1px solid #99CEFF', marginBottom: 0 }} />
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginBottom: 0 }} />
         </div>
 
         {/* bottom bar */}
-        <div style={{ background: '#CCE4FF', borderTop: '1px solid #99CEFF', padding: '16px 24px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.1)', borderTop: '1px solid rgba(255,255,255,0.2)', padding: '16px 24px' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="tf-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-            <span style={{ fontSize: 13, color: '#64748B' }}>
+            <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>
               © 2025 Trippy Mates. All rights reserved.
             </span>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              <span style={{ fontSize: 13, color: '#64748B' }}>
+              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>
                 Made with ❤️ for travellers by{' '}
                 <a href="https://www.tmmt.in" target="_blank" rel="noopener noreferrer"
-                  style={{ color: '#007AFF', textDecoration: 'none', fontWeight: 600 }}>
+                  style={{ color: '#fff', textDecoration: 'none', fontWeight: 600 }}>
                   TMMT
                 </a>
               </span>

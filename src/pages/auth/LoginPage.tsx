@@ -15,8 +15,8 @@ export default function LoginPage() {
 
   const validate = () => {
     const e: { email?: string; password?: string } = {};
-    if (!email) e.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(email)) e.email = 'Enter a valid email';
+    if (!email) e.email = 'Email or phone number is required';
+    else if (!/\S+@\S+\.\S+/.test(email) && !/^\d{10}$/.test(email)) e.email = 'Enter a valid email or 10-digit phone number';
     if (!password) e.password = 'Password is required';
     else if (password.length < 6) e.password = 'Password must be at least 6 characters';
     setErrors(e);
@@ -161,51 +161,6 @@ export default function LoginPage() {
     marginBottom: '20px',
   };
 
-  const dividerRow: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-    marginBottom: '20px',
-  };
-
-  const dividerLine: CSSProperties = {
-    flex: 1,
-    height: '1px',
-    background: '#E5E7EB',
-  };
-
-  const dividerText: CSSProperties = {
-    fontSize: '12px',
-    color: '#9CA3AF',
-    fontWeight: 500,
-    whiteSpace: 'nowrap',
-  };
-
-  const btnGoogle: CSSProperties = {
-    width: '100%',
-    padding: '12px',
-    background: '#fff',
-    color: '#111827',
-    border: '1.5px solid #E5E7EB',
-    borderRadius: '9999px',
-    fontSize: '14px',
-    fontWeight: 600,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '10px',
-    marginBottom: '24px',
-    transition: 'background 0.15s',
-  };
-
-  const googleDot: CSSProperties = {
-    width: '20px',
-    height: '20px',
-    borderRadius: '50%',
-    background: 'conic-gradient(#4285F4 0deg 90deg, #34A853 90deg 180deg, #FBBC05 180deg 270deg, #EA4335 270deg 360deg)',
-    flexShrink: 0,
-  };
 
   const bottomText: CSSProperties = {
     textAlign: 'center',
@@ -253,15 +208,15 @@ export default function LoginPage() {
             </div>
           )}
           <div style={fieldWrapper}>
-            <label style={label} htmlFor="email">Email</label>
+            <label style={label} htmlFor="email">Email or Phone Number</label>
             <div style={inputRow}>
               <span style={inputIcon}><Mail size={16} /></span>
               <input
                 id="email"
-                type="email"
+                type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder="you@example.com or 9876543210"
                 style={errors.email ? inputError : inputBase}
               />
             </div>
@@ -313,17 +268,6 @@ export default function LoginPage() {
           </button>
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
         </form>
-
-        <div style={dividerRow}>
-          <div style={dividerLine} />
-          <span style={dividerText}>or</span>
-          <div style={dividerLine} />
-        </div>
-
-        <button style={btnGoogle} type="button">
-          <div style={googleDot} />
-          Continue with Google
-        </button>
 
         <p style={bottomText}>
           Don't have an account?{' '}

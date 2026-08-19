@@ -446,27 +446,14 @@ function DestCarousel({ title, description, destinations }: { title: string; des
   const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (dir: 'left' | 'right') => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir === 'left' ? -320 : 320, behavior: 'smooth' });
-  };
-
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', marginBottom: 48 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-        <h3 style={{ fontSize: 24, fontWeight: 800, color: '#1a1a2e', margin: 0, fontFamily: font }}>
+      <div style={{ textAlign: 'center', marginBottom: 20 }}>
+        <h3 style={{ fontSize: 24, fontWeight: 800, color: '#1a1a2e', margin: '0 0 8px', fontFamily: font }}>
           Popular {title} <span style={{ color: '#007AFF' }}>Packages</span>
         </h3>
-        <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-          <button onClick={() => scroll('left')} style={arrowBtn} aria-label="Scroll left">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button onClick={() => scroll('right')} style={{ ...arrowBtn, background: '#007AFF', color: '#fff', borderColor: '#007AFF' }} aria-label="Scroll right">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
+        <p style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.6, margin: 0, maxWidth: 700, marginLeft: 'auto', marginRight: 'auto' }}>{description}</p>
       </div>
-      <p style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.6, margin: '0 0 20px', maxWidth: 800 }}>{description}</p>
 
       <div ref={scrollRef} className="dest-carousel-scroll" style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 8 }}>
         {destinations.map((dest) => {
@@ -504,11 +491,6 @@ function DestCarousel({ title, description, destinations }: { title: string; des
   );
 }
 
-const arrowBtn: CSSProperties = {
-  width: 38, height: 38, borderRadius: '50%', border: '2px solid #007AFF',
-  background: '#fff', color: '#007AFF', display: 'flex', alignItems: 'center',
-  justifyContent: 'center', cursor: 'pointer', padding: 0, transition: 'all 0.2s',
-};
 
 function FeaturedDestinations() {
   const domestic = mockDestinations.filter(d => d.type === 'domestic');
